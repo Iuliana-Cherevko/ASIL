@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <header class="top-bar">
+        <a href="{{ url_for('index') }}" class="logo">ASIL</a>
+        <a href="{{ url_for('index') }}">Log out</a>
+    </header>
+    
+    <section class="hero-section profile">
+        <div class="profile-pic">
+            <div class="profile-picture">
+                {% if username_placeholder == "Katy Lio" %}
+                    <img src="{{ url_for('static', filename='images/dog.jpg') }}" alt="Profile Picture" class="large-profile-img">
+                {% else %}
+                    <img src="{{ url_for('static', filename='images/plant.jpg') }}" alt="Profile Picture" class="large-profile-img">
+                {% endif %}    
+            </div>
+        </div>
+        <div class="profile-text">
+            <div class="username-status">
+                <p class="username">{{ username_placeholder }}</p> 
+                <p class="status">Days Kept Up: {{ days_kept_up_placeholder }}</p> 
+                <p class="current-goal">Current Goal: {{ current_goal_placeholder }}</p> <!-- New Field -->
+                <p class="pet-name">Pet Name: {{ pet_name_placeholder }}</p>
+                <p class="pet-level">Pet Level: {{ pet_level_placeholder }}</p>
+                <p class="bad-habit">Bad Habit: {{ bad_habit_placeholder }}</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="text-section">
+        <p>The daily check-in button is your tool for staying on track and reflecting on your progress. By completing it every day, you'll help your character grow and level up, symbolizing the progress you're making in overcoming your bad habit.<br>
+            Remember, the more honest you are in your responses, the better we can track your true development and success. Stay committed, stay honest, and let's move forward together toward your goal!</p>
+        
+        <a href="{{ url_for('checkin') }}" id="check-in-btn" class="large-btn {% if checked_in_today %}checked-in{% endif %}">
+            {% if checked_in_today %}
+                You have checked in today!
+            {% else %}
+                Check-in
+            {% endif %}
+        </a>
+    </section>
+
+    <section class="weekly-report-section">
+        <h2>Weekly Report</h2>
+        <div class="report-container">
+            <div class="calendar-container">
+                <div class="calendar">
+                    <div class="calendar__month" id="calendar-month"></div>
+                    <div class="calendar__year" id="calendar-year"></div>
+                    <div class="calendar__days" id="calendar-days"></div>
+                </div>
+            </div>
+    
+            <div class="week-container">
+                <div class="weekdays">
+                    <div class="weekday" style="background-color: #f19b0e;" data-day="Sunday">Sun</div>
+                    <div class="weekday" data-day="Monday">Mon</div>
+                    <div class="weekday" data-day="Tuesday">Tue</div>
+                    <div class="weekday" data-day="Wednesday">Wed</div>
+                    <div class="weekday" data-day="Thursday">Thu</div>
+                    <div class="weekday" data-day="Friday">Fri</div>
+                    <div class="weekday" data-day="Saturday">Sat</div>
+                </div>
+                
+                <div class="journal-container">
+                    <div class="journal-box" id="journal-box">
+                        <p>Today felt easier than when I started. I didn't even want to smoke today!</p>
+                        <!-- <p>Select a day to view your journal entry.</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>   
+    
+    <footer>
+        <p>© 2024 by ASIL</p>
+    </footer>
+
+    <script>
+        document.getElementById('check-in-btn').addEventListener('click', () => {
+            document.getElementById('check-in-modal').style.display = 'block';
+        });
+
+        document.getElementById('close-btn').addEventListener('click', () => {
+            document.getElementById('check-in-modal').style.display = 'none';
+        });
+
+    //     document.addEventListener('DOMContentLoaded', function () {
+    
+    //     const weekdays = document.querySelectorAll('.weekday');
+    //     const journalBox = document.getElementById('journal-box');
+
+    //     const journals = {
+    //         Sunday: "Journal entry for Sunday.",
+    //         Monday: "Journal entry for Monday.",
+    //         Tuesday: "Journal entry for Tuesday.",
+    //         Wednesday: "Journal entry for Wednesday.",
+    //         Thursday: "Journal entry for Thursday.",
+    //         Friday: "Journal entry for Friday.",
+    //         Saturday: "Journal entry for Saturday."
+    //     };
+
+    //     weekdays.forEach(day => {
+    //         day.addEventListener('click', () => {
+    //             // const selectedDay = day.getAttribute('data-day');
+    //             // journalBox.innerHTML = `<p>${journals[selectedDay]}</p>`;
+    //             journalBox.innerHTML = "Hello";
+    //         });
+    //     });
+    // });
+        
+    </script>
+</body>
+</html>

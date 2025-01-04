@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - ASIL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header class="top-bar">
+        <a href="{{ url_for('index') }}" class="logo">ASIL</a>
+        <a href="{{ url_for('profile') }}">Profile</a>
+    </header>
+
+    <section class="check-in-section">
+        <h1>Daily Check-In</h1>
+        <section style="max-height: 250px; margin-top:-5%">
+            <p>
+                The daily check-in is your key for staying on track and tracking on your progress. By completing it every day, you help your character grow and level up, representing the positive changes you're making in overcoming your bad habit.
+            </p>
+        </section>
+
+        <form action="{{ url_for('checkin') }}" method="POST" class="check-in-form">
+            <div class="form-group">
+                <label for="bad-habit"><b>Progress: </b>Were you able to stay strong and avoid your bad habit today?</label>
+                    <div><input type="radio" name="bad-habit" value="yes" id="bad-habit-yes" required> <label for="bad-habit-yes">Yes</label>
+                    <input type="radio" name="bad-habit" value="no" id="bad-habit-no" required> <label for="bad-habit-no">No</label></div>
+            </div>
+            <div class="form-group">
+                <label for="journal" ><b>Journal Entry:</b> Use this space to write share your thoughts about today. What went well? What challenges did you face? How do you feel about your progress?</label>
+                    <textarea id="journal" name="journal" rows="4" style="font-size:18px; line-height: 1.3;" cols="50" placeholder="e.g. Today went well! I successfully avoided my habit of smoking, and I felt proud and energized. It wasn't easy, but I stayed focused and reminded myself why I'm on this journey." required></textarea>
+            </div>
+        
+            <button type="submit" class="submit-btn"><b>Submit</b></button>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2024 by ASIL</p>
+    </footer>
+</body>
+</html>
+

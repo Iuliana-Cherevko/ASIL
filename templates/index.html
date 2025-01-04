@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASIL - Overcome Bad Habits</title>
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <header class="top-bar">
+        <a href="{{ url_for('index') }}" class="logo">ASIL</a>
+        {% if user_logged_in %}
+            <a href="{{ url_for('profile') }}">Profile</a>
+        {% else %}
+            <a href="{{ url_for('registration') }}" class="get-started-btn">Sign up</a>
+        {% endif %}
+    </header>
+
+    <section class="container">
+        <div class="hero-section text">
+            <h1>ASIL</h1>
+            <p>Fun and easy way<br>to overcome bad habits</p>
+            <a href="{{ url_for('registration') }}" class="register-btn">Register Now</a>
+            <br>
+            <a class="sign-in-link" id="sign-in-link">Already have an account? <u>Sign In</u></a>
+        </div>
+        <div class="hero-section img">
+            <img src="{{ url_for('static', filename='images/tree.jpg') }}" alt="Tree representing growth and overcoming habits">
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <h2>About ASIL</h2>
+        <p>
+            ASIL is a transformative web app designed to help individuals overcome bad habits. 
+            Set goals, track progress, and achieve a better version of yourself.
+        </p>
+    </section>
+
+    <section id="team" class="team-section">
+        <h2>Meet the Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='images/s_img.jpg') }}" alt="Teammate 1">
+                <h3>Shai Yaish</h3>
+                <p>Front-End developer</p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='images/y_img.jpg') }}" alt="Teammate 2">
+                <h3>Iuliana Cherevko</h3>
+                <p>Front-End developer</p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='images/a_img.jpg') }}" alt="Teammate 3">
+                <h3>Anthony Rodriguez</h3>
+                <p>Back-End developer</p>
+            </div>
+            <div class="team-member">
+                <img src="{{ url_for('static', filename='images/l_img.jpg') }}" alt="Teammate 4">
+                <h3>Long Nguyen</h3>
+                <p>Back-End developer</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-to-get-started" class="get-started-section">
+        <h2>How to Get Started with ASIL</h2>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-text">
+                    <p><strong>Create Your Account:</strong> Click the <strong>Sign Up</strong> button at the top right of the page. Fill in your information, including your email, username, and password, to create a personalized account.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-text">
+                    <p><strong>Tell Us About Your Goals:</strong> Complete a quick questionnaire about the bad habit(s) you want to overcome. Share your specific goals, select how long you aim to stay habit-free, and choose a character that represents your journey.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-text">
+                    <p><strong>Start Your Journey:</strong> Once you've completed the setup, you're ready to dive into the ASIL experience. Use our web app to track your progress, stay motivated with your character, and adapt your habits step-by-step!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-us" class="contact-section">
+        <h2>Contact Us</h2>
+        <p>Feel free to write to us at <a href="mailto:asil@gmail.com">asil@gmail.com</a> if you have any questions.</p>
+    </section>
+    
+    <footer>
+        <p>© 2024 by ASIL</p>
+    </footer>
+
+    <div id="sign-in-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-btn" class="close-btn">&times;</span>
+            <h2>Sign In</h2>
+            <form action="{{ url_for('sign_in') }}" method="POST">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+                <button type="submit" class="submit-btn">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get modal and sign-in link
+        const modal = document.getElementById("sign-in-modal");
+        const signInLink = document.getElementById("sign-in-link");
+        const closeBtn = document.getElementById("close-btn");
+
+        // Open the modal when "Sign In" is clicked
+        signInLink.onclick = function(event) {
+            event.preventDefault();
+            modal.style.display = "block";
+        }
+
+        // Close the modal when "x" is clicked
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Close the modal if clicked outside the modal content
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
