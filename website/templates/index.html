@@ -10,11 +10,11 @@
 </head>
 <body>
     <header class="top-bar">
-        <a href="{{ url_for('index') }}" class="logo">ASIL</a>
+        <a href="{{ url_for('views.index') }}" class="logo">ASIL</a>
         {% if user_logged_in %}
-            <a href="{{ url_for('profile') }}">Profile</a>
+            <a href="{{ url_for('views.profile') }}">Profile</a>
         {% else %}
-            <a href="{{ url_for('registration') }}" class="get-started-btn">Sign up</a>
+            <a href="{{ url_for('auth.registration') }}" class="get-started-btn">Sign up</a>
         {% endif %}
     </header>
 
@@ -22,7 +22,7 @@
         <div class="hero-section text">
             <h1>ASIL</h1>
             <p>Fun and easy way<br>to overcome bad habits</p>
-            <a href="{{ url_for('registration') }}" class="register-btn">Register Now</a>
+            <a href="{{ url_for('auth.registration') }}" class="register-btn">Register Now</a>
             <br>
             <a class="sign-in-link" id="sign-in-link">Already have an account? <u>Sign In</u></a>
         </div>
@@ -102,7 +102,7 @@
         <div class="modal-content">
             <span id="close-btn" class="close-btn">&times;</span>
             <h2>Sign In</h2>
-            <form action="{{ url_for('sign_in') }}" method="POST">
+            <form action="{{ url_for('auth.sign_in') }}" method="POST">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" placeholder="Enter your username" required>
 

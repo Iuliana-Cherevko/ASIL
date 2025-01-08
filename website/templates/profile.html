@@ -9,8 +9,8 @@
 </head>
 <body>
     <header class="top-bar">
-        <a href="{{ url_for('index') }}" class="logo">ASIL</a>
-        <a href="{{ url_for('index') }}">Log out</a>
+        <a href="{{ url_for('views.index') }}" class="logo">ASIL</a>
+        <a href="{{ url_for('views.index') }}">Log out</a>
     </header>
     
     <section class="hero-section profile">
@@ -39,7 +39,7 @@
         <p>The daily check-in button is your tool for staying on track and reflecting on your progress. By completing it every day, you'll help your character grow and level up, symbolizing the progress you're making in overcoming your bad habit.<br>
             Remember, the more honest you are in your responses, the better we can track your true development and success. Stay committed, stay honest, and let's move forward together toward your goal!</p>
         
-        <a href="{{ url_for('checkin') }}" id="check-in-btn" class="large-btn {% if checked_in_today %}checked-in{% endif %}">
+        <a href="{{ url_for('views.check_in') }}" id="check-in-btn" class="large-btn {% if checked_in_today %}checked-in{% endif %}">
             {% if checked_in_today %}
                 You have checked in today!
             {% else %}
