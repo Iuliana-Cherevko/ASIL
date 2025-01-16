@@ -564,10 +564,11 @@ button[type="submit"]:hover {
 }
 
 .questionnaire-page p { text-align: center; }
-
+.page-1 .error-container { max-width: 300px; }
 .page-2 .center-content { max-width: 650px;}
 .page-2 label { text-align: left; }
 .page-2 input[type=text] { margin: 0 auto; }
+.page-2 .error-container { margin-top: -10px;}
 
 .button-container-questionnaire {
     display: flex;
@@ -597,15 +598,32 @@ button[type="submit"]:hover {
 
 .page-3 .center-content {
     max-width: 780px;
-    max-height: 720px;
+    max-height: 660px;
 } 
+
+.page-3 input {
+    margin: 0px;
+}
+
+.page-3 .error-container {
+    max-width: 300px;
+    display: flex-start;
+}
+
+.companion-selection-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
 
 .companion-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 0;
-    margin:0;
-    justify-items: center;
+    grid-gap: 5px;
+    justify-items: start;
+    width: fit-content;
+    margin-right: auto;
 }
 
 .image-selector {
@@ -614,11 +632,13 @@ button[type="submit"]:hover {
     padding: 0;
     text-align: center;
     border-radius: var(--card-border-radius);
-    height: 250px;
-    width: 250px;
+    height: 170px;
+    width: 170px;
     overflow: hidden;
     border: 1px solid var(--black);
 }
+
+.center-content label { text-align: left;}
 
 .image-selector label {
     display: block;
@@ -690,6 +710,7 @@ button[type="submit"]:hover {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 260px;
+    margin-top: -5px;
 }
 
 .error-icon {

@@ -198,11 +198,11 @@
           <h2>Welcome Back</h2>
           <form action="{{ url_for('auth.sign_in') }}" method="POST">
               <label for="username">Username:</label>
-              <input type="text" id="username" name="username" placeholder="Enter your username" required>
+              <input type="text" id="username" name="username" autocomplete="username" placeholder="Enter your username" required>
               
               <label for="password">Password:</label>
               <div class="password-container">
-                <input type="password" id="password-sign-in" name="password" placeholder="Enter your password" required>
+                <input type="password" id="password-sign-in" name="password" placeholder="Enter your password" autocomplete="current-password" required>
                 <img class="toggle-password" id="toggle-password-sign-in" alt="" src="{{ url_for('static', filename='images/eye-hide.png') }}">
               </div>
 
@@ -236,21 +236,21 @@
             <form id="registration-form" action="{{ url_for('auth.registration') }}" method="POST">
             
                 <label for="username">Username:</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                <input type="text" id="username" name="username" autocomplete="username" placeholder="Enter your username" required>
                 
                 <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                <input type="email" id="email" name="email" autocomplete="email" placeholder="Enter your email address" required>
                 
                 <label for="password">Password:</label>
                 <div class="password-container">
-                    <input type="password" id="registration-password" name="password" placeholder="Enter your password" required>
+                    <input type="password" id="registration-password" name="password" autocomplete="new-password" placeholder="Enter your password" required>
                     <img class="toggle-password" id="toggle-registration-password" alt="" src="{{ url_for('static', filename='images/eye-hide.png') }}">
                 </div>
 
                 <div class="confirm-password-container" id="confirm-password-container">
                     <label for="confirm-password">Confirm Password:</label>
                     <div class="password-container">
-                        <input type="password" id="confirm-password" name="confirm_password" placeholder="Re-enter your password" required>
+                        <input type="password" id="confirm-password" name="confirm_password" autocomplete="new-password" placeholder="Re-enter your password" required>
                         <img class="toggle-password" id="toggle-confirm-password" alt="" src="{{ url_for('static', filename='images/eye-hide.png') }}">
                     </div>
                 </div>
@@ -276,7 +276,7 @@
   </div>
 
     <!-- Brief Questionnaire Modal -->
-    <form action="{{ url_for('auth.registration') }}" method="POST" id="questionnaire-form">
+    <form action="{{ url_for('auth.registration') }}" method="POST" id="questionnaire-form" novalidate>
       <div id="brief-questionnaire-modal" class="modal">
         <div class="modal-content brief-questionnaire-modal-content">
           <img src="/static/images/questionnaire-background.png" alt="" class="background-img">
@@ -292,10 +292,10 @@
                 <label for="questionnaire-waiver" id="checkbox-label">I agree that I must stay truthful and loyal to my responses using HabiTrain</label>
               </div>          
                 
-              <!-- <div id="waiver-error" class="error-container" style="display: none; margin-top: -10px">
+              <div id="waiver-error" class="error-container" style="display: none; margin-top: -10px">
                 <span class="error-icon">!</span>
                 <span class="error-message-text">You must agree to the waiver.</span>
-              </div> -->
+              </div>
               
               <div class="button-container">
                 <button class="btn btn-primary navigate-button" data-current-page="0" data-direction="next">Next</button>
@@ -312,7 +312,7 @@
               <label for="bad-habit">What is/are the bad habits you want to overcome?</label>
               <input type="text" id="bad-habit" name="bad-habit" placeholder="e.g.s Smoking, Alcohol consumption." />
               
-              <div id="bad-habit-error" class="error-container" style="display: none; margin-top: -5px">
+              <div id="bad-habit-error" class="error-container" style="display: none;">
                 <span class="error-icon">!</span>
                 <span class="error-message-text">Please enter a bad habit.</span>
               </div>
@@ -329,7 +329,7 @@
                 <option value="90">3 months</option>
               </select>
 
-              <div id="goal-duration-error" class="error-container" style="display: none; margin-top: -10px">
+              <div id="goal-duration-error" class="error-container" style="display: none;">
                 <span class="error-icon">!</span>
                 <span class="error-message-text">Please select a goal duration.</span>
               </div>
@@ -345,60 +345,74 @@
           <div class="questionnaire-page page-3" id="page-3" style="background-image: url('/static/images/questionnaire-background.png');">
             <div class="center-content">
               <h2>Choose your Companion</h2>
-              <div class="companion-grid">
-                <div class="image-selector">
-                  <input type="radio" id="character1" name="character" value="plant" required>
-                  <label for="character1">
-                    <img src="{{ url_for('static', filename='images/plant.jpg') }}" alt="Character 1" class="companion-img">
-                    <!-- <iframe src="{{ url_for('static', filename='images/characters/slime.pdf') }}" 
-                    class="companion-img"
-                    style="width: 100%; height: 500px; border: none;">
-                    </iframe> -->
-                  </label>
+
+              <label for="companion-name">Name your companion:</label>
+              <input type="text" id="companion-name" name="companion-name" placeholder="e.g., Luna, Blaze, Sprout" />
+              
+              <div id="companion-name-error" class="error-container" style="display: none;">
+                <span class="error-icon">!</span>
+                <span class="error-message-text">Please enter companion's name.</span>
+              </div>
+
+              <label for="companion-selection">Choose one of the companions below:</label>
+              <div class="companion-selection-container">
+
+                <div class="companion-grid">
+                  <div class="image-selector">
+                    <input type="radio" id="companion1" name="companion" value="plant" required>
+                    <label for="companion1">
+                      <img src="{{ url_for('static', filename='images/plant.jpg') }}" alt="companion 1" class="companion-img">
+                      <!-- <iframe src="{{ url_for('static', filename='images/companions/slime.pdf') }}" 
+                      class="companion-img"
+                      style="width: 100%; height: 500px; border: none;">
+                      </iframe> -->
+                    </label>
+                  </div>
+
+                  <div class="image-selector">
+                    <input type="radio" id="companion2" name="companion" value="dog" required>
+                    <label for="companion2">
+                      <img src="{{ url_for('static', filename='images/dog.png') }}" class="companion-img">
+                      <!-- <iframe src="{{ url_for('static', filename='images/companions/sprout.pdf') }}" 
+                      class="companion-img"
+                      style="width: 100%; height: 500px; border: none;">
+                      </iframe> -->
+                    </label>
+                  </div>
+
+                  <div class="image-selector">
+                    <input type="radio" id="companion3" name="companion" value="dragon" required>
+                    <label for="companion3">
+                      <img src="{{ url_for('static', filename='images/dragon.png') }}" class="companion-img">
+                    </label>
+                  </div>
+
+                  <div class="image-selector">
+                    <input type="radio" id="companion4" name="companion" value="cat" required>
+                    <label for="companion4">
+                      <img src="{{ url_for('static', filename='images/cat.jpg') }}" class="companion-img">
+                    </label>
+                  </div>
+
+                  <div class="image-selector">
+                    <input type="radio" id="companion5" name="companion" value="slime" required>
+                    <label for="companion5">
+                      <img src="{{ url_for('static', filename='images/slime.png') }}" class="companion-img">
+                    </label>
+                  </div>
+
+                  <div class="image-selector">
+                    <div class="more-soon">+ more soon</div>
+                  </div>
                 </div>
 
-                <div class="image-selector">
-                  <input type="radio" id="character2" name="character" value="dog" required>
-                  <label for="character2">
-                    <img src="{{ url_for('static', filename='images/dog.png') }}" class="companion-img">
-                    <!-- <iframe src="{{ url_for('static', filename='images/characters/sprout.pdf') }}" 
-                    class="companion-img"
-                    style="width: 100%; height: 500px; border: none;">
-                    </iframe> -->
-                  </label>
-                </div>
-
-                <div class="image-selector">
-                  <input type="radio" id="character3" name="character" value="dragon" required>
-                  <label for="character3">
-                    <img src="{{ url_for('static', filename='images/dragon.png') }}" class="companion-img">
-                  </label>
-                </div>
-
-                <div class="image-selector">
-                  <input type="radio" id="character4" name="character" value="cat" required>
-                  <label for="character4">
-                    <img src="{{ url_for('static', filename='images/cat.jpg') }}" class="companion-img">
-                  </label>
-                </div>
-
-                <div class="image-selector">
-                  <input type="radio" id="character5" name="character" value="slime" required>
-                  <label for="character5">
-                    <img src="{{ url_for('static', filename='images/slime.png') }}" class="companion-img">
-                  </label>
-                </div>
-
-                <div class="image-selector">
-                  <div class="more-soon">+ more soon</div>
-                </div>
-
-                <!-- <div id="character-error" class="error-container" style="display: none;">
+                <div id="companion-error" class="error-container" style="display: none; ">
                   <span class="error-icon">!</span>
-                  <span class="error-message-text">Please select a character.</span>
-                </div> -->
+                  <span class="error-message-text">Please select a companion.</span>
+                </div>
               </div>
             </div>
+
             <div class="button-container-questionnaire">
               <button class="btn btn-primary navigate-button" data-current-page="2" data-direction="previous">Previous</button>
               <button class="btn btn-primary navigate-button" id="submit-questionnaire">Submit</button>
