@@ -16,7 +16,7 @@ users = {
         "creature_level": 1,
         "checked_in_days": ["November 17, 2024"],
         "current_goal": 30,
-        "bad_habit_placeholder": "Smoking",
+        "Fid": "Smoking",
     },
     "Bili Bob": {
         "days_kept_up": 1,
