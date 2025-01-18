@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - ASIL</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles-old.css') }}">
 </head>
 <body>
     <header class="top-bar">
         <div style="color: white" class="logo">
-            <a href="{{ url_for('views.index') }}">ASIL</a>
+            <a href="{{ url_for('views.index-old') }}">ASIL</a>
         </div>
         <a href="{{ url_for('auth.registration') }}" class="get-started-btn">Sign up</a> <!-- Update link to use Flask's URL -->
     </header>
