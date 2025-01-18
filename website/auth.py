@@ -14,20 +14,24 @@ def sign_in():
 
         user = User.query.filter_by(username=username).first()
         if user:
-            if user.password == password:
+            if check_password_hash(user.password, password):
                 flash('Logged in', category='success')
+                login_user(user, remember=True) #will remember user logged in 
                 return render_template('profile.html')
-    #             return redirect(url_for("views.profile"))
-    #         else:
-    #             flash('Incorrect password.', category='danger')
-    #     else:
-    #         flash('Username not found.', category='danger')
+            else:
+                flash('Incorrect password.', category='error')
+                return render_template('index.html')
 
-        return render_template('index.html')
+        else:
+            flash('Username not found.', category='error')
+            return render_template('index.html')
+
 
 @auth.route("logout")
+@login_required
 def logout():
-    return "<h1>logout</h1>"
+    logout_user()
+    return render_template('index.html')
 
 @auth.route('Registration', methods = ['GET', 'POST'])
 def registration():
@@ -43,22 +47,17 @@ def registration():
         if user:
             flash('Username already exists', category='error')
 
-        new_user = User(username=username, password=password, email=email,
-                        habit=0,character=0,experience=0,goal=0)
-        #db.session.commit(new_user)
-        #db.session.commit()
+        #hashed_password = generate_password_hash(password, method='sha256')
 
+        new_user = User(username=username, password=generate_password_hash(password,method='pbkdf2:sha256')
+                        , email=email,habit=0,character=0,experience=0,goal=0)
+        db.session.add(new_user)
+        db.session.commit()
+        print(username,password,email) 
+        login_user(new_user, remember=True) #will remember user logged in 
 
-        # users[name] = {}
-        # users[name]['days_kept_up'] = 0
-        # users[name]['creature_name'] = character
-        # users[name]['creature_level'] = 0
-        # users[name]['checked_in_days'] = 0
-        # users[name]['current_goal'] = goals
-        # users[name]['email'] = email
-        # users[name]['password'] = password
-        # users[name]['habit'] = habit
+        flash('Account successful!', category='success')
 
         print(username,password,email) 
-        return redirect(url_for('views.index'))
+        return redirect(url_for('views.profile'))
     return render_template("registration.html")

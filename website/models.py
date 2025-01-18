@@ -5,9 +5,10 @@ from sqlalchemy import func
 
 
 class User(db.Model, UserMixin):
-    username = db.Column(db.String(150), primary_key=True, unique=True)
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
-    email = db.Column(db.String(150))
+    email = db.Column(db.String(150),unique = True)
     habit = db.Column(db.String(150))
     character = db.Column(db.String(150))
     experience = db.Column(db.String(150))

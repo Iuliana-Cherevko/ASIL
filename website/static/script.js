@@ -210,16 +210,14 @@ function launchBriefQuestionnaire() {
     const briefQuestionnaireModal = document.getElementById('brief-questionnaire-modal');
     const pages = document.querySelectorAll('.questionnaire-page');
 
-    if (user_logged_in && !bad_habit) {
-        briefQuestionnaireModal.style.display = 'block';
-        showPage(0);
-    }
+    briefQuestionnaireModal.style.display = 'block';
+    showPage(0);
 
     function showPage(pageIndex) {
-    pages.forEach((page, index) => page.style.display = index === pageIndex ? 'block' : 'none');
+        pages.forEach((page, index) => page.style.display = index === pageIndex ? 'block' : 'none');
     }
 
-    // Event listener for navigation buttons (Next/Previous)
+    // event listener for navigation buttons (next/previous)
     document.querySelectorAll('.navigate-button').forEach(button => {
         button.addEventListener('click', (e) => {
         const currentPageIndex = parseInt(button.getAttribute('data-current-page'));
@@ -234,6 +232,15 @@ function launchBriefQuestionnaire() {
         }
         });
     });
+
+    // event listener for submit button
+    document.getElementById('submit-questionnaire').addEventListener('click', (e) => {
+        if (!isValidPage(pages.length - 1)) { 
+            e.preventDefault(); 
+        } else {
+            document.getElementById('questionnaire-form').submit();
+        }
+    });
 }
 
 // validate inputs
@@ -243,27 +250,29 @@ function isValidPage(pageIndex) {
     // page 1
     if (pageIndex === 0) {
       const waiverCheckbox = document.getElementById('questionnaire-waiver');
-    //   const waiverError = document.getElementById('waiver-error');
+      const waiverError = document.getElementById('waiver-error');
       if (!waiverCheckbox.checked) {
         waiverError.style.display = 'block';
         isValid = false;
       } else {
-        // waiverError.style.display = 'none';
+        waiverError.style.display = 'none';
       }
     }
   
     // page 2
     if (pageIndex === 1) {
-      const badHabitsInput = document.getElementById('bad-habit');
+      const badHabitInput = document.getElementById('bad-habit');
       const goalDurationSelect = document.getElementById('goal-duration');
-      const badHabitsError = document.getElementById('bad-habit-error');
+      const companionNameInput = document.getElementById('companion-name');
+      const badHabitError = document.getElementById('bad-habit-error');
       const goalDurationError = document.getElementById('goal-duration-error');
+      const companionNameError = document.getElementById('companion-name-error');
   
-      if (!badHabitsInput.value.trim()) {
-        badHabitsError.style.display = 'block';
+      if (!badHabitInput.value.trim()) {
+        badHabitError.style.display = 'block';
         isValid = false;
       } else {
-        badHabitsError.style.display = 'none';
+        badHabitError.style.display = 'none';
       }
   
       if (goalDurationSelect.value == "default") {
@@ -272,6 +281,36 @@ function isValidPage(pageIndex) {
       } else {
         goalDurationError.style.display = 'none';
       }
+    }
+
+    // Page 3
+    if (pageIndex === 2) {
+        const companionNameInput = document.getElementById('companion-name');
+        const companionRadio = document.querySelectorAll('input[name="companion"]');
+        const companionError = document.getElementById('companion-error');
+        const companionNameError = document.getElementById('companion-name-error');
+        let companionSelected = false;
+
+        if (!companionNameInput.value.trim()) {
+          companionNameError.style.display = 'block';
+          isValid = false;
+        } else {
+          companionNameError.style.display = 'none';
+        }
+
+        companionRadio.forEach(radio => {
+            if (radio.checked) {
+                companionSelected = true;
+            }
+        });
+    
+        if (!companionSelected) {
+            companionError.style.display = 'block';
+            isValid = false;
+            companionRadio[0].focus();
+        } else {
+            companionError.style.display = 'none';
+        }
     }
   
     return isValid;

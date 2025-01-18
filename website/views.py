@@ -45,6 +45,7 @@ def index():
 
 
 @views.route('Profile', methods = ['GET','POST'])
+@login_required
 def profile():
     username = "Katy Lio"
     user_data = users[username] 
