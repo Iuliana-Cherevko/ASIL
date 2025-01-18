@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <title>HabiTrain | Overcome Bad Habits</title>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="navbar">
+      <div class="navbar-content">
+        <a href="{{ url_for('views.index') }}"><div class="logo-container">
+            <img src="{{url_for('static', filename='images/logo.png')}}" class="logo">
+            <span>HabiTrain</span>
+        </div></a>
+        <div class="nav-links">
+            <a href="#" class="nav-link-active">Home</a>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+        </div>
+       
+        <div class="nav-btns">
+          {% if user_logged_in %}
+            <button class="btn btn-secondary" id="sign-in-link">Sign in</button>
+            <button href="#" class="btn btn-primary" id="register-link">Register</button>
+          {% else %}
+            <img href="{{ url_for('views.profile') }}" src="{{url_for('static', filename='images/user-icon.png')}}" class="profile-icon">
+            <button class="btn btn-secondary" id="sign-in-link">Log out</button>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+</header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="hero-content fade-in">
+      <h1>
+        Contact
+        <span class="hero-title-highlight">HabiTrain</span>
+      </h1>
+      <p>Feel Free to write anything....</p>
+    </div>
+  </section>
+
+</body>
+</html>

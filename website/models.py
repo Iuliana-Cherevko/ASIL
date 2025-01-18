@@ -1,10 +1,35 @@
+from . import db
+from flask_login import UserMixin
+from sqlalchemy import func
 
-class User():
-    def __init__(self, name, password, email, journal):
-        self.name = name
-        self.password = password
-        self.email = email
-        self.journal = journal
+
+
+class User(db.Model, UserMixin):
+    username = db.Column(db.String(150), primary_key=True, unique=True)
+    password = db.Column(db.String(150))
+    email = db.Column(db.String(150))
+    habit = db.Column(db.String(150))
+    character = db.Column(db.String(150))
+    experience = db.Column(db.String(150))
+    pet_level = db.Column(db.String(150))
+    goal = db.Column(db.String(150))
+    journal = db.relationship('Journal')
+
+
+class Journal(db.Model):
+    id = db.Column(db.String(150),primary_key=True)
+    data = db.Column(db.String(300))
+    date = db.Column(db.DateTime(timezone=True), default=func.now)
+    user_username = db.Column(db.String(150), db.ForeignKey('user.username'))
+
+
+
+
+    # def __init__(self, name, password, email, journal):
+    #     self.name = name
+    #     self.password = password
+    #     self.email = email
+    #     self.journal = journal
 
 
 
@@ -37,6 +62,7 @@ class User():
 
 # db = SQLAlchemy()
 # DB_NAME = "database.db"
+
 
 # def create_app():
 
