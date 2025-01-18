@@ -1,11 +1,12 @@
 from flask import Blueprint , request , render_template, redirect, url_for, flash 
 from werkzeug.security import generate_password_hash , check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
+from .models import User
 from . import db
 from .views import users
 auth = Blueprint("auth", __name__)
 
-@auth.route("sign-in", methods=['GET', 'POST'])
+@auth.route("sign-in", methods=['GET', 'POST'])#is a popup
 def sign_in():
     if request.method == "POST":
         username = request.form.get('username')
@@ -47,22 +48,27 @@ def registration():
     #data = request.form
     if request.method == 'POST':
         habit = request.form.get("question1")
-        name = request.form.get("username")
+        username = request.form.get("username")
         password = request.form.get("password")
         email = request.form.get("email")
         character = request.form.get('character')
-        goals = request.form.get("goal-days")
+        goal = request.form.get("goal-days")
 
-        users[name] = {}
-        users[name]['days_kept_up'] = 0
-        users[name]['creature_name'] = character
-        users[name]['creature_level'] = 0
-        users[name]['checked_in_days'] = 0
-        users[name]['current_goal'] = goals
-        users[name]['email'] = email
-        users[name]['password'] = password
-        users[name]['habit'] = habit
+        new_user = User(username=username, password=password, email=email,
+                        habit=habit,character=character,experience=0,goal=goal)
+        
 
-        print(habit,name,password,email,character) 
+
+        # users[name] = {}
+        # users[name]['days_kept_up'] = 0
+        # users[name]['creature_name'] = character
+        # users[name]['creature_level'] = 0
+        # users[name]['checked_in_days'] = 0
+        # users[name]['current_goal'] = goals
+        # users[name]['email'] = email
+        # users[name]['password'] = password
+        # users[name]['habit'] = habit
+
+        #print(habit,name,password,email,character) 
         return redirect(url_for('views.index'))
     return render_template("registration.html")
