@@ -80,6 +80,21 @@
 
 // window.onload = updateCalendar;
 
+// Toggle dropdown menu
+
+function toggleMenu() {
+    const menu = document.getElementById("sub-menu-container");
+    menu.classList.toggle("open-menu");
+}
+
+document.addEventListener("click", function (event) {
+    const menu = document.getElementById("sub-menu-container");
+    const profileIcon = document.querySelector(".profile-icon");
+
+    if (!menu.contains(event.target) && !profileIcon.contains(event.target)) {
+        menu.classList.remove("open-menu");
+    }
+});
 
 // Modals / Popups code
 const modals = [
@@ -203,7 +218,6 @@ window.addEventListener('scroll', function() {
 
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 });
-
 
 // Brief Questionnaire code to show multiple pages
 function launchBriefQuestionnaire() {

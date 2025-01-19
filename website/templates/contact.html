@@ -8,6 +8,7 @@
     <title>HabiTrain | Overcome Bad Habits</title>
 </head>
 <body>
+  
   <!-- Navigation Bar -->
   <header>
     <nav class="navbar">
@@ -17,23 +18,54 @@
             <span>HabiTrain</span>
         </div></a>
         <div class="nav-links">
-            <a href="#" class="nav-link-active">Home</a>
+            <a href="{{ url_for('views.index') }}">Home</a>
             <a href="#">About Us</a>
-            <a href="#">Contact</a>
+            <a href="#" class="nav-link-active">Contact</a>
         </div>
        
         <div class="nav-btns">
           {% if user_logged_in %}
-            <button class="btn btn-secondary" id="sign-in-link">Sign in</button>
-            <button href="#" class="btn btn-primary" id="register-link">Register</button>
+            {% if companion_image_url %}
+            <img src="{{url_for('static', filename='images/user-icon.png')}}" class="profile-icon" onclick="toggleMenu()">
+            {% else %}
+              <img src="{{url_for('static', filename='images/user-icon.png')}}" class="profile-icon" onclick="toggleMenu()">
+            {% endif %}
+            <div class = "sub-menu-container" id="sub-menu-container">
+              <div class="sub-menu">
+                <div class = "user-info">
+                  <img src="{{url_for('static', filename='images/dog.png')}}">
+                  <h1> {% if username %} {{ username }} {% else %} Username {% endif %}</h1>
+                </div>
+                <hr>
+
+                <a href="#" class="sub-menu-link">
+                  <img src="{{url_for('static', filename='images/settings.png')}}">
+                  <p>Settings</p>
+                  <span>></span>
+                </a>
+
+                <a href="#" class="sub-menu-link">
+                  <img src="{{url_for('static', filename='images/home.png')}}">
+                  <p>Companion Hub</p>
+                  <span>></span>
+                </a>
+
+                <a href="#" class="sub-menu-link">
+                  <img src="{{url_for('static', filename='images/logout.png')}}">
+                  <p>Log out</p>
+                  <span>></span>
+                </a>
+              </div>
+            </div>              
           {% else %}
-            <img href="{{ url_for('views.profile') }}" src="{{url_for('static', filename='images/user-icon.png')}}" class="profile-icon">
-            <button class="btn btn-secondary" id="sign-in-link">Log out</button>
+            <button class="btn btn-secondary top-bar-btn" id="sign-in-link">Sign in</button>
+            <button href="#" class="btn btn-primary top-bar-btn" id="registration-link">Register</button>
           {% endif %}
         </div>
       </div>
     </nav>
 </header>
+
 
   <!-- Hero Section -->
   <section id="hero" class="hero-section">

@@ -17,8 +17,8 @@
             <span>HabiTrain</span>
         </div></a>
         <div class="nav-links">
-            <a href="{{ url_for('views.index') }}">Home</a>
-            <a href="#" class="nav-link-active">About Us</a>
+            <a href="{{ url_for('views.index') }}" class="nav-link-active">Home</a>
+            <a href="#">About Us</a>
             <a href="#">Contact</a>
         </div>
        
@@ -45,7 +45,7 @@
 
                 <a href="#" class="sub-menu-link">
                   <img src="{{url_for('static', filename='images/home.png')}}">
-                  <p>Companion Hub</p>
+                  <p class="sub-menu-link-active">Companion Hub</p>
                   <span>></span>
                 </a>
 
@@ -64,18 +64,6 @@
       </div>
     </nav>
 </header>
-
-
-  <!-- Hero Section -->
-  <section id="hero" class="hero-section">
-    <div class="hero-content fade-in">
-      <h1>
-        About
-        <span class="hero-title-highlight">HabiTrain</span>
-      </h1>
-      <p>Feel Free to write anything....</p>
-    </div>
-  </section>
 
 </body>
 </html>
