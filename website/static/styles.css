@@ -502,14 +502,16 @@ button[type="submit"]:hover {
 }
 
 /* Brief Questionnaire Modal */
-.brief-questionnaire-modal {
+#brief-questionnaire-modal {
     text-align: center;
+    transform: translate(-50%, -50%)
 }
 
 .brief-questionnaire-modal-content {
     background-color: var(--background-color);
     width: 1065px;
     height: 700px;
+    /* height: auto; */
     max-width: none;
     max-height: none;
     border-radius: 10px;
@@ -1288,11 +1290,33 @@ h2 {
     
 }
 
+@media (max-height: 1000px) {
+    #brief-questionnaire-modal {
+        transform: none; 
+        top: 50%;
+        left: 50%;
+        /* position: absolute; */
+        transform: translate(-50%, -50%);
+    }
 
+    .brief-questionnaire-modal-content {
+        
+        margin-top: 10rem;
+        max-height: 600px;
+    }
 
+    .button-container-questionnaire {
+        bottom: 40px; 
+    }
+}
 
+@media (min-height: 1001px) {
+    #brief-questionnaire-modal {
+        transform: translate(-50%, -50%);
+    }
 
-
-
-/* Starfall animation */
+    .button-container-questionnaire {
+        bottom: 20px;
+    }
+}
 

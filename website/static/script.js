@@ -207,7 +207,7 @@ window.addEventListener('scroll', function() {
 
 // Brief Questionnaire code to show multiple pages
 function launchBriefQuestionnaire() {
-    const briefQuestionnaireModal = document.getElementById('brief-questionnaire-modal');
+    const briefQuestionnaireModal = document.getElementById('brief-questionnaire-modal')
     const pages = document.querySelectorAll('.questionnaire-page');
 
     briefQuestionnaireModal.style.display = 'block';

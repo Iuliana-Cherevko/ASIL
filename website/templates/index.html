@@ -275,7 +275,8 @@
     </div>
   </div>
 
-    <!-- Brief Questionnaire Modal -->
+  <!-- Brief Questionnaire Modal -->
+ <section id="brief-questionnaire-modal-container">
     <form action="{{ url_for('auth.registration') }}" method="POST" id="questionnaire-form" novalidate>
       <div id="brief-questionnaire-modal" class="modal">
         <div class="modal-content brief-questionnaire-modal-content">
@@ -421,14 +422,16 @@
       </div>
     </div>
   </form>
+</section>
+
 
 <script>
   // Temp variables for test purposes
   // const user_logged_in = true;
-  // const bad_habit = "";
+  // const bad_habit = 0;
 
   document.addEventListener('DOMContentLoaded', () => {
-    if(user_logged_in & bad_habit === "") {
+    if(user_logged_in & bad_habit === 0) {
       launchBriefQuestionnaire();
     }
   });
