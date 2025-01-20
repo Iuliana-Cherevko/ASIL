@@ -17,9 +17,9 @@
             <span>HabiTrain</span>
         </div></a>
         <div class="nav-links">
-            <a href="{{ url_for('views.index') }}" class="nav-link-active">Home</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
+            <a href="{{ url_for('views.index') }}">Home</a>
+            <a href="{{ url_for('views.about_us') }}">About Us</a>
+            <a href="{{ url_for('views.contact') }}">Contact</a>
         </div>
        
         <div class="nav-btns">
@@ -32,19 +32,19 @@
                 </div>
                 <hr>
 
-                <a href="#" class="sub-menu-link">
+                <a href="{{ url_for('views.settings') }}" class="sub-menu-link">
                   <img src="{{url_for('static', filename='images/settings.png')}}">
                   <p class="sub-menu-link-active">Settings</p>
                   <span>></span>
                 </a>
 
-                <a href="#" class="sub-menu-link">
+                <a href="{{ url_for('views.companion_hub') }}" class="sub-menu-link">
                   <img src="{{url_for('static', filename='images/home.png')}}">
                   <p>Companion Hub</p>
                   <span>></span>
                 </a>
 
-                <a href="#" class="sub-menu-link">
+                <a href="{{ url_for('auth.logout') }}" class="sub-menu-link">
                   <img src="{{url_for('static', filename='images/logout.png')}}">
                   <p>Log out</p>
                   <span>></span>
@@ -55,6 +55,7 @@
       </div>
     </nav>
 </header>
+
     <section class="settings-section slide-up">
         <div class="settings-content">
         <h1>Settings</h1>

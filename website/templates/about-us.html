@@ -18,13 +18,13 @@
         </div></a>
         <div class="nav-links">
             <a href="{{ url_for('views.index') }}">Home</a>
-            <a href="#" class="nav-link-active">About Us</a>
-            <a href="#">Contact</a>
+            <a href="{{ url_for('views.about-us') }}" class="nav-link-active">About Us</a>
+            <a href="{{ url_for('views.contact') }}">Contact</a>
         </div>
        
         <div class="nav-btns">
           {% if user_logged_in %}
-          <img src="{{url_for('static', filename='images/plant.jpg')}}" id="companion-image" class="profile-icon" alt="cannot" onclick="toggleMenu()">
+            <img id="companion-image" class="profile-icon" alt="cannot" onclick="toggleMenu()">
             <div class = "sub-menu-container" id="sub-menu-container">
               <div class="sub-menu">
                 <div class = "user-info">
@@ -33,19 +33,19 @@
                 </div>
                 <hr>
 
-                <a href="#" class="sub-menu-link">
+                <a href="{{url_for('views.settings')}}" class="sub-menu-link">
                   <img src="{{url_for('static', filename='images/settings.png')}}">
                   <p>Settings</p>
                   <span>></span>
                 </a>
 
-                <a href="#" class="sub-menu-link">
+                <a href="{{url_for('views.companion_hub')}}" class="sub-menu-link">
                   <img src="{{url_for('static', filename='images/home.png')}}">
                   <p>Companion Hub</p>
                   <span>></span>
                 </a>
 
-                <a href="#" class="sub-menu-link">
+                <a href="{{url_for('auth.logout')}}" class="sub-menu-link">
                   <img src="{{url_for('static', filename='images/logout.png')}}">
                   <p>Log out</p>
                   <span>></span>

@@ -18,13 +18,13 @@
         </div></a>
         <div class="nav-links">
             <a href="{{ url_for('views.index') }}" class="nav-link-active">Home</a>
-            <a href="{{ url_for('views.index') }}">About Us</a>
-            <a href="{{ url_for('views.index') }}">Contact</a>
+            <a href="{{ url_for('views.about_us') }}">About Us</a>
+            <a href="{{ url_for('views.contact') }}">Contact</a>
         </div>
        
         <div class="nav-btns">
           {% if user_logged_in %}
-            <img src="{{url_for('static', filename='images/plant.jpg')}}" id="companion-image" class="profile-icon" alt="cannot" onclick="toggleMenu()">
+            <img id="companion-image" class="profile-icon" alt="cannot" onclick="toggleMenu()">
             <div class = "sub-menu-container" id="sub-menu-container">
               <div class="sub-menu">
                 <div class = "user-info">
@@ -39,13 +39,13 @@
                   <span>></span>
                 </a>
 
-                <a href="#" class="sub-menu-link">
+                <a href="{{url_for('views.companion_hub')}}" class="sub-menu-link">
                   <img src="{{url_for('static', filename='images/home.png')}}">
                   <p>Companion Hub</p>
                   <span>></span>
                 </a>
 
-                <a href="#" class="sub-menu-link">
+                <a href="{{url_for('auth.logout')}}" class="sub-menu-link">
                   <img src="{{url_for('static', filename='images/logout.png')}}">
                   <p>Log out</p>
                   <span>></span>
@@ -303,7 +303,7 @@
 
   <!-- Brief Questionnaire Modal -->
  <section id="brief-questionnaire-modal-container">
-    <form action="{{ url_for('auth.registration') }}" method="POST" id="questionnaire-form" novalidate>
+    <form action="{{ url_for('auth.brief-questionnaire') }}" method="POST" id="questionnaire-form" novalidate>
       <div id="brief-questionnaire-modal" class="modal">
         <div class="modal-content brief-questionnaire-modal-content">
           <img src="/static/images/questionnaire-background.png" alt="" class="background-img">
