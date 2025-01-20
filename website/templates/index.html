@@ -13,7 +13,7 @@
     <nav class="navbar">
       <div class="navbar-content">
         <a href="{{ url_for('views.index') }}"><div class="logo-container">
-            <img src="{{url_for('static', filename='images/logo.png')}}" class="logo">
+            <img src="{{url_for('static', filename='images/logo.png')}}" class="logo filtered">
             <span>HabiTrain</span>
         </div></a>
         <div class="nav-links">
@@ -23,12 +23,8 @@
         </div>
        
         <div class="nav-btns">
-          {% if true %}
-            {% if companion_image_url %}
-            <img src="{{url_for('static', filename='images/user-icon.png')}}" class="profile-icon" onclick="toggleMenu()">
-            {% else %}
-              <img src="{{url_for('static', filename='images/user-icon.png')}}" class="profile-icon" onclick="toggleMenu()">
-            {% endif %}
+          {% if user_logged_in %}
+            <img src="{{url_for('static', filename='images/plant.jpg')}}" id="companion-image" class="profile-icon" alt="cannot" onclick="toggleMenu()">
             <div class = "sub-menu-container" id="sub-menu-container">
               <div class="sub-menu">
                 <div class = "user-info">
@@ -125,12 +121,12 @@
       </div>
 
       <div class="hiw-card">
-        <img src="{{url_for('static', filename='images/screenshot-placeholder.jpg')}}"  class="hiw-img">
-        <div class="hiw-number-wrap"><div>2</div></div>
         <div class="step-content">
           <h3 class="highlight secondary">Track Your Progress Daily</h3>
           <p>Log in daily to track your progress by completing a quick check-in. Record how you're feeling, whether you stuck to your goal, and watch your companion grow with each successful day.</p>
         </div>
+          <img src="{{url_for('static', filename='images/screenshot-placeholder.jpg')}}"  class="hiw-img">
+          <div class="hiw-number-wrap number-2"><div>2</div></div>
       </div>
 
       <div class="hiw-card">
@@ -291,7 +287,7 @@
                 </div>
 
                 <div class="checkbox-container">
-                  <input type="checkbox" id="registration-waiver" name="registration-waiver" class="checkbox-waiver" required>
+                  <input type="checkbox" id="registration-waiver" name="registration_waiver" class="checkbox-waiver" required>
                   <label for="registration-waiver" id="">I read and agree to <a href="#">Terms & Conditions</a></label>
                 </div>  
                 
@@ -319,7 +315,7 @@
               <p>This form helps create a clear path to your goals and track your progress over time. Please respond to the best of your knowledge.</p>
               
               <div class="checkbox-container">
-                <input type="checkbox" id="questionnaire-waiver" name="questionnaire-waiver" class="checkbox-waiver" required>
+                <input type="checkbox" id="questionnaire-waiver" name="questionnaire_waiver" class="checkbox-waiver" required>
                 <label for="questionnaire-waiver" id="checkbox-label">I agree that I must stay truthful and loyal to my responses using HabiTrain</label>
               </div>          
                 
@@ -341,7 +337,7 @@
               <p>Let's start by identifying the habits you want to overcome and setting goals for your progress.</p>
 
               <label for="bad-habit">What is/are the bad habits you want to overcome?</label>
-              <input type="text" id="bad-habit" name="bad-habit" placeholder="e.g.s Smoking, Alcohol consumption." />
+              <input type="text" id="bad-habit" name="bad_habit" placeholder="e.g.s Smoking, Alcohol consumption." />
               
               <div id="bad-habit-error" class="error-container" style="display: none;">
                 <span class="error-icon">!</span>
@@ -349,7 +345,7 @@
               </div>
 
               <label for="goal-duration">Please select your goal: the number of days you aim to stay without engaging in your bad habit:</label>
-              <select id="goal-duration" name="goal-duration">
+              <select id="goal-duration" name="goal_duration">
                 <option value="default">Select your goal</option>
                 <option value="10">10 days</option>
                 <option value="15">15 days</option>
@@ -378,7 +374,7 @@
               <h2>Choose your Companion</h2>
 
               <label for="companion-name">Name your companion:</label>
-              <input type="text" id="companion-name" name="companion-name" placeholder="e.g., Luna, Blaze, Sprout" />
+              <input type="text" id="companion-name" name="companion_name" placeholder="e.g., Luna, Blaze, Sprout" />
               
               <div id="companion-name-error" class="error-container" style="display: none;">
                 <span class="error-icon">!</span>
@@ -461,6 +457,9 @@
   // const bad_habit = 0;
 
   document.addEventListener('DOMContentLoaded', () => {
+    showCorrectCompanionIcon("{{ companion }}");
+    expectModalClick();
+    expectTestimoniesAction();
     if(user_logged_in & bad_habit === 0) {
       launchBriefQuestionnaire();
     }

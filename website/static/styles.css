@@ -32,7 +32,9 @@
     --font-size-medium-mini: 1.0rem;
     --font-size-medium: 1.05rem;
     --font-size-regular: 1.15rem;
+    --font-size-card-paragraph: 1.2rem;
     --font-size-large: 1.4rem;
+    --font-size-card-heading: 1.5rem;
     --subheading-font-size: 1.8rem;
     --font-size-extra-large: 2.5rem;
     --heading-font-size: 3.5rem;
@@ -222,12 +224,17 @@ header {
 
 .profile-icon {
     margin: 0;
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 45px;
     object-fit: contain;
     cursor: pointer;
+    border-radius: 50%;
+    border: 0.5px solid var(--black);
+}
+
+.filtered {
     filter: brightness(0) saturate(100%) 
-        invert(62%) sepia(87%) saturate(626%) hue-rotate(345deg) brightness(94%) contrast(92%);
+    invert(62%) sepia(87%) saturate(626%) hue-rotate(345deg) brightness(94%) contrast(92%);
 }
 
 .nav-links {
@@ -888,6 +895,8 @@ input[type="checkbox"].error {
     background-color: var(--neutral-light);
     padding: var(--spacing-extra-large) var(--spacing-large);
     width: 100%;
+    padding: var(--spacing-extra-large) 0;
+    margin: var(--spacing-large) 0;
 }
 
 .features-container {
@@ -903,7 +912,7 @@ h2 {
 }
   
 .features-container p {
-    margin: 0rem auto 2rem auto;
+    margin: 2rem auto 3rem auto;
     max-width: 500px;
     font: 400 var(--font-size-regular) var(--font-secondary);
     text-align: center;
@@ -915,7 +924,7 @@ h2 {
     grid-template-areas:
       "primary secondary secondary"
       "tertiary tertiary quaternary"; 
-    gap: var(--spacing-regular); 
+    gap: var(--spacing-large); 
 
 }
   
@@ -928,6 +937,9 @@ h2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;  
     max-width: 800px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
 }
   
 .feature-card-primary { background-color: var(--neutral-cinderella); grid-area: primary; }
@@ -941,15 +953,15 @@ h2 {
 }
 
 .feature-card h3 {
-    font: var(--font-weight-bold) var(--font-size-large) var(--font-primary);
+    font: var(--font-weight-bold) var(--font-size-card-heading) var(--font-primary);
     text-align: center;
     margin-bottom: 10px;
 }
   
 .feature-card p {
     text-align:left;
-    font: var(--font-weight-regular) var(--font-size-regular) var(--font-secondary);
-    line-height: 1.5;
+    font: var(--font-weight-regular) var(--font-size-card-paragraph) var(--font-secondary);
+    line-height: 1.6;
     margin: 0 auto 2rem auto;
 }
 
@@ -961,7 +973,7 @@ h2 {
 
 .feature-img {
     width: auto;
-    height: 155px;
+    height: 170px;
     object-fit: contain;
     border-radius: var(--card-border-radius);
 }
@@ -980,9 +992,13 @@ h2 {
     grid-row-gap: 10px;
     flex-flow: column;
     display: flex;
+    flex-flow: row wrap;
 }
 
 .hiw-card {
+    display: flex; /* Set the card to flex for alignment control */
+    flex-direction: column; /* Stack content vertically */
+    align-items: flex-start;
     grid-column-gap: 2vw;
     grid-row-gap: 2vh;
     grid-template-rows: auto;
@@ -992,6 +1008,7 @@ h2 {
     display: grid;
     margin: 2rem auto;
     position: relative;
+    max-width: 100%;
 }
 
 .hiw-img {
@@ -999,6 +1016,10 @@ h2 {
     max-width: 30vw;
     position: relative;
     overflow: hidden;
+}
+
+.hiw-card:nth-child(2) .hiw-img {
+    margin-left: auto;
 }
 
 .hiw-number-wrap {
@@ -1019,9 +1040,20 @@ h2 {
     inset: 0% auto auto 0%;
 }
 
+.hiw-card:nth-child(2) .hiw-number-wrap {
+    inset: 0 auto auto 0; 
+    top: 0px;
+    right: 0px;
+    left: auto;
+    bottom: auto;
+    box-shadow: 0 0 0 8px var(--background-color);
+    border-radius: 99px 30px 99px 99px;
+}
+
 .step-content {
     text-align: left;
     align-items: center;
+    margin-right: 10%;
 }
 
 .how-it-works h3 {
@@ -1373,9 +1405,6 @@ h2 {
 
 .footer-bottom p { color: var(--neutral-light)}
 
-
-
-
 /* For future, to make it cross-platform */ 
 @media (max-width: 991px) {
     
@@ -1411,3 +1440,283 @@ h2 {
     }
 }
 
+/* Settings Page */
+.settings-section {
+    min-height: calc(100vh - 23.031px);
+    width: 100%;
+    padding: 0px;
+    padding-bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    background-color: var(--background-color);
+    padding: var(--spacing-extra-large) var(--spacing-large);
+    flex-direction: column;
+}
+
+.settings-content {
+    align-self: center;
+    display: flex;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 1065px;
+    flex-direction: column;
+    text-align: left;
+    text-align: start;
+    flex-grow: 1; 
+}
+  
+.settings-content h1 {
+    color: var(--text-color);
+    align-self: start;
+    font: var(--font-weight-extra-bold) var(--subheading-font-size) var(--font-primary);
+}
+  
+.settings-divider {
+    background-color: var(--grey);
+    height: 1px;
+    margin-top: 15px;
+}
+
+.settings-header {
+    display: flex;
+    gap: 20px;
+    position: relative; 
+    align-items: center;
+}
+
+.settings-header .avatar{
+    margin: 20px 0px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%; 
+    border: 1px solid var(--black);
+    object-fit: cover;
+}
+
+.greeting-text {
+    display: flex;
+    flex-direction: column;
+    margin: auto 0;
+    text-align: left;
+    color: var(--text-color)
+}
+
+.greeting-text h2 {
+    font: var(--font-weight-medium) var(--subheading-font-size) var(--font-primary);
+    margin: 0;
+    text-align: left;
+}
+
+.greeting-text p {
+    font: var(--font-weight-light) var(--font-size-large) var(--font-primary);
+    margin-top: 5px;
+}
+
+.edit-button {
+    border-radius: var(--btn-border-radius);
+    background-color: var(--neutral-foam);
+    display: flex;
+    gap: 6px;
+    padding: 10px 15px;
+    border: 1px solid var(--black);
+    font: var(--font-weight-medium) var(--font-size-regular) var(--font-secondary);
+    cursor: pointer;
+    position: absolute; 
+    top: 0; 
+    right: 0;
+    margin-top: 20px; 
+    margin-right: 20px;
+}
+
+.edit-button svg {
+    aspect-ratio: 1;
+    object-fit: contain;
+    width: 20px;
+    margin: auto 0;
+}
+
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0;
+}
+
+.settings-form label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0 5px 0;
+    font: var(--font-weight-semi-bold) var(--font-size-regular) var(--font-secondary);
+}
+
+.settings-form input
+.settings-form select {
+    width: 100%;
+    padding: 12px;
+    border-radius: var(--text-entry-boarder-radius);
+    box-sizing: border-box;
+    background-color: var(--neutral-light);
+    border: none;
+    margin-bottom: 20px; 
+    color: var(--text-color);
+    font: var(--font-weight-extra-light) var(--font-size-regular) var(--font-secondary);
+}
+
+.settings-companion-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+    justify-items: start;
+    width: fit-content;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.companion-card {
+    position: relative;
+    background-color: var(--neutral-light);
+    padding: 0;
+    text-align: center;
+    border-radius: var(--card-border-radius);
+    height: 170px;
+    width: 170px;
+    overflow: hidden;
+    border: 1px solid var(--black);
+}
+
+.companion-card-image {
+    height: 100%;
+    width: 100%;
+    margin-top: -10px;
+    object-fit: cover; 
+}
+
+.companion-card label {
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+.companion-card input[type="radio"] {
+    position: absolute;
+    z-index: 5;
+    top: 10px;
+    left: 10px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: var(--neutral-light);
+    border: 2px solid var(--medium-grey);
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+  
+.companion-card input[type="radio"]:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='white' d='M6.173 12.18L2.878 8.878a.535.535 0 0 1 .757-.757l2.538 2.538 6.092-6.092a.535.535 0 1 1 .757.757L6.93 12.18a.535.535 0 0 1-.757 0z'/%3E%3C/svg%3E");
+    background-size: 14px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.companion-card input[type="radio"]:not(:disabled):hover {
+    border-color: var(--primary-color);
+}
+
+.hub-btn {
+    border-radius: var(--btn-border-radius);
+    background-color: var(--primary-color);
+    align-self: center;
+    margin-top: 45px;
+    padding: var(--btn-padding-large);
+    font: var(--font-weight-regular) var(--font-size-large) var(--font-secondary);
+    border: 1px solid var(--black);
+    cursor: pointer;
+}
+
+.edit-buttons-container {
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+}
+
+.save-btn {
+    border-radius: var(--btn-border-radius);
+    background-color: var(--neutral-cinderella);
+    align-self: center;
+    margin-top: 45px;
+    padding: var(--btn-padding-large);
+    font: var(--font-weight-regular) var(--font-size-large) var(--font-secondary);
+    border: 1px solid var(--black);
+    cursor: pointer;
+    display: none;
+}
+
+.cancel-btn {
+    border-radius: var(--btn-border-radius);
+    background-color: var(--neutral-foam);
+    align-self: center;
+    margin-top: 45px;
+    padding: var(--btn-padding-large);
+    font: var(--font-weight-regular) var(--font-size-large) var(--font-secondary);
+    border: 1px solid var(--black);
+    cursor: pointer;
+    display: none;
+}
+
+.save-btn:hover, .cancel-btn:hover {
+    opacity: 0.9;
+}
+  
+  /* @media (max-width: 991px) {
+    
+    .settings-content {
+      max-width: 100%;
+    }
+    
+    .profile-header {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+    
+    .avatar-column {
+      width: 100%;
+    }
+    
+    .avatar-wrapper {
+      margin-top: 15px;
+    }
+    
+    .greeting-column {
+      width: 100%;
+    }
+    
+    .greeting-text {
+      margin-top: 40px;
+    }
+    
+    .form-field {
+      padding-right: 20px;
+    }
+    
+    .companion-section {
+      padding: 0 20px;
+    }
+    
+    .hub-button {
+      margin-top: 40px;
+      padding: 18px 20px;
+    }
+  } */

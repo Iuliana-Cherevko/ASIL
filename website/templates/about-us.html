@@ -13,7 +13,7 @@
     <nav class="navbar">
       <div class="navbar-content">
         <a href="{{ url_for('views.index') }}"><div class="logo-container">
-            <img src="{{url_for('static', filename='images/logo.png')}}" class="logo">
+            <img src="{{url_for('static', filename='images/logo.png')}}" class="logo filtered">
             <span>HabiTrain</span>
         </div></a>
         <div class="nav-links">
@@ -24,11 +24,7 @@
        
         <div class="nav-btns">
           {% if user_logged_in %}
-            {% if companion_image_url %}
-            <img src="{{url_for('static', filename='images/user-icon.png')}}" class="profile-icon" onclick="toggleMenu()">
-            {% else %}
-              <img src="{{url_for('static', filename='images/user-icon.png')}}" class="profile-icon" onclick="toggleMenu()">
-            {% endif %}
+          <img src="{{url_for('static', filename='images/plant.jpg')}}" id="companion-image" class="profile-icon" alt="cannot" onclick="toggleMenu()">
             <div class = "sub-menu-container" id="sub-menu-container">
               <div class="sub-menu">
                 <div class = "user-info">
@@ -76,6 +72,14 @@
       <p>Feel Free to write anything....</p>
     </div>
   </section>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        showCorrectCompanionIcon("{{ companion }}");
+    });
+</script>
+
 
 </body>
 </html>
