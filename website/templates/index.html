@@ -457,11 +457,11 @@
   // const bad_habit = 0;
 
   document.addEventListener('DOMContentLoaded', () => {
-    showCorrectCompanionIcon("{{ companion }}");
-    expectModalClick();
-    expectTestimoniesAction();
-    if(user_logged_in & bad_habit === 0) {
-      launchBriefQuestionnaire();
+    setTimeout(() => expectModalClick(), 0);
+    setTimeout(() => showCorrectCompanionIcon("{{ companion }}"), 0);
+    setTimeout(() => expectTestimoniesAction(), 0);
+    if (user_logged_in && bad_habit === 0) {
+      setTimeout(() => launchBriefQuestionnaire(), 0);
     }
   });
 
