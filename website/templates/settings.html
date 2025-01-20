@@ -74,7 +74,7 @@
             </button>
         </div>
 
-        <form class="settings-form" id="settings-form" method="POST" action="{{ url_for('auth.registration') }}">
+        <form class="settings-form" id="settings-form" method="POST" action="{{ url_for('auth.settings_update') }}">
 
             <label for="username">Username</label>
             <input type="text" id="username" value="{{username}}" readonly>
