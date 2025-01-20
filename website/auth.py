@@ -6,6 +6,8 @@ from . import db
 from .views import users
 auth = Blueprint("auth", __name__)
 
+# Authentication file contains login and registration
+
 @auth.route("sign-in", methods=['GET', 'POST'])#is a popup
 def sign_in():
     if request.method == "POST":
@@ -27,11 +29,12 @@ def sign_in():
             return render_template('index.html')
 
 
+# Endpoint:
 @auth.route("logout")
 @login_required
 def logout():
     logout_user()
-    return render_template('index.html')
+    return render_template('index.html') 
 
 @auth.route('Registration', methods = ['GET', 'POST'])
 def registration():
@@ -43,14 +46,25 @@ def registration():
         email = request.form.get("email")
         #character = request.form.get('character')
         #goal = request.form.get("goal-days")
+
+        ### Checks if username already exists
+
         user = User.query.filter_by(username=username).first()
         if user:
             flash('Username already exists', category='error')
+            return render_template('registration.html')
+        
+
+        ### Checks if email already exists
+
+        user = User.query.filter_by(email=email).first()
+        if user:
+            flash('Email already exists', category='error')
+            return render_template('registration.html')
 
         #hashed_password = generate_password_hash(password, method='sha256')
-
         new_user = User(username=username, password=generate_password_hash(password,method='pbkdf2:sha256')
-                        , email=email,habit=0,character=0,experience=0,goal=0)
+                            , email=email,habit=0,character=0,experience=0,goal=0)
         db.session.add(new_user)
         db.session.commit()
         print(username,password,email) 
