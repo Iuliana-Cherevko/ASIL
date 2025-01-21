@@ -9,53 +9,52 @@
 </head>
 <body>
   <!-- Navigation Bar -->
-    <header>
-        <nav class="navbar">
-        <div class="navbar-content">
-            <a href="{{ url_for('views.index') }}"><div class="logo-container">
-                <img src="{{url_for('static', filename='images/logo.png')}}" class="logo filtered">
-                <span>HabiTrain</span>
-            </div></a>
-            <div class="nav-links">
+  <header>
+    <nav class="navbar">
+      <div class="navbar-content">
+        <a href="{{ url_for('views.index') }}"><div class="logo-container">
+            <img src="{{url_for('static', filename='images/logo.png')}}" class="logo filtered">
+            <span>HabiTrain</span>
+        </div></a>
+        <div class="nav-links">
                 <a href="{{ url_for('views.index') }}">Home</a>
                 <a href="{{ url_for('views.about_us') }}">About Us</a>
                 <a href="{{ url_for('views.contact') }}">Contact</a>
-            </div>
-        
-            <div class="nav-btns">
-                <img src="{{url_for('static', filename='images/plant.jpg')}}" id="companion-image" class="profile-icon" alt="cannot" onclick="toggleMenu()">
-                <div class = "sub-menu-container" id="sub-menu-container">
-                <div class="sub-menu">
-                    <div class = "user-info">
-                    <img src="{{url_for('static', filename='images/dog.png')}}">
-                    <h1> {% if username %} {{ username }} {% else %} Username {% endif %}</h1>
-                    </div>
-                    <hr>
+        </div>
+       
+        <div class="nav-btns">
+            <img src="{{url_for('static', filename='images/user-icon.png')}}" id="companion-image" class="profile-icon" alt="cannot" onclick="toggleMenu()">
+            <div class = "sub-menu-container" id="sub-menu-container">
+              <div class="sub-menu">
+                <div class = "user-info">
+                  <img src="{{url_for('static', filename='images/dog.png')}}">
+                  <h1> {% if username %} {{ username }} {% else %} Username {% endif %}</h1>
+                </div>
+                <hr>
 
                     <a href="{{ url_for('views.settings') }}" class="sub-menu-link">
                     <img src="{{url_for('static', filename='images/settings.png')}}">
-                    <p class="sub-menu-link-active">Settings</p>
-                    <span>></span>
-                    </a>
+                  <p class="sub-menu-link-active">Settings</p>
+                  <span>></span>
+                </a>
 
                     <a href="{{ url_for('views.companion_hub') }}" class="sub-menu-link">
-                    <img src="{{url_for('static', filename='images/home.png')}}">
-                    <p>Companion Hub</p>
-                    <span>></span>
-                    </a>
+                  <img src="{{url_for('static', filename='images/home.png')}}">
+                  <p>Companion Hub</p>
+                  <span>></span>
+                </a>
 
                     <a href="{{ url_for('auth.logout') }}" class="sub-menu-link">
-                    <img src="{{url_for('static', filename='images/logout.png')}}">
-                    <p>Log out</p>
-                    <span>></span>
-                    </a>
-                </div>
-                </div>       
-            </div>
+                  <img src="{{url_for('static', filename='images/logout.png')}}">
+                  <p>Log out</p>
+                  <span>></span>
+                </a>
+              </div>
+            </div>       
         </div>
-        </nav>
-    </header>
-
+      </div>
+    </nav>
+</header>
     <section class="settings-section slide-up">
         <div class="settings-content">
         <h1>Settings</h1>
@@ -81,8 +80,8 @@
             <label for="email">Email Address</label>
             <input type="email" id="email" value="{{email}}" readonly>
             
-            <label for="habit">Bad Habit:</label>
-            <input type="text" id="habit" value="{{ bad_habit }}" readonly>
+            <label for="bad_habit">Bad Habit:</label>
+            <input type="text" id="bad_habit" value="{{ bad_habit }}" readonly>
             
             <label for="goal-duration">Current goal (in days)</label>
             <select style="color: var(--text-color)" id="goal-duration" name="goal_duration" readonly>
@@ -150,13 +149,13 @@
     <div class="footer-bottom slide-up">
         <p>© 2025 HabiTrain</p>
         <a href="{{ url_for('views.attributions')}}" class="attributions">This page is powered by Creative Commons resources. Click here for more information.</a>
-      </div>   
+    </div>     
 
 <script>
     const originalValues = {
         username: "{{ username }}",
         email: "{{ email }}",
-        bad_habit: "{{bad_habit}}",
+        bad_habit: "{{ bad_habit }}",
         goalDuration: "{{ goal_duration }}",
         companionName: "{{ companion_name }}",
         selectedCompanion: "{{ companion }}"
