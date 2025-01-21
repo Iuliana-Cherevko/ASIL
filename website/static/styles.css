@@ -97,6 +97,10 @@ body {
     overflow-x: hidden;
 }
 
+.stopScroll {
+    overflow: hidden;
+}
+
 /* .content {
      border: 2px solid #160e03; 
     padding: 10px 0 0;
@@ -397,7 +401,7 @@ header {
     padding: var(--modal-padding);
     border: 1px solid var(--neutral-light);
     width: 80%;
-    max-width: 43vw;
+    max-width: 500px;
     height: auto;
     border-radius: var(--modal-border-radius);
     text-align: center;
@@ -405,7 +409,7 @@ header {
 }
 
 .modal-inner-padding {
-    padding: 2rem 4rem;
+    padding: 2rem 1rem;
 }
 
 .close-btn {
@@ -608,7 +612,7 @@ button[type="submit"]:hover {
 
 .brief-questionnaire-modal-content {
     background-color: var(--background-color);
-    width: 1065px;
+    width: 1000px;
     height: 700px;
     /* height: auto; */
     max-width: none;
@@ -957,7 +961,7 @@ h2 {
 .feature-card h3 {
     font: var(--font-weight-bold) var(--font-size-card-heading) var(--font-primary);
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
   
 .feature-card p {
@@ -999,16 +1003,11 @@ h2 {
 }
 
 .hiw-card {
-    display: flex; /* Set the card to flex for alignment control */
-    flex-direction: column; /* Stack content vertically */
-    align-items: flex-start;
-    grid-column-gap: 2vw;
-    grid-row-gap: 2vh;
-    grid-template-rows: auto;
+    flex-direction: column;
     grid-template-columns: 1fr 1fr;
-    grid-auto-columns: 1fr;
     place-items: center stretch;
     display: grid;
+    grid-gap: 2rem;
     margin: 2rem auto;
     position: relative;
     max-width: 100%;
@@ -1016,13 +1015,13 @@ h2 {
 
 .hiw-img {
     border-radius: var(--card-border-radius);
-    max-width: 30vw;
+    width: 100%;
     position: relative;
     overflow: hidden;
 }
 
 .hiw-card:nth-child(2) .hiw-img {
-    margin-left: auto;
+    align-self: right;
 }
 
 .hiw-number-wrap {
@@ -1057,6 +1056,7 @@ h2 {
     text-align: left;
     align-items: center;
     margin-right: 10%;
+    width: 100%
 }
 
 .how-it-works h3 {
@@ -1240,7 +1240,7 @@ h2 {
 
 /* Call to action section */
 .cta-section {
-    background: linear-gradient(135deg, var(--primary-color), #ff7e5f);
+    background: linear-gradient(135deg, var(--primary-color), var(--neutral-cinderella));
     border-radius: var(--card-border-radius);
     margin: 70px auto;
     max-width: 1000px;
@@ -1429,8 +1429,7 @@ h2 {
     }
 
     .brief-questionnaire-modal-content {
-        
-        margin-top: 10rem;
+        margin-top: 5rem;
         max-height: 600px;
     }
 

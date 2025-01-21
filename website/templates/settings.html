@@ -80,8 +80,8 @@
             <label for="email">Email Address</label>
             <input type="email" id="email" value="{{email}}" readonly>
             
-            <label for="habit">Bad Habit:</label>
-            <input type="text" id="habit" value="{{ bad_habit }}" readonly>
+            <label for="bad_habit">Bad Habit:</label>
+            <input type="text" id="bad_habit" value="{{ bad_habit }}" readonly>
             
             <label for="goal-duration">Current goal (in days)</label>
             <select style="color: var(--text-color)" id="goal-duration" name="goal_duration" readonly>
@@ -155,7 +155,7 @@
     const originalValues = {
         username: "{{ username }}",
         email: "{{ email }}",
-        bad_habit: "{{bad_habit}}",
+        bad_habit: "{{ bad_habit }}",
         goalDuration: "{{ goal_duration }}",
         companionName: "{{ companion_name }}",
         selectedCompanion: "{{ companion }}"

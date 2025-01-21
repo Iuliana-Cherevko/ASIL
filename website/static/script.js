@@ -81,8 +81,6 @@
 // window.onload = updateCalendar;
 
 
-
-
 // CODE FOR ALL PAGES
 
 // Toggle dropdown menu
@@ -150,10 +148,6 @@ window.addEventListener('scroll', function() {
 
 
 
-
-
-// CODE FOR HOME PAGE
-
 // Toggle for password visibility
 const passwordFields = [
     { toggle: document.getElementById("toggle-password-sign-in"), input: document.getElementById("password-sign-in")},
@@ -192,6 +186,8 @@ function expectModalClick() {
                     event.preventDefault();
                     modal.style.display = "block"; 
 
+                    document.body.classList.add('stopScroll');
+
                     modals.forEach(({modal: otherModal}) => {
                         if (otherModal !== modal) {
                             otherModal.style.display = "none";
@@ -203,6 +199,8 @@ function expectModalClick() {
             link.addEventListener("click", function(event) {
                 event.preventDefault();
                 modal.style.display = "block";
+
+                document.body.classList.add('stopScroll');
                 
                 modals.forEach(({modal: otherModal}) => {
                     if (otherModal !== modal) {
@@ -214,6 +212,7 @@ function expectModalClick() {
 
         close.addEventListener("click", function() {
             modal.style.display = "none";
+            document.body.classList.remove('stopScroll');
         })
     });
 
@@ -221,12 +220,12 @@ function expectModalClick() {
         modals.forEach(({modal}) => {
             if(event.target === modal) {
                 modal.style.display = "none";
+                document.body.classList.remove('stopScroll');
             }
         });
     });
 
     togglePasswordVisibility();
-    
 
     // hide & show confirm_password field
     passwordInput1.addEventListener("blur", function() {
@@ -259,6 +258,8 @@ function launchBriefQuestionnaire() {
     const pages = document.querySelectorAll('.questionnaire-page');
 
     briefQuestionnaireModal.style.display = 'block';
+    document.body.classList.add('stopScroll');
+    
     showPage(0);
 
     function showPage(pageIndex) {
@@ -287,6 +288,8 @@ function launchBriefQuestionnaire() {
             e.preventDefault(); 
         } else {
             document.getElementById('questionnaire-form').submit();
+            document.body.classList.remove('stopScroll');
+            briefQuestionnaireModal.style.display = 'none';
         }
     });
 
@@ -368,6 +371,8 @@ function isValidPage(pageIndex) {
   
     return isValid;
 }
+
+// CODE FOR HOME PAGE
 
 // Testimony slideshow code on home page
 // Placeholders for now, since we do not have any real feedback and are not storing them in database
@@ -552,7 +557,7 @@ function setupSettingsForm(originalValues) {
 function revertChanges(originalValues) {
     document.getElementById("username").value = originalValues.username;
     document.getElementById("email").value = originalValues.email;
-    document.getElementById("habit").value = originalValues.habit;
+    document.getElementById("bad_habit").value = originalValues.bad_habit;
     document.getElementById("companion-name").value = originalValues.companionName;
 
     showSelectedCompanion(originalValues.selectedCompanion);
