@@ -19,8 +19,8 @@
         </div></a>
         <div class="nav-links">
             <a href="{{ url_for('views.index') }}">Home</a>
-            <a href="#">About Us</a>
-            <a href="#" class="nav-link-active">Contact</a>
+            <a href="{{ url_for('views.about-us') }}" class="nav-link-active">About Us</a>
+            <a href="{{ url_for('views.contact') }}">Contact</a>
         </div>
        
         <div class="nav-btns">
@@ -34,19 +34,19 @@
                 </div>
                 <hr>
 
-                <a href="#" class="sub-menu-link">
+                <a href="{{url_for('views.settings')}}" class="sub-menu-link">
                   <img src="{{url_for('static', filename='images/settings.png')}}">
                   <p>Settings</p>
                   <span>></span>
                 </a>
 
-                <a href="#" class="sub-menu-link">
+                <a href="{{url_for('views.companion_hub')}}" class="sub-menu-link">
                   <img src="{{url_for('static', filename='images/home.png')}}">
                   <p>Companion Hub</p>
                   <span>></span>
                 </a>
 
-                <a href="#" class="sub-menu-link">
+                <a href="{{url_for('auth.logout')}}" class="sub-menu-link">
                   <img src="{{url_for('static', filename='images/logout.png')}}">
                   <p>Log out</p>
                   <span>></span>
@@ -112,7 +112,7 @@
   <!-- Footer section -->
   <div class="footer-bottom slide-up">
     <p>© 2025 HabiTrain</p>
-    <a href="{{ url_for('#')}}" class="attributions">This page is powered by Creative Commons resources. Click here for more information.</a>
+    <a href="{{ url_for('views.attributions')}}" class="attributions">This page is powered by Creative Commons resources. Click here for more information.</a>
 </div>  
   
   <!-- Html Code for Modals / Popups -->

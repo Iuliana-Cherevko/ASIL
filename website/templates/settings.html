@@ -9,52 +9,53 @@
 </head>
 <body>
   <!-- Navigation Bar -->
-  <header>
-    <nav class="navbar">
-      <div class="navbar-content">
-        <a href="{{ url_for('views.index') }}"><div class="logo-container">
-            <img src="{{url_for('static', filename='images/logo.png')}}" class="logo filtered">
-            <span>HabiTrain</span>
-        </div></a>
-        <div class="nav-links">
-            <a href="{{ url_for('views.index') }}" class="nav-link-active">Home</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-        </div>
-       
-        <div class="nav-btns">
-            <img src="{{url_for('static', filename='images/plant.jpg')}}" id="companion-image" class="profile-icon" alt="cannot" onclick="toggleMenu()">
-            <div class = "sub-menu-container" id="sub-menu-container">
-              <div class="sub-menu">
-                <div class = "user-info">
-                  <img src="{{url_for('static', filename='images/dog.png')}}">
-                  <h1> {% if username %} {{ username }} {% else %} Username {% endif %}</h1>
+    <header>
+        <nav class="navbar">
+        <div class="navbar-content">
+            <a href="{{ url_for('views.index') }}"><div class="logo-container">
+                <img src="{{url_for('static', filename='images/logo.png')}}" class="logo filtered">
+                <span>HabiTrain</span>
+            </div></a>
+            <div class="nav-links">
+                <a href="{{ url_for('views.index') }}">Home</a>
+                <a href="{{ url_for('views.about_us') }}">About Us</a>
+                <a href="{{ url_for('views.contact') }}">Contact</a>
+            </div>
+        
+            <div class="nav-btns">
+                <img src="{{url_for('static', filename='images/plant.jpg')}}" id="companion-image" class="profile-icon" alt="cannot" onclick="toggleMenu()">
+                <div class = "sub-menu-container" id="sub-menu-container">
+                <div class="sub-menu">
+                    <div class = "user-info">
+                    <img src="{{url_for('static', filename='images/dog.png')}}">
+                    <h1> {% if username %} {{ username }} {% else %} Username {% endif %}</h1>
+                    </div>
+                    <hr>
+
+                    <a href="{{ url_for('views.settings') }}" class="sub-menu-link">
+                    <img src="{{url_for('static', filename='images/settings.png')}}">
+                    <p class="sub-menu-link-active">Settings</p>
+                    <span>></span>
+                    </a>
+
+                    <a href="{{ url_for('views.companion_hub') }}" class="sub-menu-link">
+                    <img src="{{url_for('static', filename='images/home.png')}}">
+                    <p>Companion Hub</p>
+                    <span>></span>
+                    </a>
+
+                    <a href="{{ url_for('auth.logout') }}" class="sub-menu-link">
+                    <img src="{{url_for('static', filename='images/logout.png')}}">
+                    <p>Log out</p>
+                    <span>></span>
+                    </a>
                 </div>
-                <hr>
-
-                <a href="#" class="sub-menu-link">
-                  <img src="{{url_for('static', filename='images/settings-icon.png')}}">
-                  <p class="sub-menu-link-active">Settings</p>
-                  <span>></span>
-                </a>
-
-                <a href="#" class="sub-menu-link">
-                  <img src="{{url_for('static', filename='images/home.png')}}">
-                  <p>Companion Hub</p>
-                  <span>></span>
-                </a>
-
-                <a href="#" class="sub-menu-link">
-                  <img src="{{url_for('static', filename='images/logout.png')}}">
-                  <p>Log out</p>
-                  <span>></span>
-                </a>
-              </div>
-            </div>       
+                </div>       
+            </div>
         </div>
-      </div>
-    </nav>
-</header>
+        </nav>
+    </header>
+
     <section class="settings-section slide-up">
         <div class="settings-content">
         <h1>Settings</h1>
@@ -148,8 +149,8 @@
 
     <div class="footer-bottom slide-up">
         <p>© 2025 HabiTrain</p>
-        <a href="#" class="attributions">This page is powered by Creative Commons resources. Click here for more information.</a>
-    </div>     
+        <a href="{{ url_for('views.attributions')}}" class="attributions">This page is powered by Creative Commons resources. Click here for more information.</a>
+      </div>   
 
 <script>
     const originalValues = {
