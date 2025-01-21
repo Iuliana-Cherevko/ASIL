@@ -22,6 +22,8 @@
     --light-grey: #C8C8C8;
     --medium-grey: #A0A0A0;
     --dark-grey: #1E1E1E;
+    --white: #fff;
+    --blue: #3182ce;
   
     /* Font Families */
     --font-primary: 'Poppins', sans-serif; 
@@ -972,10 +974,11 @@ h2 {
 }
 
 .feature-img {
-    width: auto;
-    height: 170px;
+    width: 200px;
+    height: auto;
     object-fit: contain;
     border-radius: var(--card-border-radius);
+    border: 1px solid var(--black);
 }
 
 /* How It Works Section */
@@ -1295,7 +1298,7 @@ h2 {
     height: auto;
     opacity: 0.9;
     border-radius: var(--card-border-radius);
-    /* filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3)); */
+    filter: drop-shadow(0 8px 20px rgba(255, 255, 255, 0.3));
     z-index: 1;
 }
 
@@ -1405,6 +1408,12 @@ h2 {
 
 .footer-bottom p { color: var(--neutral-light)}
 
+.attributions {
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--neutral-light);
+}
+
 /* For future, to make it cross-platform */ 
 @media (max-width: 991px) {
     
@@ -1442,7 +1451,7 @@ h2 {
 
 /* Settings Page */
 .settings-section {
-    min-height: calc(100vh - 23.031px);
+    min-height: calc(100vh - 50px);
     width: 100%;
     padding: 0px;
     padding-bottom: 0px;
@@ -1679,44 +1688,65 @@ h2 {
     opacity: 0.9;
 }
   
-  /* @media (max-width: 991px) {
-    
-    .settings-content {
-      max-width: 100%;
-    }
-    
-    .profile-header {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0;
-    }
-    
-    .avatar-column {
-      width: 100%;
-    }
-    
-    .avatar-wrapper {
-      margin-top: 15px;
-    }
-    
-    .greeting-column {
-      width: 100%;
-    }
-    
-    .greeting-text {
-      margin-top: 40px;
-    }
-    
-    .form-field {
-      padding-right: 20px;
-    }
-    
-    .companion-section {
-      padding: 0 20px;
-    }
-    
-    .hub-button {
-      margin-top: 40px;
-      padding: 18px 20px;
-    }
-  } */
+@media (max-width: 991px) {
+
+}
+
+/* attribution style */
+.attribution-section {
+    padding: 50px 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--font-primary);
+    margin-top: 30px;
+    min-height: calc(100vh - 90px);
+    max-width: 1065px;
+}
+
+.attribution-section h1 {
+    font-size: var(--font-size-extra-large);
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--dark-grey);
+}
+
+.attribution-section p {
+    font-size: var(--font-size-regular);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.attribution-item {
+    background-color: var(--white);
+    border: 1px solid var(--neutral-light);
+    border-radius: var(--card-border-radius);
+    margin-bottom: 30px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.attribution-item h2 {
+    font-size: 1.8rem;
+    color: var(--dark-grey);
+    margin-bottom: 10px;
+}
+
+.attribution-item ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.attribution-item li {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.attribution-item li a {
+    color: var(--blue);
+    text-decoration: none;
+}
+
+.attribution-item li a:hover {
+    color: var(--blue);
+}

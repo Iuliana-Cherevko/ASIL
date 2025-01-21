@@ -35,7 +35,7 @@
                 <hr>
 
                 <a href="#" class="sub-menu-link">
-                  <img src="{{url_for('static', filename='images/settings-icon.png')}}">
+                  <img src="{{url_for('static', filename='images/settings.png')}}">
                   <p>Settings</p>
                   <span>></span>
                 </a>
@@ -60,61 +60,61 @@
         </div>
       </div>
     </nav>
-</header>
+  </header>
 
 
+    <section class="attribution-section fade-in">
+        <div class="container">
+            <h1 class="">Attributions</h1>
+            <p class="">This website utilizes various resources and tools. Below is a list of the credits and attributions for these materials.</p>
 
-  <!-- Hero Section -->
-  <section id="hero" class="hero-section">
-    <div class="hero-content fade-in">
-      <h1>
-        Contact
-        <span class="hero-title-highlight">HabiTrain</span>
-      </h1>
-      <p>Feel Free to write anything....</p>
-    </div>
-  </section>
+            <div class="attribution-item">
+                <h2>Images</h2>
+                <p>Various images used in the project are from the following sources under a Free License or Creative Commons:</p>
+                <ul>
+                    <li><strong>"Change Habit Message with Apple"</strong> by Freepik from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <!-- <li>Unsplash - Available at <a href="https://unsplash.com" target="_blank">Unsplash</a></li>
+                    <li>Pixabay - Available at <a href="https://pixabay.com" target="_blank">Pixabay</a></li> -->
+                    <li>+ add more later</li>
+                </ul>
+            </div>
 
+            <div class="attribution-item">
+                <h2>Icons</h2>
+                <p>Icons used on the website are sourced from the following creators under a Free License or Creative Commons:</p>
+                <ul>
+                    <li><strong>"Logout free icon"</strong> by <a href="https://www.flaticon.com/authors/sumberrejeki" target="_blank">SumberRejeki</a> from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <li><strong>"Home free icon"</strong> by <a href="https://www.flaticon.com/authors/freepik" target="_blank">Freepik</a> from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <li><strong>"Settings free icon"</strong> by <a href="https://www.flaticon.com/authors/pixel-perfect" target="_blank">Pixel perfect</a> from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <li><strong>"Black Instagram icon"</strong> by <a href="https://uxwing.com" target="_blank">UXWing</a> from <a href="https://www.uxwing.com" target="_blank">www.uxwing.com</a></li>
+                    <li><strong>"Care icon"</strong> by <a href="https://uxwing.com" target="_blank">UXWing</a> from <a href="https://www.uxwing.com" target="_blank">www.uxwing.com</a></li>
+                    <li><strong>"Yes No free icon"</strong> by <a href="https://www.flaticon.com/authors/freepik" target="_blank">Freepik</a> from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <li><strong>"Eye free icon"</strong> by <a href="https://www.flaticon.com/authors/stasy" target="_blank">Stasy</a> from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <li><strong>"Viewer free icon"</strong> by <a href="https://www.flaticon.com/authors/freepik" target="_blank">Freepik</a> from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <li><strong>"User free icon"</strong> by <a href="https://www.flaticon.com/authors/freepik" target="_blank">Freepik</a> from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <li>+ add more later</li>
+                </ul>
+            </div>
+            
 
-
-
-  <!-- Footer section -->
-  <footer id="footer" class="footer slide-up">
-    <div class="footer-content">
-      <div class="footer-logo">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" class="brand-logo filtered">
-        <span>HabiTrain</span>
-      </div>
-      
-      <div class="footer-section">
-        <h5>Explore</h5>
-        <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Blog</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-section">
-        <h5>Follow Us</h5>
-        <div class="social-links">
-          <a href="#"><img src="{{ url_for('static', filename='images/instagram-icon.svg') }}" class="social-icon"></a>
+            <div class="attribution-item">
+                <h2>AI-Generated Images</h2>
+                <p>Some images on the website were created using AI tools. These images are not directly licensed but are clearly identified as AI-generated for transparency. The tools used include:</p>
+                <ul>
+                    <li><a href="https://character.ai" target="_blank">Character.ai</a></li>
+                    <li><a href="https://www.canva.com" target="_blank">Canva</a></li>
+                    <li><a href="https://creator.nightcafe.studio" target="_blank">Night Cafe</a></li>
+                </ul>
+            </div>            
         </div>
-      </div>
-
-      <div class="footer-section">
-        <h5>Support</h5>
-        <img src="{{ url_for('static', filename='images/support-icon.svg') }}" class="social-icon" style="width: 30px;">
-      </div>
-    </div>
-  </footer>
-
+    </section>      
+       
+  <!-- Footer section -->
   <div class="footer-bottom slide-up">
     <p>© 2025 HabiTrain</p>
     <a href="{{ url_for('#')}}" class="attributions">This page is powered by Creative Commons resources. Click here for more information.</a>
-  </div>
-
-
+</div>  
+  
   <!-- Html Code for Modals / Popups -->
   <!-- Sign in Modal-->
   <div id="sign-in-modal" class="modal">
@@ -211,6 +211,8 @@
     }
   });
 </script>
+
+
 
 </body>
 </html>

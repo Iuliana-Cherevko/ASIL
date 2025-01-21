@@ -34,7 +34,7 @@
                 <hr>
 
                 <a href="{{url_for('views.settings')}}" class="sub-menu-link">
-                  <img src="{{url_for('static', filename='images/settings.png')}}">
+                  <img src="{{url_for('static', filename='images/settings-icon.png')}}">
                   <p>Settings</p>
                   <span>></span>
                 </a>
@@ -95,7 +95,7 @@
           <h3>Get Personalized Support</h3>
           <div class="feature-with-img">
             <p>Everyone's journey is unique. HabiTrain offers personalized emotional support with interactive experiences tailored to your goals to help you stay on course when challenges arise. You're never alone on this path.</p>
-            <img src="{{url_for('static', filename='images/support-img.png')}}" class="feature-img">
+            <img src="{{url_for('static', filename='images/support-4.png')}}" class="feature-img">
           </div>
         </div>
         <div class="feature-card feature-card-quaternary slide-up">
@@ -176,14 +176,15 @@
         <a href="#" id="registration-link" class="cta-button">Get Started Today</a>
       </div>
     </div>
-    <img src="{{url_for('static', filename='images/journey.jpg')}}" class="cta-image">
+    <img src="{{url_for('static', filename='images/journey.png')}}" class="cta-image">
   </section>
+
 
   <!-- Footer section -->
   <footer id="footer" class="footer slide-up">
     <div class="footer-content">
       <div class="footer-logo">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" class="brand-logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="brand-logo filtered">
         <span>HabiTrain</span>
       </div>
       
@@ -199,19 +200,21 @@
       <div class="footer-section">
         <h5>Follow Us</h5>
         <div class="social-links">
-          <a href="#"><img src="{{ url_for('static', filename='images/facebook.png') }}" alt="Facebook" class="social-icon"></a>
-          <a href="#"><img src="{{ url_for('static', filename='images/twitter.png') }}" alt="Twitter" class="social-icon"></a>
-          <a href="#"><img src="{{ url_for('static', filename='images/instagram.png') }}" alt="Instagram" class="social-icon"></a>
+          <a href="#"><img src="{{ url_for('static', filename='images/instagram-icon.svg') }}" class="social-icon"></a>
         </div>
       </div>
 
       <div class="footer-section">
         <h5>Support</h5>
-        <img src="{{ url_for('static', filename='images/support.png') }}" class="social-icon">
+        <img src="{{ url_for('static', filename='images/support-icon.svg') }}" class="social-icon" style="width: 30px;">
       </div>
     </div>
   </footer>
-  <div class="footer-bottom slide-up"><p>© 2025 HabiTrain. All rights reserved.</p></div>
+
+  <div class="footer-bottom slide-up">
+    <p>© 2025 HabiTrain</p>
+    <a href="#" class="attributions">This page is powered by Creative Commons resources. Click here for more information.</a>
+  </div>
 
 
   <!-- Html Code for Modals / Popups -->

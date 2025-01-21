@@ -117,7 +117,9 @@ function showCorrectCompanionIcon(companion) {
     const imageFilename = companionImages[companion] || "user-icon.png"; // Default image if companion not found
 
     const companionImage = document.getElementById('companion-image');
-    companionImage.src = "static/images/" + imageFilename;
+    if (companionImage) {
+        companionImage.src = "static/images/" + imageFilename;
+    }
 }
 
 // Navbar animation code
