@@ -75,11 +75,27 @@
 
 
   
+  
+  <!-- Wave animation -->
+  <div class="wave-container slide-up">
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0"/>
+            <use xlink:href="#gentle-wave" x="48" y="3"/>
+            <use xlink:href="#gentle-wave" x="48" y="5" />
+            <use xlink:href="#gentle-wave" x="48" y="7"/>
+        </g>
+    </svg>
+  </div>
+
   <!-- Footer section -->
   <footer id="footer" class="footer slide-up">
     <div class="footer-content">
       <div class="footer-logo">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" class="brand-logo filtered">
+        <img src="{{ url_for('static', filename='images/logo-ex7.png') }}" class="brand-logo">
         <span>HabiTrain</span>
       </div>
       
@@ -101,7 +117,7 @@
 
       <div class="footer-section">
         <h5>Support</h5>
-        <img src="{{ url_for('static', filename='images/support-icon.svg') }}" class="social-icon" style="width: 30px;">
+        <img src="{{ url_for('static', filename='images/support-icon.png') }}" class="social-icon">
       </div>
     </div>
   </footer>

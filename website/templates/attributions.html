@@ -110,11 +110,57 @@
         </div>
     </section>      
        
+  
+  <!-- Wave animation -->
+  <div class="wave-container slide-up">
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0"/>
+            <use xlink:href="#gentle-wave" x="48" y="3"/>
+            <use xlink:href="#gentle-wave" x="48" y="5" />
+            <use xlink:href="#gentle-wave" x="48" y="7"/>
+        </g>
+    </svg>
+</div>
+
   <!-- Footer section -->
+  <footer id="footer" class="footer slide-up">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="{{ url_for('static', filename='images/logo-ex7.png') }}" class="brand-logo">
+        <span>HabiTrain</span>
+      </div>
+      
+      <div class="footer-section">
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h5>Follow Us</h5>
+        <div class="social-links">
+          <a href="#"><img src="{{ url_for('static', filename='images/instagram-icon.svg') }}" class="social-icon"></a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h5>Support</h5>
+        <img src="{{ url_for('static', filename='images/support-icon.png') }}" class="social-icon">
+      </div>
+    </div>
+  </footer>
+
   <div class="footer-bottom slide-up">
     <p>© 2025 HabiTrain</p>
-    <a href="" class="attributions">This page is powered by Creative Commons resources. Click here for more information.</a>
-</div>  
+    <a href="#" class="attributions">This page is powered by Creative Commons resources. Click here for more information.</a>
+  </div> 
   
   <!-- Html Code for Modals / Popups -->
   <!-- Sign in Modal-->

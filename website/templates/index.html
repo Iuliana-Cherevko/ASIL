@@ -13,7 +13,7 @@
     <nav class="navbar">
       <div class="navbar-content">
         <a href="{{ url_for('views.index') }}"><div class="logo-container">
-            <img src="{{url_for('static', filename='images/logo-ex2.png')}}" class="logo">
+            <img src="{{url_for('static', filename='images/logo-ex7.png')}}" class="logo">
             <span>HabiTrain</span>
         </div></a>
         <div class="nav-links">
@@ -24,7 +24,7 @@
        
         <div class="nav-btns">
           {% if user_logged_in %}
-            <img src="{{url_for('static', filename='images/plant.jpg')}}" id="companion-image" class="profile-icon" alt="cannot" onclick="toggleMenu()">
+            <img src="{{url_for('static', filename='images/user-icon.png')}}" id="companion-image" class="profile-icon" onclick="toggleMenu()">
             <div class = "sub-menu-container" id="sub-menu-container">
               <div class="sub-menu">
                 <div class = "user-info">
@@ -73,6 +73,17 @@
       <button href="#" id="registration-link" class="btn get-started-btn">Get Started</button>
     </div>
   </section>
+
+  <!-- Slider -->
+   <section class="slider-section">
+    <div class="slider slide-up">
+      <div id="slider-container-1" class="slider-container"></div>
+    </div>
+    <div class="slider slide-up">
+      <div id="slider-container-2" class="slider-container"></div>
+    </div>
+</section>
+
   
 <!-- Features section -->
   <section id="features" class="features-section">
@@ -180,11 +191,27 @@
   </section>
 
 
+
+  <!-- Wave animation -->
+  <div class="wave-container slide-up">
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0"/>
+            <use xlink:href="#gentle-wave" x="48" y="3"/>
+            <use xlink:href="#gentle-wave" x="48" y="5" />
+            <use xlink:href="#gentle-wave" x="48" y="7"/>
+        </g>
+    </svg>
+</div>
+
   <!-- Footer section -->
   <footer id="footer" class="footer slide-up">
     <div class="footer-content">
       <div class="footer-logo">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" class="brand-logo filtered">
+        <img src="{{ url_for('static', filename='images/logo-ex7.png') }}" class="brand-logo">
         <span>HabiTrain</span>
       </div>
       
@@ -460,6 +487,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => expectModalClick(), 0);
+    setTimeout(() => showSlider(), 0);
     setTimeout(() => showCorrectCompanionIcon("{{ companion }}"), 0);
     setTimeout(() => expectTestimoniesAction(), 0);
     if (user_logged_in && bad_habit === 0) {
