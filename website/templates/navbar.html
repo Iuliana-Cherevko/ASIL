@@ -12,13 +12,13 @@
         </div>
        
         <div class="nav-btns">
-          {% if user_logged_in %}
+          {% if current_user.is_authenticated %}
             <img src="{{url_for('static', filename='images/user-icon.png')}}" id="companion-image" class="profile-icon" onclick="toggleMenu()">
             <div class = "sub-menu-container" id="sub-menu-container">
               <div class="sub-menu">
                 <div class = "user-info">
                   <img src="{{url_for('static', filename='images/dog.png')}}">
-                  <h1> {% if username %} {{ username }} {% else %} Username {% endif %}</h1>
+                  <h1> {% if current_user.name %} {{ current_user.name }} {% else %} Username {% endif %}</h1>
                 </div>
                 <hr>
 
