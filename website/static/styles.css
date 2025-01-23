@@ -407,7 +407,7 @@ header {
     height: auto;
     border-radius: var(--modal-border-radius);
     text-align: center;
-    margin: 25vh auto;
+    margin: 10vh auto auto auto;
 }
 
 .modal-inner-padding {

@@ -1,0 +1,51 @@
+<header>
+    <nav class="navbar">
+      <div class="navbar-content">
+        <a href="{{ url_for('views.index') }}"><div class="logo-container">
+            <img src="{{url_for('static', filename='images/logo-ex7.png')}}" class="logo">
+            <span>HabiTrain</span>
+        </div></a>
+        <div class="nav-links">
+            <a href="{{ url_for('views.index') }}" id="home-link">Home</a>
+            <a href="{{ url_for('views.index') }}"  id="about-link" >About us</a>
+            <a href="{{ url_for('views.index') }}" id="contact-link" >Contact</a>
+        </div>
+       
+        <div class="nav-btns">
+          {% if user_logged_in %}
+            <img src="{{url_for('static', filename='images/user-icon.png')}}" id="companion-image" class="profile-icon" onclick="toggleMenu()">
+            <div class = "sub-menu-container" id="sub-menu-container">
+              <div class="sub-menu">
+                <div class = "user-info">
+                  <img src="{{url_for('static', filename='images/dog.png')}}">
+                  <h1> {% if username %} {{ username }} {% else %} Username {% endif %}</h1>
+                </div>
+                <hr>
+
+                <a href="{{url_for('views.index')}}" id="settings-link" class="sub-menu-link">
+                  <img src="{{url_for('static', filename='images/settings-icon.png')}}">
+                  <p>Settings</p>
+                  <span>></span>
+                </a>
+
+                <a href="#" id="companion-hub-link" class="sub-menu-link">
+                  <img src="{{url_for('static', filename='images/home.png')}}">
+                  <p>Companion Hub</p>
+                  <span>></span>
+                </a>
+
+                <a href="#" id="logout-link" class="sub-menu-link">
+                  <img src="{{url_for('static', filename='images/logout.png')}}">
+                  <p>Log out</p>
+                  <span>></span>
+                </a>
+              </div>
+            </div>              
+          {% else %}
+            <button class="btn btn-secondary top-bar-btn" id="sign-in-link">Sign in</button>
+            <button href="#" class="btn btn-primary top-bar-btn" id="registration-link">Register</button>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+</header>

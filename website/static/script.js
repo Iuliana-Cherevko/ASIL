@@ -82,6 +82,15 @@
 
 
 // CODE FOR ALL PAGES
+// Function that runs all functions that are necessary on all pages
+function runAllFunctions(companion) {
+    expectModalClick();
+    setNavLinkActive();
+    showCorrectCompanionIcon(companion);
+    if (user_logged_in && bad_habit === 0) {
+        launchBriefQuestionnaire();
+    }
+}
 
 // Toggle dropdown menu
 function toggleMenu() {
@@ -89,11 +98,11 @@ function toggleMenu() {
     menu.classList.toggle("open-menu");
 }
 
+// dropdown menu - show and hide
 document.addEventListener("DOMContentLoaded", () => {
     const menu = document.getElementById("sub-menu-container");
     const profileIcon = document.querySelector(".profile-icon");
 
-    // Close menu on click outside
     document.addEventListener("click", function (event) {
         if (menu && profileIcon) {
             if (!menu.contains(event.target) && !profileIcon.contains(event.target)) {
@@ -102,7 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Close menu on scroll
     window.addEventListener("scroll", function () {
         if (menu && menu.classList.contains("open-menu")) {
             menu.classList.remove("open-menu");
@@ -154,6 +162,25 @@ window.addEventListener('scroll', function() {
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 });
 
+// Set active navigation link in navbar if the user is on that page
+function setNavLinkActive() {
+    const pageMap = {
+        "/Index": "home-link",
+        "/About": "about-link",
+        "/Contact": "contact-link",
+        "/Settings": "settings-link",
+        "/Companion-hub": "companion-hub-link",
+    };
+    const currentPath = window.location.pathname;
+    const activeLinkId = pageMap[currentPath];
+
+    if (activeLinkId) {
+        const activeLink = document.getElementById(activeLinkId);
+        if (activeLink) {
+            activeLink.classList.add("nav-link-active");
+        }
+    }
+}
 
 // Slider code
 function showSlider() {

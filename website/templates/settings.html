@@ -8,53 +8,9 @@
     <title>HabiTrain | Overcome Bad Habits</title>
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <header>
-    <nav class="navbar">
-      <div class="navbar-content">
-        <a href="{{ url_for('views.index') }}"><div class="logo-container">
-            <img src="{{url_for('static', filename='images/logo.png')}}" class="logo filtered">
-            <span>HabiTrain</span>
-        </div></a>
-        <div class="nav-links">
-            <a href="{{ url_for('views.index') }}" class="nav-link-active">Home</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-        </div>
-       
-        <div class="nav-btns">
-            <img src="{{url_for('static', filename='images/plant.jpg')}}" id="companion-image" class="profile-icon" alt="cannot" onclick="toggleMenu()">
-            <div class = "sub-menu-container" id="sub-menu-container">
-              <div class="sub-menu">
-                <div class = "user-info">
-                  <img src="{{url_for('static', filename='images/dog.png')}}">
-                  <h1> {% if username %} {{ username }} {% else %} Username {% endif %}</h1>
-                </div>
-                <hr>
+    <!-- Navigation Bar -->
+  {% include 'navbar.html' %}
 
-                <a href="#" class="sub-menu-link">
-                  <img src="{{url_for('static', filename='images/settings-icon.png')}}">
-                  <p class="sub-menu-link-active">Settings</p>
-                  <span>></span>
-                </a>
-
-                <a href="#" class="sub-menu-link">
-                  <img src="{{url_for('static', filename='images/home.png')}}">
-                  <p>Companion Hub</p>
-                  <span>></span>
-                </a>
-
-                <a href="#" class="sub-menu-link">
-                  <img src="{{url_for('static', filename='images/logout.png')}}">
-                  <p>Log out</p>
-                  <span>></span>
-                </a>
-              </div>
-            </div>       
-        </div>
-      </div>
-    </nav>
-</header>
     <section class="settings-section slide-up">
         <div class="settings-content">
         <h1>Settings</h1>
@@ -145,25 +101,9 @@
         </div>
     </section>      
 
-    <!-- Wave animation -->
-    <div class="wave-container slide-up">
-        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-            <defs>
-                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-            </defs>
-            <g class="parallax">
-                <use xlink:href="#gentle-wave" x="48" y="0"/>
-                <use xlink:href="#gentle-wave" x="48" y="3"/>
-                <use xlink:href="#gentle-wave" x="48" y="5" />
-                <use xlink:href="#gentle-wave" x="48" y="7"/>
-            </g>
-        </svg>
-    </div>
-
-    <div class="footer-bottom slide-up">
-        <p>© 2025 HabiTrain</p>
-        <a href="#" class="attributions">This page is powered by Creative Commons resources. Click here for more information.</a>
-    </div>     
+     <!-- Footer and Wave Section -->
+    {% include 'wave.html' %}
+    {% include 'footer-bottom.html' %}    
 
 <script>
     const originalValues = {
