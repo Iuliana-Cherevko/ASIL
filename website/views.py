@@ -75,4 +75,7 @@ def check_in():
         #users[name]['journal'] = journal
         #return render_template("checkin.html")
     return render_template('checkin.html')
-    
+
+@views.route('/about-us')
+def about_us():
+    return render_template('about-us.html', user=current_user)
