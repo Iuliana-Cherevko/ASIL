@@ -17,7 +17,7 @@ def sign_in():
             if check_password_hash(user.password, password):
                 flash('Logged in', category='success')
                 login_user(user, remember=True) #will remember user logged in 
-                return render_template('profile.html')
+                return render_template('index.html')
             else:
                 flash('Incorrect password.', category='error')
                 return render_template('index.html')
@@ -46,6 +46,9 @@ def registration():
         user = User.query.filter_by(username=username).first()
         if user:
             flash('Username already exists', category='error')
+            username_taken = True
+            #email_taken 
+            #send it somewhere
 
         #hashed_password = generate_password_hash(password, method='sha256')
 
