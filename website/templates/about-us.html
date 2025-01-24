@@ -9,31 +9,7 @@
 </head>
 <body>
   <!-- Navigation Bar -->
-  <header>
-    <nav class="navbar">
-      <div class="navbar-content">
-        <a href="{{ url_for('views.index') }}"><div class="logo-container">
-            <img src="{{url_for('static', filename='images/logo.png')}}" class="logo">
-            <span>HabiTrain</span>
-        </div></a>
-        <div class="nav-links">
-            <a href="#" class="nav-link-active">Home</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-        </div>
-       
-        <div class="nav-btns">
-          {% if user_logged_in %}
-            <button class="btn btn-secondary" id="sign-in-link">Sign in</button>
-            <button href="#" class="btn btn-primary" id="register-link">Register</button>
-          {% else %}
-            <img href="{{ url_for('views.profile') }}" src="{{url_for('static', filename='images/user-icon.png')}}" class="profile-icon">
-            <button class="btn btn-secondary" id="sign-in-link">Log out</button>
-          {% endif %}
-        </div>
-      </div>
-    </nav>
-</header>
+  {% include '/components/navbar.html' %}
 
   <!-- Hero Section -->
   <section id="hero" class="hero-section">
@@ -45,6 +21,23 @@
       <p>Feel Free to write anything....</p>
     </div>
   </section>
+  
+  
+    <!-- Footer and Wave Section -->
+    {% include '/components/wave.html' %}
+    {% include '/components/footer.html' %}
+    {% include '/components/footer-bottom.html' %}
+
+
+    <!-- Html Code for Modals / Popups -->
+    {% include '/components/modals.html' %}
+
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    runAllFunctions("{{ companion }}");
+  });
+</script>
 
 </body>
 </html>

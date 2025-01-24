@@ -81,102 +81,60 @@
 // window.onload = updateCalendar;
 
 
-// Modals / Popups code
-const modals = [
-    { modal: document.getElementById("sign-in-modal"), link: document.querySelectorAll("#sign-in-link"), close: document.getElementById("close-btn-1")},
-    { modal: document.getElementById("registration-modal"), link: document.querySelectorAll("#registration-link"), close: document.getElementById("close-btn-2")},
-];
-
-modals.forEach(({modal, link, close}) => {
-    if (link instanceof NodeList) {
-        link.forEach(button => {
-            button.addEventListener("click", function(event) {
-                event.preventDefault();
-                modal.style.display = "block"; 
-
-                modals.forEach(({modal: otherModal}) => {
-                    if (otherModal !== modal) {
-                        otherModal.style.display = "none";
-                    }
-                });
-            });
-        });
-    } else {
-        link.addEventListener("click", function(event) {
-            event.preventDefault();
-            modal.style.display = "block";
-            
-            modals.forEach(({modal: otherModal}) => {
-                if (otherModal !== modal) {
-                    otherModal.style.display = "none";
-                }
-            });
-        });
+// CODE FOR ALL PAGES
+// Function that runs all functions that are necessary on all pages
+function runAllFunctions(companion) {
+    expectModalClick();
+    setNavLinkActive();
+    showCorrectCompanionIcon(companion);
+    if (user_logged_in && bad_habit === 0) {
+        launchBriefQuestionnaire();
     }
+}
 
-    close.addEventListener("click", function() {
-        modal.style.display = "none";
-    })
-});
+// Toggle dropdown menu
+function toggleMenu() {
+    const menu = document.getElementById("sub-menu-container");
+    menu.classList.toggle("open-menu");
+}
 
-window.addEventListener("click", function(event) {
-    modals.forEach(({modal}) => {
-        if(event.target === modal) {
-            modal.style.display = "none";
+// dropdown menu - show and hide
+document.addEventListener("DOMContentLoaded", () => {
+    const menu = document.getElementById("sub-menu-container");
+    const profileIcon = document.querySelector(".profile-icon");
+
+    document.addEventListener("click", function (event) {
+        if (menu && profileIcon) {
+            if (!menu.contains(event.target) && !profileIcon.contains(event.target)) {
+                menu.classList.remove("open-menu");
+            }
+        }
+    });
+
+    window.addEventListener("scroll", function () {
+        if (menu && menu.classList.contains("open-menu")) {
+            menu.classList.remove("open-menu");
         }
     });
 });
 
-// Toggle for password visibility
-const passwordFields = [
-    { toggle: document.getElementById("toggle-password-sign-in"), input: document.getElementById("password-sign-in")},
-    { toggle: document.getElementById("toggle-registration-password"), input: document.getElementById("registration-password") },
-    { toggle: document.getElementById("toggle-confirm-password"), input: document.getElementById("confirm-password") }
-];
+// display correct companion in navigation bar
+function showCorrectCompanionIcon(companion) {
+    const companionImages = {
+        "dog": "dog.png",
+        "plant": "plant.jpg",
+        "slime": "slime.png",
+        "cat": "cat.jpg",
+        "dragon": "dragon.png",
+    };
 
-const passwordInput1 = document.getElementById("registration-password");
-const confirmPasswordContainer = document.getElementById("confirm-password-container");
-const passwordMismatchError = document.getElementById("password-mismatch-error");
+    const imageFilename = companionImages[companion] || "user-icon.png"; // Default image if companion not found
 
-function togglePasswordVisibility() {
-    passwordFields.forEach(field => {
-        field.toggle.addEventListener("click", () => {
-            const isPasswordVisible = field.input.getAttribute("type") === "text";
-            field.input.setAttribute("type", isPasswordVisible ? "password" : "text");
-
-            field.toggle.src = isPasswordVisible
-                ? "static/images/eye-hide.png"
-                : "static/images/eye-view.png";
-        });
-    });
+    const companionImage = document.getElementById('companion-image');
+    if (companionImage) {
+        companionImage.src = "static/images/" + imageFilename;
+    }
 }
-
-togglePasswordVisibility();
-
-// hide & show confirm_password field
-passwordInput1.addEventListener("blur", function() {
-    if (passwordInput1.value.trim() !== "") {
-        confirmPasswordContainer.classList.add("show");
-    }
-});
-
-// Check if passwords match confirm_password before form submission
-document.getElementById("registration-form").addEventListener("submit", function(event) {
-    const password = document.getElementById("registration-password").value;
-    const confirmPassword = document.getElementById("confirm-password").value;
-    
-    document.getElementById("registration-password").classList.remove("error");
-    document.getElementById("confirm-password").classList.remove("error");
-    passwordMismatchError.style.display = "none"; 
-
-    if (password !== confirmPassword) {
-        event.preventDefault();
-        passwordMismatchError.style.display = "flex";
-        document.getElementById("confirm-password").classList.add("error"); 
-        document.getElementById("registration-password").classList.add("error");
-        registrationModal.style.height = "auto"; 
-    }
-});
 
 // Navbar animation code
 const navbar = document.querySelector('.navbar');
@@ -204,13 +162,197 @@ window.addEventListener('scroll', function() {
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 });
 
+// Set active navigation link in navbar if the user is on that page
+function setNavLinkActive() {
+    const pageMap = {
+        "/Index": "home-link",
+        "/About": "about-link",
+        "/Contact": "contact-link",
+        "/Settings": "settings-link",
+        "/Companion-hub": "companion-hub-link",
+    };
+    const currentPath = window.location.pathname;
+    const activeLinkId = pageMap[currentPath];
+
+    if (activeLinkId) {
+        const activeLink = document.getElementById(activeLinkId);
+        if (activeLink) {
+            activeLink.classList.add("nav-link-active");
+        }
+    }
+}
+
+// Slider code
+function showSlider() {
+    const sliderContainer1 = document.getElementById("slider-container-1");
+    const sliderContainer2 = document.getElementById("slider-container-2");
+  
+    const squareData = [
+      { type: "color", value: "var(--neutral-foam)" },
+      { type: "color", value: "var(--neutral-pink)" },
+      { type: "color", value: "var(--neutral-cinderella)" },
+      { type: "color", value: "var(--neutral-foam)" },
+      { type: "image", value: "dog.png" },
+      { type: "color", value: "var(--neutral-pink)" },
+      { type: "image", value: "dragon.png" },
+      { type: "color", value: "var(--neutral-cinderella)" },
+      { type: "color", value: "var(--neutral-pink)" },
+      { type: "image", value: "cat.jpg" },
+      { type: "image", value: "slime.png" },
+      { type: "color", value: "var(--neutral-cinderella)" },
+      { type: "color", value: "var(--neutral-foam)" },
+      { type: "image", value: "plant.jpg" },
+    ];
+  
+    const totalSquares = 50;
+    const extendedArray = [];
+    for (let i = 0; i < totalSquares; i++) {
+      extendedArray.push(squareData[i % squareData.length]);
+    }
+  
+    extendedArray.forEach((data) => {
+      const square = createSquare(data);
+      sliderContainer1.appendChild(square);
+    });
+  
+    extendedArray.reverse().forEach((data) => {
+      const square = createSquare(data);
+      sliderContainer2.appendChild(square);
+    });
+  
+    sliderContainer1.classList.add("animated");
+    sliderContainer2.classList.add("animated-reverse");
+  }
+  
+  function createSquare(data) {
+    const square = document.createElement("div");
+    square.classList.add("square");
+  
+    if (data.type === "color") {
+      square.style.backgroundColor = data.value;
+    } else if (data.type === "image") {
+      const img = document.createElement("img");
+      img.src = "static/images/" + data.value;
+      img.classList.add("square-img");
+      square.appendChild(img);
+    }
+  
+    return square;
+}
+  
+
+// Toggle for password visibility
+const passwordFields = [
+    { toggle: document.getElementById("toggle-password-sign-in"), input: document.getElementById("password-sign-in")},
+    { toggle: document.getElementById("toggle-registration-password"), input: document.getElementById("registration-password") },
+    { toggle: document.getElementById("toggle-confirm-password"), input: document.getElementById("confirm-password") }
+];
+
+const passwordInput1 = document.getElementById("registration-password");
+const confirmPasswordContainer = document.getElementById("confirm-password-container");
+const passwordMismatchError = document.getElementById("password-mismatch-error");
+
+function togglePasswordVisibility() {
+    passwordFields.forEach(field => {
+        field.toggle.addEventListener("click", () => {
+            const isPasswordVisible = field.input.getAttribute("type") === "text";
+            field.input.setAttribute("type", isPasswordVisible ? "password" : "text");
+
+            field.toggle.src = isPasswordVisible
+                ? "static/images/eye-hide.png"
+                : "static/images/eye-view.png";
+        });
+    });
+}
+
+// Modals / Popups code
+const modals = [
+    { modal: document.getElementById("sign-in-modal"), link: document.querySelectorAll("#sign-in-link"), close: document.getElementById("close-btn-1")},
+    { modal: document.getElementById("registration-modal"), link: document.querySelectorAll("#registration-link"), close: document.getElementById("close-btn-2")},
+];
+
+function expectModalClick() {
+    modals.forEach(({modal, link, close}) => {
+        if (link instanceof NodeList) {
+            link.forEach(button => {
+                button.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    modal.style.display = "block"; 
+
+                    document.body.classList.add('stopScroll');
+
+                    modals.forEach(({modal: otherModal}) => {
+                        if (otherModal !== modal) {
+                            otherModal.style.display = "none";
+                        }
+                    });
+                });
+            });
+        } else {
+            link.addEventListener("click", function(event) {
+                event.preventDefault();
+                modal.style.display = "block";
+
+                document.body.classList.add('stopScroll');
+                
+                modals.forEach(({modal: otherModal}) => {
+                    if (otherModal !== modal) {
+                        otherModal.style.display = "none";
+                    }
+                });
+            });
+        }
+
+        close.addEventListener("click", function() {
+            modal.style.display = "none";
+            document.body.classList.remove('stopScroll');
+        })
+    });
+
+    window.addEventListener("click", function(event) {
+        modals.forEach(({modal}) => {
+            if(event.target === modal) {
+                modal.style.display = "none";
+                document.body.classList.remove('stopScroll');
+            }
+        });
+    });
+
+    togglePasswordVisibility();
+
+    // hide & show confirm_password field
+    passwordInput1.addEventListener("blur", function() {
+        if (passwordInput1.value.trim() !== "") {
+            confirmPasswordContainer.classList.add("show");
+        }
+    });
+
+    // Check if passwords match confirm_password before form submission
+    document.getElementById("registration-form").addEventListener("submit", function(event) {
+        const password = document.getElementById("registration-password").value;
+        const confirmPassword = document.getElementById("confirm-password").value;
+        
+        document.getElementById("registration-password").classList.remove("error");
+        document.getElementById("confirm-password").classList.remove("error");
+        passwordMismatchError.style.display = "none"; 
+
+        if (password !== confirmPassword) {
+            event.preventDefault();
+            passwordMismatchError.style.display = "flex";
+            document.getElementById("confirm-password").classList.add("error"); 
+            document.getElementById("registration-password").classList.add("error");
+        }
+    });
+}
 
 // Brief Questionnaire code to show multiple pages
 function launchBriefQuestionnaire() {
-    const briefQuestionnaireModal = document.getElementById('brief-questionnaire-modal');
+    const briefQuestionnaireModal = document.getElementById('brief-questionnaire-modal')
     const pages = document.querySelectorAll('.questionnaire-page');
 
     briefQuestionnaireModal.style.display = 'block';
+    document.body.classList.add('stopScroll');
+    
     showPage(0);
 
     function showPage(pageIndex) {
@@ -239,7 +381,14 @@ function launchBriefQuestionnaire() {
             e.preventDefault(); 
         } else {
             document.getElementById('questionnaire-form').submit();
+            document.body.classList.remove('stopScroll');
+            briefQuestionnaireModal.style.display = 'none';
         }
+    });
+
+    // Prevent the form from resetting when going to next or previous page
+    document.getElementById('questionnaire-form').addEventListener('submit', (e) => {
+        e.preventDefault();
     });
 }
 
@@ -316,10 +465,7 @@ function isValidPage(pageIndex) {
     return isValid;
 }
 
-// Prevent the form from resetting when going to next or previous page
-document.getElementById('questionnaire-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-  });
+// CODE FOR HOME PAGE
 
 // Testimony slideshow code on home page
 // Placeholders for now, since we do not have any real feedback and are not storing them in database
@@ -354,7 +500,8 @@ const testimonials = [
     },
 ];
 
-document.addEventListener("DOMContentLoaded", () => {
+
+function expectTestimoniesAction() {
     const avatar = document.getElementById("testimony-avatar");
     const author = document.getElementById("testimony-name");
     const title = document.getElementById("testimony-title");
@@ -431,4 +578,81 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     updateTestimonialContent(currentIndex);
-});
+}
+
+// CODE FOR SETTINGS PAGE
+
+// Showing selected companion during view mode, blocking selection of others
+function showSelectedCompanion(selectedCompanion) {
+    const companionRadio = document.querySelector(`input[type="radio"][value="${selectedCompanion}"]`);
+    if (companionRadio) {
+        companionRadio.checked = true; 
+
+        const allRadioButtons = document.querySelectorAll('input[type="radio"][name="companion"]');
+        allRadioButtons.forEach(button => {
+            button.disabled = true;
+        });
+    }
+}
+
+function showSelectedGoalDuration(goalDuration) {
+    const goalSelect = document.getElementById("goal-duration");
+    if (goalDuration && goalDuration !== "default") {
+        goalSelect.value = goalDuration;
+        goalSelect.disabled = true;
+    }
+}
+
+// Showing edit mode
+function setupSettingsForm(originalValues) {
+    const editButton = document.getElementById("edit-button");
+    const form = document.getElementById("settings-form");
+    const inputs = form.querySelectorAll("input[readonly]");
+    const select = form.querySelectorAll("select[readonly]")
+    const radioButtons = form.querySelectorAll('input[type="radio"]');
+    const hubButton = document.getElementById("hub-btn");
+    const saveButton = document.getElementById("save-btn");
+    const cancelButton = document.getElementById("cancel-btn");
+
+    function enableEditMode() {
+        inputs.forEach(input => input.removeAttribute("readonly"));
+        select.forEach(button => (button.disabled = false))
+        radioButtons.forEach(button => (button.disabled = false));
+
+        saveButton.style.display = "block";
+        cancelButton.style.display = "block";
+
+        editButton.style.display = "none";
+        hubButton.style.display = "none";
+    }
+
+    function cancelEditMode() {
+        revertChanges(originalValues);
+
+        inputs.forEach(input => input.setAttribute("readonly", true));
+        select.forEach(button => (button.disabled = true))
+        radioButtons.forEach(button => (button.disabled = true));
+
+        saveButton.style.display = "none";
+        cancelButton.style.display = "none";
+
+        editButton.style.display = "inline-block";
+        hubButton.style.display = "inline-block";        
+    }
+
+    editButton.addEventListener("click", enableEditMode);
+    cancelButton.addEventListener("click", cancelEditMode);
+    saveButton.addEventListener("click", () => {
+        form.submit();
+    })
+}
+
+function revertChanges(originalValues) {
+    document.getElementById("username").value = originalValues.username;
+    document.getElementById("email").value = originalValues.email;
+    document.getElementById("bad_habit").value = originalValues.bad_habit;
+    document.getElementById("companion-name").value = originalValues.companionName;
+
+    showSelectedCompanion(originalValues.selectedCompanion);
+    showSelectedGoalDuration(originalValues.goalDuration);
+}
