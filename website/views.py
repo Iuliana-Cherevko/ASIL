@@ -5,6 +5,7 @@ from .models import User
 from werkzeug.security import generate_password_hash , check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
 
+# File contains index and profile
 
 app = Flask(__name__)
 views = Blueprint("views", __name__)
@@ -27,7 +28,7 @@ users = {
         "bad_habit_placeholder": "Smoking",
     }
 }
-@views.route('Index')
+@views.route('/Index')
 def index():
     if request.method == "PUT":
         email = request.form.get('email')
@@ -44,7 +45,7 @@ def index():
     return render_template("index.html", user = current_user)
 
 
-@views.route('Profile', methods = ['GET','POST'])
+@views.route('/Profile', methods = ['GET','POST'])
 @login_required
 def profile():
     username = "Katy Lio"
@@ -67,7 +68,7 @@ def profile():
     )
    #return render_template("profile.html")
 
-@views.route('Check-in', methods= ['GET', 'POST'])
+@views.route('/Check-in', methods= ['GET', 'POST'])
 def check_in():
     if request.method == 'POST':
         name = current_user
@@ -76,4 +77,25 @@ def check_in():
         #users[name]['journal'] = journal
         #return render_template("checkin.html")
     return render_template('checkin.html')
-    
+
+
+@views.route('/Settings', methods = ['GET', 'POST'])
+@login_required
+def settings():
+    # Manage form submission
+    return render_template('settings.html',
+                           user_logged_in=True,
+                           username=current_user.username,
+                           email=current_user.email,
+                           bad_habit=current_user.bad_habit,
+                           goal_duration=current_user.goal,
+                           companion_name=current_user.character,
+                           companion=current_user.character)
+ 
+@views.route('/Companion_hub', methods = ['GET', 'POST'])
+@login_required
+def companion_hub():
+    return render_template('companion_hub.html',
+                           user_logged_in=True,
+                           username=current_user.username,
+                           companion=current_user.character)
