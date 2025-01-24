@@ -8,53 +8,9 @@
     <title>HabiTrain | Overcome Bad Habits</title>
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <header>
-    <nav class="navbar">
-      <div class="navbar-content">
-        <a href="{{ url_for('views.index') }}"><div class="logo-container">
-            <img src="{{url_for('static', filename='images/logo.png')}}" class="logo filtered">
-            <span>HabiTrain</span>
-        </div></a>
-        <div class="nav-links">
-                <a href="{{ url_for('views.index') }}">Home</a>
-                <a href="{{ url_for('views.about_us') }}">About Us</a>
-                <a href="{{ url_for('views.contact') }}">Contact</a>
-        </div>
-       
-        <div class="nav-btns">
-            <img src="{{url_for('static', filename='images/user-icon.png')}}" id="companion-image" class="profile-icon" alt="cannot" onclick="toggleMenu()">
-            <div class = "sub-menu-container" id="sub-menu-container">
-              <div class="sub-menu">
-                <div class = "user-info">
-                  <img src="{{url_for('static', filename='images/dog.png')}}">
-                  <h1> {% if username %} {{ username }} {% else %} Username {% endif %}</h1>
-                </div>
-                <hr>
+    <!-- Navigation Bar -->
+  {% include '/components/navbar.html' %}
 
-                    <a href="{{ url_for('views.settings') }}" class="sub-menu-link">
-                    <img src="{{url_for('static', filename='images/settings.png')}}">
-                  <p class="sub-menu-link-active">Settings</p>
-                  <span>></span>
-                </a>
-
-                    <a href="{{ url_for('views.companion_hub') }}" class="sub-menu-link">
-                  <img src="{{url_for('static', filename='images/home.png')}}">
-                  <p>Companion Hub</p>
-                  <span>></span>
-                </a>
-
-                    <a href="{{ url_for('auth.logout') }}" class="sub-menu-link">
-                  <img src="{{url_for('static', filename='images/logout.png')}}">
-                  <p>Log out</p>
-                  <span>></span>
-                </a>
-              </div>
-            </div>       
-        </div>
-      </div>
-    </nav>
-</header>
     <section class="settings-section slide-up">
         <div class="settings-content">
         <h1>Settings</h1>
@@ -62,7 +18,7 @@
         <div class="settings-header">
             <img src="{{ url_for('static', filename='images/dog.png')}}" class="avatar">
             <div class="greeting-text">
-                <h2>Hey there, {{ username }}!</h2>
+                <h2>Hey there, {{ current_user.name }}!</h2>
                 <p>Ready to tweak your journey?</p>
             </div>
             <button id="edit-button" class="edit-button" type="button">
@@ -75,13 +31,13 @@
         <form class="settings-form" id="settings-form" method="POST" action="{{ url_for('auth.registration') }}">
 
             <label for="username">Username</label>
-            <input type="text" id="username" value="{{username}}" readonly>
+            <input type="text" id="username" value="{{ current_user.name }}" readonly>
             
             <label for="email">Email Address</label>
-            <input type="email" id="email" value="{{email}}" readonly>
+            <input type="email" id="email" value="{{ current_user.email }}" readonly>
             
             <label for="bad_habit">Bad Habit:</label>
-            <input type="text" id="bad_habit" value="{{ bad_habit }}" readonly>
+            <input type="text" id="bad_habit" value="{{ current_user.bad_habit }}" readonly>
             
             <label for="goal-duration">Current goal (in days)</label>
             <select style="color: var(--text-color)" id="goal-duration" name="goal_duration" readonly>
@@ -96,7 +52,7 @@
             </select>
             
             <label for="companion-name">Companion name:</label>
-            <input type="text" id="companion-name" value="{{companion_name}}" readonly>
+            <input type="text" id="companion-name" value="{{ current_user.companion_name }}" readonly>
 
             <label for="companion">Companion:</label>
             <div class="settings-companion-grid">
@@ -143,34 +99,28 @@
             <button class="btn cancel-btn" id="cancel-btn">Cancel</button>
             <button class="btn save-btn" id="save-btn">Save Changes</button>
         </div>
-
     </section>      
 
-    <div class="footer-bottom slide-up">
-        <p>© 2025 HabiTrain</p>
-        <a href="{{ url_for('views.attributions')}}" class="attributions">This page is powered by Creative Commons resources. Click here for more information.</a>
-    </div>     
+     <!-- Footer and Wave Section -->
+    {% include '/components/wave.html' %}
+    {% include '/components/footer-bottom.html' %}    
 
 <script>
     const originalValues = {
-        username: "{{ username }}",
-        email: "{{ email }}",
-        bad_habit: "{{ bad_habit }}",
-        goalDuration: "{{ goal_duration }}",
-        companionName: "{{ companion_name }}",
-        selectedCompanion: "{{ companion }}"
+        username: "{{ current_user.name }}",
+        email: "{{ current_user.email }}",
+        bad_habit: "{{ current_user.bad_habit }}",
+        goalDuration: "{{ current_user.goal_duration }}",
+        companionName: "{{ current_user.companion_name }}",
+        selectedCompanion: "{{ current_user.companion }}"
     };
 
     document.addEventListener('DOMContentLoaded', () => {
         showCorrectCompanionIcon("{{ companion }}");
-
-        const goalDuration = "{{ goal_duration }}";
-        showSelectedGoalDuration(goalDuration);
-
-        const selectedCompanion = "{{ companion }}";
-        showSelectedCompanion(selectedCompanion);
-
-        setupSettingsForm(originalValues, username);
+        showSelectedGoalDuration(originalValues[goalDuration]);
+        showSelectedCompanion(originalValues[selectedCompanion]);
+        
+        setupSettingsForm(originalValues);
     });
 </script>
 

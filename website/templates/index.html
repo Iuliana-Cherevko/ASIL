@@ -9,57 +9,7 @@
 </head>
 <body>
   <!-- Navigation Bar -->
-  <header>
-    <nav class="navbar">
-      <div class="navbar-content">
-        <a href="{{ url_for('views.index') }}"><div class="logo-container">
-              <img src="{{url_for('static', filename='images/logo.png')}}" class="logo filtered">
-            <span>HabiTrain</span>
-        </div></a>
-        <div class="nav-links">
-            <a href="{{ url_for('views.index') }}" class="nav-link-active">Home</a>
-              <a href="{{ url_for('views.about_us') }}">About Us</a>
-              <a href="{{ url_for('views.contact') }}">Contact</a>
-        </div>
-       
-        <div class="nav-btns">
-          {% if user_logged_in %}
-            <img src="{{url_for('static', filename='images/user-icon.png')}}" id="companion-image" class="profile-icon" alt="cannot" onclick="toggleMenu()">
-            <div class = "sub-menu-container" id="sub-menu-container">
-              <div class="sub-menu">
-                <div class = "user-info">
-                  <img src="{{url_for('static', filename='images/dog.png')}}">
-                  <h1> {% if username %} {{ username }} {% else %} Username {% endif %}</h1>
-                </div>
-                <hr>
-
-                <a href="{{url_for('views.settings')}}" class="sub-menu-link">
-                    <img src="{{url_for('static', filename='images/settings.png')}}">
-                  <p>Settings</p>
-                  <span>></span>
-                </a>
-
-                  <a href="{{url_for('views.companion_hub')}}" class="sub-menu-link">
-                  <img src="{{url_for('static', filename='images/home.png')}}">
-                  <p>Companion Hub</p>
-                  <span>></span>
-                </a>
-
-                  <a href="{{url_for('auth.logout')}}" class="sub-menu-link">
-                  <img src="{{url_for('static', filename='images/logout.png')}}">
-                  <p>Log out</p>
-                  <span>></span>
-                </a>
-              </div>
-            </div>              
-          {% else %}
-            <button class="btn btn-secondary top-bar-btn" id="sign-in-link">Sign in</button>
-            <button href="#" class="btn btn-primary top-bar-btn" id="registration-link">Register</button>
-          {% endif %}
-        </div>
-      </div>
-    </nav>
-</header>
+  {% include '/components/navbar.html' %}
 
   <!-- Hero Section -->
   <section id="hero" class="hero-section">
@@ -73,6 +23,17 @@
       <button href="#" id="registration-link" class="btn get-started-btn">Get Started</button>
     </div>
   </section>
+
+  <!-- Slider -->
+   <section class="slider-section">
+    <div class="slider slide-up">
+      <div id="slider-container-1" class="slider-container"></div>
+    </div>
+    <div class="slider slide-up">
+      <div id="slider-container-2" class="slider-container"></div>
+    </div>
+</section>
+
   
 <!-- Features section -->
   <section id="features" class="features-section">
@@ -180,293 +141,25 @@
   </section>
 
 
-  <!-- Footer section -->
-  <footer id="footer" class="footer slide-up">
-    <div class="footer-content">
-      <div class="footer-logo">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" class="brand-logo filtered">
-        <span>HabiTrain</span>
-      </div>
-      
-      <div class="footer-section">
-        <h5>Explore</h5>
-        <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Blog</a></li>
-        </ul>
-      </div>
+  <!-- Footer and Wave Section -->
+  {% include '/components/wave.html' %}
+  {% include '/components/footer.html' %}
+  {% include '/components/footer-bottom.html' %}
 
-      <div class="footer-section">
-        <h5>Follow Us</h5>
-        <div class="social-links">
-          <a href="#"><img src="{{ url_for('static', filename='images/instagram-icon.svg') }}" class="social-icon"></a>
-        </div>
-      </div>
-
-      <div class="footer-section">
-        <h5>Support</h5>
-        <img src="{{ url_for('static', filename='images/support-icon.png') }}" class="social-icon">
-      </div>
-    </div>
-  </footer>
-
-  <div class="footer-bottom slide-up">
-    <p>© 2025 HabiTrain</p>
-    <a href="{{ url_for('views.attributions')}}" class="attributions">This page is powered by Creative Commons resources. Click here for more information.</a>
-  </div>
 
   <!-- Html Code for Modals / Popups -->
-  <!-- Sign in Modal-->
-  <div id="sign-in-modal" class="modal">
-    <div class="modal-content">
-        <span id="close-btn-1" class="close-btn">&times;</span>
-        <div class="modal-inner-padding">
-          <img src="{{ url_for('static', filename='images/logo.png') }}" class="modal-logo">
-          <h2>Welcome Back</h2>
-          <form action="{{ url_for('auth.sign_in') }}" method="POST">
-              <label for="username">Username:</label>
-              <input type="text" id="username" name="username" autocomplete="username" placeholder="Enter your username" required>
-              
-              <label for="password">Password:</label>
-              <div class="password-container">
-                <input type="password" id="password-sign-in" name="password" placeholder="Enter your password" autocomplete="current-password" required>
-                <img class="toggle-password" id="toggle-password-sign-in" alt="" src="{{ url_for('static', filename='images/eye-hide.png') }}">
-              </div>
-
-              <div class="forgot-password" > 
-                <a href="#" id="forgot-password-link">Forgot Password?</a>
-              </div>
-
-              <!-- Need to make the same like can't find - or incorrect username or password error -->
-              <!-- <div id="password-mismatch-error" class="error-container" style="display: none;">
-                <span class="error-icon">!</span>
-                <span class="error-message-text">Passwords do not match!</span>
-              </div> -->   
-
-              <div class="button-container">
-                <button type="submit" class="btn btn-primary">Log In</button>
-              </div>
-              
-              <p class="follow-up-text">Don't have an account? <a href="#" id="registration-link">Register Now</a></p>
-          </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- Registration Modal -->
-  <div id="registration-modal" class="modal">
-    <div class="modal-content">
-        <span id="close-btn-2" class="close-btn">&times;</span>
-        <div class="modal-inner-padding">
-            <img src="{{ url_for('static', filename='images/logo.png') }}" class="modal-logo">
-            <h2>Create an Account</h2>
-            <form id="registration-form" action="{{ url_for('auth.registration') }}" method="POST">
-            
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" autocomplete="username" placeholder="Enter your username" required>
-                
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" autocomplete="email" placeholder="Enter your email address" required>
-                
-                <label for="password">Password:</label>
-                <div class="password-container">
-                    <input type="password" id="registration-password" name="password" autocomplete="new-password" placeholder="Enter your password" required>
-                    <img class="toggle-password" id="toggle-registration-password" alt="" src="{{ url_for('static', filename='images/eye-hide.png') }}">
-                </div>
-
-                <div class="confirm-password-container" id="confirm-password-container">
-                    <label for="confirm-password">Confirm Password:</label>
-                    <div class="password-container">
-                        <input type="password" id="confirm-password" name="confirm_password" autocomplete="new-password" placeholder="Re-enter your password" required>
-                        <img class="toggle-password" id="toggle-confirm-password" alt="" src="{{ url_for('static', filename='images/eye-hide.png') }}">
-                    </div>
-                </div>
-
-                <div id="password-mismatch-error" class="error-container" style="display: none;">
-                  <span class="error-icon">!</span>
-                  <span class="error-message-text">Passwords do not match!</span>
-                </div>
-
-                <div class="checkbox-container">
-                  <input type="checkbox" id="registration-waiver" name="registration_waiver" class="checkbox-waiver" required>
-                  <label for="registration-waiver" id="">I read and agree to <a href="#">Terms & Conditions</a></label>
-                </div>  
-                
-                <div class="button-container">
-                    <button type="submit" class="btn btn-primary">Register</button>
-                </div>
-                
-                <p class="follow-up-text">Already have an account? <a href="#" id="sign-in-link">Sign in</a></p>
-            </form>
-        </div>
-    </div>
-  </div>
-
-  <!-- Brief Questionnaire Modal -->
- <section id="brief-questionnaire-modal-container">
-  <form action="{{ url_for('auth.brief-questionnaire') }}" method="POST" id="questionnaire-form" novalidate>
-      <div id="brief-questionnaire-modal" class="modal">
-        <div class="modal-content brief-questionnaire-modal-content">
-          <img src="/static/images/questionnaire-background.png" alt="" class="background-img">
-          <!-- First page -->
-          <div class="questionnaire-page page-1 active" id="page-1">
-            <div class="center-content">
-              <img src="{{ url_for('static', filename='images/logo.png') }}" class="modal-logo">
-              <h2>Brief Questionnaire</h2>
-              <p>This form helps create a clear path to your goals and track your progress over time. Please respond to the best of your knowledge.</p>
-              
-              <div class="checkbox-container">
-                <input type="checkbox" id="questionnaire-waiver" name="questionnaire_waiver" class="checkbox-waiver" required>
-                <label for="questionnaire-waiver" id="checkbox-label">I agree that I must stay truthful and loyal to my responses using HabiTrain</label>
-              </div>          
-                
-              <div id="waiver-error" class="error-container" style="display: none; margin-top: -10px">
-                <span class="error-icon">!</span>
-                <span class="error-message-text">You must agree to the waiver.</span>
-              </div>
-              
-              <div class="button-container">
-                <button class="btn btn-primary navigate-button" data-current-page="0" data-direction="next">Next</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Second page -->
-          <div class="questionnaire-page page-2" id="page-2" style="background-image: url('/static/images/questionnaire-background.png');">
-            <div class="center-content">
-              <h2>Define your Habits and Goals</h2>
-              <p>Let's start by identifying the habits you want to overcome and setting goals for your progress.</p>
-
-              <label for="bad-habit">What is/are the bad habits you want to overcome?</label>
-              <input type="text" id="bad-habit" name="bad_habit" placeholder="e.g.s Smoking, Alcohol consumption." />
-              
-              <div id="bad-habit-error" class="error-container" style="display: none;">
-                <span class="error-icon">!</span>
-                <span class="error-message-text">Please enter a bad habit.</span>
-              </div>
-
-              <label for="goal-duration">Please select your goal: the number of days you aim to stay without engaging in your bad habit:</label>
-              <select id="goal-duration" name="goal_duration">
-                <option value="default">Select your goal</option>
-                <option value="10">10 days</option>
-                <option value="15">15 days</option>
-                <option value="20">20 days</option>
-                <option value="25">25 days</option>
-                <option value="30">1 month</option>
-                <option value="60">2 months</option>
-                <option value="90">3 months</option>
-              </select>
-
-              <div id="goal-duration-error" class="error-container" style="display: none;">
-                <span class="error-icon">!</span>
-                <span class="error-message-text">Please select a goal duration.</span>
-              </div>
-
-            </div>
-            <div class="button-container-questionnaire">
-              <button class="btn btn-primary navigate-button" data-current-page="1" data-direction="previous">Previous</button>
-              <button class="btn btn-primary navigate-button" data-current-page="1" data-direction="next">Next</button>
-            </div>
-          </div>
-
-          <!-- Third page -->
-          <div class="questionnaire-page page-3" id="page-3" style="background-image: url('/static/images/questionnaire-background.png');">
-            <div class="center-content">
-              <h2>Choose your Companion</h2>
-
-              <label for="companion-name">Name your companion:</label>
-              <input type="text" id="companion-name" name="companion_name" placeholder="e.g., Luna, Blaze, Sprout" />
-              
-              <div id="companion-name-error" class="error-container" style="display: none;">
-                <span class="error-icon">!</span>
-                <span class="error-message-text">Please enter companion's name.</span>
-              </div>
-
-              <label for="companion-selection">Choose one of the companions below:</label>
-              <div class="companion-selection-container">
-
-                <div class="companion-grid">
-                  <div class="image-selector">
-                    <input type="radio" id="companion1" name="companion" value="plant" required>
-                    <label for="companion1">
-                      <img src="{{ url_for('static', filename='images/plant.jpg') }}" alt="companion 1" class="companion-img">
-                      <!-- <iframe src="{{ url_for('static', filename='images/companions/slime.pdf') }}" 
-                      class="companion-img"
-                      style="width: 100%; height: 500px; border: none;">
-                      </iframe> -->
-                    </label>
-                  </div>
-
-                  <div class="image-selector">
-                    <input type="radio" id="companion2" name="companion" value="dog" required>
-                    <label for="companion2">
-                      <img src="{{ url_for('static', filename='images/dog.png') }}" class="companion-img">
-                      <!-- <iframe src="{{ url_for('static', filename='images/companions/sprout.pdf') }}" 
-                      class="companion-img"
-                      style="width: 100%; height: 500px; border: none;">
-                      </iframe> -->
-                    </label>
-                  </div>
-
-                  <div class="image-selector">
-                    <input type="radio" id="companion3" name="companion" value="dragon" required>
-                    <label for="companion3">
-                      <img src="{{ url_for('static', filename='images/dragon.png') }}" class="companion-img">
-                    </label>
-                  </div>
-
-                  <div class="image-selector">
-                    <input type="radio" id="companion4" name="companion" value="cat" required>
-                    <label for="companion4">
-                      <img src="{{ url_for('static', filename='images/cat.jpg') }}" class="companion-img">
-                    </label>
-                  </div>
-
-                  <div class="image-selector">
-                    <input type="radio" id="companion5" name="companion" value="slime" required>
-                    <label for="companion5">
-                      <img src="{{ url_for('static', filename='images/slime.png') }}" class="companion-img">
-                    </label>
-                  </div>
-
-                  <div class="image-selector">
-                    <div class="more-soon">+ more soon</div>
-                  </div>
-                </div>
-
-                <div id="companion-error" class="error-container" style="display: none; ">
-                  <span class="error-icon">!</span>
-                  <span class="error-message-text">Please select a companion.</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="button-container-questionnaire">
-              <button class="btn btn-primary navigate-button" data-current-page="2" data-direction="previous">Previous</button>
-              <button class="btn btn-primary navigate-button" id="submit-questionnaire">Submit</button>
-            </div>
-          </div>
-      </div>
-    </div>
-  </form>
-</section>
-
+  {% include '/components/modals.html' %}
 
 <script>
   // Temp variables for test purposes
-  // const user_logged_in = true;
-  // const bad_habit = 0;
+  // const current_user.is_authenticated = true;
+  // const current_user.bad_habit = 0;
 
   document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => expectModalClick(), 0);
-    setTimeout(() => showCorrectCompanionIcon("{{ companion }}"), 0);
+    setTimeout(() => showSlider(), 0);
+    setTimeout(() =>  runAllFunctions("{{ companion }}"), 0);
     setTimeout(() => expectTestimoniesAction(), 0);
-    if (user_logged_in && bad_habit === 0) {
-      setTimeout(() => launchBriefQuestionnaire(), 0);
-    }
   });
-
 </script>
 
 </body>

@@ -82,6 +82,15 @@
 
 
 // CODE FOR ALL PAGES
+// Function that runs all functions that are necessary on all pages
+function runAllFunctions(companion) {
+    expectModalClick();
+    setNavLinkActive();
+    showCorrectCompanionIcon(companion);
+    if (user_logged_in && bad_habit === 0) {
+        launchBriefQuestionnaire();
+    }
+}
 
 // Toggle dropdown menu
 function toggleMenu() {
@@ -89,16 +98,23 @@ function toggleMenu() {
     menu.classList.toggle("open-menu");
 }
 
+// dropdown menu - show and hide
 document.addEventListener("DOMContentLoaded", () => {
+    const menu = document.getElementById("sub-menu-container");
+    const profileIcon = document.querySelector(".profile-icon");
+
     document.addEventListener("click", function (event) {
-      const menu = document.getElementById("sub-menu-container");
-      const profileIcon = document.querySelector(".profile-icon");
-  
-      if (menu && profileIcon) {
-        if (!menu.contains(event.target) && !profileIcon.contains(event.target)) {
-          menu.classList.remove("open-menu");
+        if (menu && profileIcon) {
+            if (!menu.contains(event.target) && !profileIcon.contains(event.target)) {
+                menu.classList.remove("open-menu");
+            }
         }
-      }
+    });
+
+    window.addEventListener("scroll", function () {
+        if (menu && menu.classList.contains("open-menu")) {
+            menu.classList.remove("open-menu");
+        }
     });
 });
 
@@ -146,7 +162,84 @@ window.addEventListener('scroll', function() {
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 });
 
+// Set active navigation link in navbar if the user is on that page
+function setNavLinkActive() {
+    const pageMap = {
+        "/Index": "home-link",
+        "/About": "about-link",
+        "/Contact": "contact-link",
+        "/Settings": "settings-link",
+        "/Companion-hub": "companion-hub-link",
+    };
+    const currentPath = window.location.pathname;
+    const activeLinkId = pageMap[currentPath];
 
+    if (activeLinkId) {
+        const activeLink = document.getElementById(activeLinkId);
+        if (activeLink) {
+            activeLink.classList.add("nav-link-active");
+        }
+    }
+}
+
+// Slider code
+function showSlider() {
+    const sliderContainer1 = document.getElementById("slider-container-1");
+    const sliderContainer2 = document.getElementById("slider-container-2");
+  
+    const squareData = [
+      { type: "color", value: "var(--neutral-foam)" },
+      { type: "color", value: "var(--neutral-pink)" },
+      { type: "color", value: "var(--neutral-cinderella)" },
+      { type: "color", value: "var(--neutral-foam)" },
+      { type: "image", value: "dog.png" },
+      { type: "color", value: "var(--neutral-pink)" },
+      { type: "image", value: "dragon.png" },
+      { type: "color", value: "var(--neutral-cinderella)" },
+      { type: "color", value: "var(--neutral-pink)" },
+      { type: "image", value: "cat.jpg" },
+      { type: "image", value: "slime.png" },
+      { type: "color", value: "var(--neutral-cinderella)" },
+      { type: "color", value: "var(--neutral-foam)" },
+      { type: "image", value: "plant.jpg" },
+    ];
+  
+    const totalSquares = 50;
+    const extendedArray = [];
+    for (let i = 0; i < totalSquares; i++) {
+      extendedArray.push(squareData[i % squareData.length]);
+    }
+  
+    extendedArray.forEach((data) => {
+      const square = createSquare(data);
+      sliderContainer1.appendChild(square);
+    });
+  
+    extendedArray.reverse().forEach((data) => {
+      const square = createSquare(data);
+      sliderContainer2.appendChild(square);
+    });
+  
+    sliderContainer1.classList.add("animated");
+    sliderContainer2.classList.add("animated-reverse");
+  }
+  
+  function createSquare(data) {
+    const square = document.createElement("div");
+    square.classList.add("square");
+  
+    if (data.type === "color") {
+      square.style.backgroundColor = data.value;
+    } else if (data.type === "image") {
+      const img = document.createElement("img");
+      img.src = "static/images/" + data.value;
+      img.classList.add("square-img");
+      square.appendChild(img);
+    }
+  
+    return square;
+}
+  
 
 // Toggle for password visibility
 const passwordFields = [
