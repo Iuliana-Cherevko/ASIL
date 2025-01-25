@@ -30,13 +30,13 @@ def sign_in():
 
 
 # Endpoint:
-@auth.route("logout")
+@auth.route("logout", methods=['GET'])
 @login_required
 def logout():
     logout_user()
     return render_template('index.html') 
 
-@auth.route('Registration', methods = ['GET', 'POST'])
+@auth.route('registration', methods = ['GET', 'POST'])
 def registration():
     #data = request.form
     if request.method == 'POST':
@@ -50,20 +50,17 @@ def registration():
         ### Checks if username already exists
 
         user = User.query.filter_by(username=username).first()
+        email = User.query.filter_by(email=email).first()
         if user:
             flash('Username already exists', category='error')
             username_taken = True
-            #email_taken 
             #send it somewhere
-            return render_template('registration.html')
-        
-
+            return render_template('index.html')
         ### Checks if email already exists
-
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email already exists', category='error')
-            return render_template('registration.html')
+            return render_template('index.html')
 
         #hashed_password = generate_password_hash(password, method='sha256')
         new_user = User(username=username, password=generate_password_hash(password,method='pbkdf2:sha256')
@@ -77,4 +74,4 @@ def registration():
 
         print(username,password,email) 
         return redirect(url_for('views.profile'))
-    return render_template("registration.html")
+    return render_template("index.html")

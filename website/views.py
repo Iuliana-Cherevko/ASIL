@@ -28,7 +28,7 @@ users = {
         "bad_habit_placeholder": "Smoking",
     }
 }
-@views.route('/Index')
+@views.route('/index')
 def index():
     if request.method == "PUT":
         email = request.form.get('email')
@@ -45,7 +45,7 @@ def index():
     return render_template("index.html", user = current_user)
 
 
-@views.route('/Profile', methods = ['GET','POST'])
+@views.route('/profile', methods = ['GET','POST'])
 @login_required
 def profile():
     username = "Katy Lio"
@@ -66,9 +66,9 @@ def profile():
         checked_in_today=checked_in_today,
         bad_habit_placeholder=user_data['bad_habit_placeholder']
     )
-   #return render_template("profile.html")
+    return render_template("profile.html")
 
-@views.route('/Check-in', methods= ['GET', 'POST'])
+@views.route('/check-in', methods= ['GET', 'POST'])
 def check_in():
     if request.method == 'POST':
         name = current_user
@@ -78,8 +78,20 @@ def check_in():
         #return render_template("checkin.html")
     return render_template('checkin.html')
 
+@views.route('/about-us')
+def about_us():
+    return render_template('about-us.html')
+    
+@views.route('/contact')
+def contact():
+    return render_template('contact.html')
 
-@views.route('/Settings', methods = ['GET', 'POST'])
+@views.route('/attributions')
+def attributions():
+    return render_template('attributions.html')
+
+
+@views.route('/settings', methods = ['GET', 'POST'])
 @login_required
 def settings():
     # Manage form submission
@@ -92,10 +104,10 @@ def settings():
                            companion_name=current_user.character,
                            companion=current_user.character)
  
-@views.route('/Companion_hub', methods = ['GET', 'POST'])
+@views.route('/companion-hub', methods = ['GET', 'POST'])
 @login_required
 def companion_hub():
-    return render_template('companion_hub.html',
+    return render_template('companion-hub.html',
                            user_logged_in=True,
                            username=current_user.username,
                            companion=current_user.character)
