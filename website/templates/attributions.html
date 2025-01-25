@@ -70,11 +70,9 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-        runAllFunctions("{{ companion }}", true, current_user.is_authenticated, current_user.bad_babit);
+        setTimeout(() => runAllFunctions("{{ companion }}", true, "{{ current_user.is_authenticated }}", "{{ current_user.bad_babit }}"), 0);
     });
   </script>
-
-
 
 </body>
 </html>
