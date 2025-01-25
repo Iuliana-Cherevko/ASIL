@@ -19,6 +19,7 @@
         <span class="hero-title-highlight">HabiTrain</span>
       </h1>
       <img src="{{url_for('static', filename='images/hero-image.png')}}" class="hero-img">
+      <p>habit is {{ current_user.habit }}</p>
       <p>Break free from what's holding you back. Start your journey to a healthier, happier you today.</p>
       <button href="#" id="registration-link" class="btn get-started-btn">Get Started</button>
     </div>
@@ -141,6 +142,8 @@
   </section>
 
 
+
+
   <!-- Footer and Wave Section -->
   {% include '/components/wave.html' %}
   {% include '/components/footer.html' %}
@@ -150,17 +153,13 @@
   <!-- Html Code for Modals / Popups -->
   {% include '/components/modals.html' %}
 
-<script>
-  // Temp variables for test purposes
-  // const current_user.is_authenticated = true;
-  // const current_user.bad_habit = 0;
-
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => showSlider(), 0);
-    setTimeout(() => runAllFunctions("{{ companion }}", true, "{{ current_user.is_authenticated }}", "{{ current_user.bad_babit }}"), 0);
-    setTimeout(() => expectTestimoniesAction(), 0);
-  });
-</script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => showSlider(), 0);
+      setTimeout(() => runAllFunctions("{{ companion }}", true, "{{ current_user.is_authenticated }}", "{{ current_user.habit }}"), 0);
+      setTimeout(() => expectTestimoniesAction(), 0);
+    });
+  </script>
 
 </body>
 </html>

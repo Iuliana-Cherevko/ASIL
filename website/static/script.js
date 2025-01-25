@@ -87,7 +87,7 @@ function runAllFunctions(companion_img, questionnaire_needed, user_is_authentica
     expectModalClick();
     setNavLinkActive();
     showCorrectCompanionIcon(companion_img);
-    if (questionnaire_needed && user_is_authenticated && bad_babit_value === 0) {
+    if (questionnaire_needed && user_is_authenticated == "True" && bad_babit_value == "0") {
         launchBriefQuestionnaire();
     }
 }

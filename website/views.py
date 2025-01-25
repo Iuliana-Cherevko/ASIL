@@ -103,7 +103,7 @@ def settings():
                            user_logged_in=True,
                            username=current_user.username,
                            email=current_user.email,
-                           bad_habit=current_user.bad_habit,
+                           habit=current_user.habit,
                            goal_duration=current_user.goal,
                            companion_name=current_user.character,
                            companion=current_user.character)
