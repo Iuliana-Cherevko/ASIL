@@ -25,19 +25,9 @@ users = {
         "checked_in_days": ["November 17, 2024"],
         "current_goal": 60,
         "bad_habit_placeholder": "Smoking",
-    },
-    "Cara": {
-        "days_kept_up": 1,
-        "companion_name": "Fido",
-        "creature_level": 1,
-        "checked_in_days": ["November 17, 2024"],
-        "current_goal": 30,
-        "Fid": "Smoking",
-        "email": "cara@gmail.com",
-        "bad_habit": "Drinking",
-        "companion": "dog",
-    },
+    }
 }
+
 @views.route('Index')
 def index():
     if request.method == "PUT":
@@ -54,18 +44,6 @@ def index():
             
     return render_template("index.html", user = current_user, companion="dog")
 
-@views.route('Attributions')
-def attributions():
-    return render_template("attributions.html")
-
-@views.route('About')
-def about_us():
-    return render_template("about-us.html")
-
-@views.route('Contact')
-def contact():
-    return render_template("contact.html")
-
 @views.route('Settings', methods = ['GET','POST'])
 def settings():
     username = "Cara"
@@ -78,17 +56,11 @@ def settings():
         "settings.html",
         user_logged_in=True,
         username=username,
-        companion_name=user_data['companion_name'],
-        email=user_data['email'],
-        goal_duration=user_data['current_goal'],
-        companion=user_data['companion'],
-        bad_habit=user_data['bad_habit'],
-
-        # days_kept_up_placeholder=user_data['days_kept_up'],
-        # pet_level_placeholder=user_data['creature_level'],
-        # checked_in_days=user_data['checked_in_days'],
-        # checked_in_today=checked_in_today,
-        # bad_habit_placeholder=user_data['bad_habit_placeholder']
+        days_kept_up_placeholder=user_data['days_kept_up'],
+        pet_level_placeholder=user_data['creature_level'],
+        checked_in_days=user_data['checked_in_days'],
+        checked_in_today=checked_in_today,
+        bad_habit_placeholder=user_data['bad_habit_placeholder']
     )
 #    return render_template("profile.html")
 
