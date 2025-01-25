@@ -656,3 +656,33 @@ function revertChanges(originalValues) {
     showSelectedCompanion(originalValues.selectedCompanion);
     showSelectedGoalDuration(originalValues.goalDuration);
 }
+
+//Code for About us page
+// Function to open the modal
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.style.display = "block"; // Show the modal
+      document.body.style.overflow = "hidden"; // Prevent background scrolling
+    }
+  }
+  
+  // Function to close the modal
+  function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.style.display = "none"; // Hide the modal
+      document.body.style.overflow = ""; // Restore background scrolling
+    }
+  }
+  
+  // Add event listeners to close modals when clicking outside or on close button
+  window.addEventListener("click", function (event) {
+    const modals = document.querySelectorAll(".modal");
+    modals.forEach((modal) => {
+      if (event.target === modal) {
+        modal.style.display = "none"; // Close modal if clicked outside content
+        document.body.classList.remove("stopScroll");
+      }
+    });
+  });
