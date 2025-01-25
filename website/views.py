@@ -45,28 +45,28 @@ def index():
     return render_template("index.html", user = current_user)
 
 
-@views.route('/profile', methods = ['GET','POST'])
-@login_required
-def profile():
-    username = "Katy Lio"
-    user_data = users[username] 
+#@views.route('/profile', methods = ['GET','POST'])
+#@login_required
+#def profile():
+    # username = "Katy Lio"
+    # user_data = users[username] 
 
-    today = "November 17, 2024"
-    checked_in_today = today in user_data['checked_in_days']
+    # today = "November 17, 2024"
+    # checked_in_today = today in user_data['checked_in_days']
 
-    return render_template(
-        "profile.html",
-        user_logged_in=True,
-        username_placeholder=username,
-        days_kept_up_placeholder=user_data['days_kept_up'],
-        pet_name_placeholder=user_data['creature_name'],
-        current_goal_placeholder=user_data['current_goal'],
-        pet_level_placeholder=user_data['creature_level'],
-        checked_in_days=user_data['checked_in_days'],
-        checked_in_today=checked_in_today,
-        bad_habit_placeholder=user_data['bad_habit_placeholder']
-    )
-    return render_template("profile.html")
+    # return render_template(
+    #     "profile.html",
+    #     user_logged_in=True,
+    #     username_placeholder=username,
+    #     days_kept_up_placeholder=user_data['days_kept_up'],
+    #     pet_name_placeholder=user_data['creature_name'],
+    #     current_goal_placeholder=user_data['current_goal'],
+    #     pet_level_placeholder=user_data['creature_level'],
+    #     checked_in_days=user_data['checked_in_days'],
+    #     checked_in_today=checked_in_today,
+    #     bad_habit_placeholder=user_data['bad_habit_placeholder']
+    # )
+    #return render_template("profile.html")
 
 @views.route('/check-in', methods= ['GET', 'POST'])
 def check_in():
@@ -89,6 +89,10 @@ def contact():
 @views.route('/attributions')
 def attributions():
     return render_template('attributions.html')
+
+@views.route('/checkin')
+def checkin():
+    return render_template('checkin.html')# doesnt work rn 
 
 
 @views.route('/settings', methods = ['GET', 'POST'])

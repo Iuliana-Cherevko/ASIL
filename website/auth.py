@@ -50,15 +50,22 @@ def registration():
         ### Checks if username already exists
 
         user = User.query.filter_by(username=username).first()
-        email = User.query.filter_by(email=email).first()
-        if user:
-            flash('Username already exists', category='error')
-            username_taken = True
-            #send it somewhere
+        email_check = User.query.filter_by(email=email).first()
+
+        if user and password:
+            username_taken, email_taken = True, True
+            print("username and email taken")
             return render_template('index.html')
-        ### Checks if email already exists
-        user = User.query.filter_by(email=email).first()
-        if user:
+
+        elif user:
+            username_taken = True
+            flash('Username already exists', category='error')
+            print('username taken')
+            return render_template('index.html')
+        
+        elif email_check:
+            email_taken = True
+            print("email taken") # for debugging
             flash('Email already exists', category='error')
             return render_template('index.html')
 
@@ -73,5 +80,5 @@ def registration():
         flash('Account successful!', category='success')
 
         print(username,password,email) 
-        return redirect(url_for('views.profile'))
+        return render_template ('index.html')
     return render_template("index.html")
