@@ -157,7 +157,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => showSlider(), 0);
-    setTimeout(() =>  runAllFunctions("{{ companion }}"), 0);
+    setTimeout(() => runAllFunctions("{{ companion }}", true, "{{ current_user.is_authenticated }}", "{{ current_user.bad_babit }}"), 0);
     setTimeout(() => expectTestimoniesAction(), 0);
   });
 </script>

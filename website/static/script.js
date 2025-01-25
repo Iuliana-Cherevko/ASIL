@@ -83,11 +83,11 @@
 
 // CODE FOR ALL PAGES
 // Function that runs all functions that are necessary on all pages
-function runAllFunctions(companion) {
+function runAllFunctions(companion_img, questionnaire_needed, user_is_authenticated, bad_babit_value) {
     expectModalClick();
     setNavLinkActive();
-    showCorrectCompanionIcon(companion);
-    if (user_logged_in && bad_habit === 0) {
+    showCorrectCompanionIcon(companion_img);
+    if (questionnaire_needed && user_is_authenticated && bad_babit_value === 0) {
         launchBriefQuestionnaire();
     }
 }
@@ -194,11 +194,11 @@ function showSlider() {
       { type: "color", value: "var(--neutral-foam)" },
       { type: "image", value: "dog.png" },
       { type: "color", value: "var(--neutral-pink)" },
-      { type: "image", value: "dragon.png" },
+      { type: "image", value: "cat.jpg" },
       { type: "color", value: "var(--neutral-cinderella)" },
       { type: "color", value: "var(--neutral-pink)" },
       { type: "image", value: "cat.jpg" },
-      { type: "image", value: "slime.png" },
+      { type: "image", value: "dog.png" },
       { type: "color", value: "var(--neutral-cinderella)" },
       { type: "color", value: "var(--neutral-foam)" },
       { type: "image", value: "plant.jpg" },
