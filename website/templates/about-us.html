@@ -45,18 +45,274 @@
         </p>
       
     </div>
+
+    
+      <!-- Blob Image -->
+      <div class="blob-container">
+        <img
+          loading="lazy"
+          id="decorative-image"
+          src="{{ url_for('static', filename='images/about us/watersalamander.svg') }}"
+          alt="Cute bloblike decorative illustration"
+          class="blob-image"
+        />
+      </div>
+      
+    
   </section>
+  <!-- Arrow -->
+  <div class="arrow1-container">
+    <img
+      loading="lazy"
+      src="{{ url_for('static', filename='images/about us/arrow1.png') }}"
+      alt="Decorative arrow pointing down"
+      class="arrow1"
+    />
+  </div>
+<!-- Our Story Section -->
+<section id="our-story" class="our-story-section bounce-in">
   
-  
-    <!-- Footer and Wave Section -->
-    {% include '/components/wave.html' %}
-    {% include '/components/footer.html' %}
-    {% include '/components/footer-bottom.html' %}
+  <div class="content-wrapper">
+    <!-- Top Left Image -->
+    <div class="story-image-wrapper img-image1">
+      <img
+        src="{{ url_for('static', filename='images/about us/IMG_1415.webp') }}"
+        alt="Team Photo 1"
+      />
+    </div>
+    <h2 class="story-title">Our Story</h2>
+    <!-- Top Right Image -->
+    <div class="story-image-wrapper img-image2">
+      <img
+        src="{{ url_for('static', filename='images/about us/IMG_0080.webp') }}"
+        alt="Team Photo 2"
+      />
+    </div>
+    <!-- Bottom Left Image -->
+    <div class="story-image-wrapper img-image3">
+      <img
+        src="{{ url_for('static', filename='images/about us/IMG_2625.webp') }}"
+        alt="Team Photo 3"
+      />
+    </div>
+    <!-- Middle Text -->
+    <div class="story-text-container">
+      <p>
+        Life moves fast, and it's easy to overlook the habits that shape our
+        well-being. Harmful routines like smoking, overeating, or poor sleep
+        can subtly undermine our health and happiness. At HabiTrain, we’re
+        inspired to empower individuals to take control of their habits, unlock
+        their potential, and embrace a healthier lifestyle.
+      </p>
+    </div>
 
     
 
+    <!-- Bottom Right Image -->
+    <div class="story-image-wrapper img-image4">
+      <img
+        src="{{ url_for('static', filename='images/companions/cat lv5.svg') }}"
+        alt="Team Photo 4"
+      />
+    </div>
+  </div>
+</section>
+  <!-- Arrow -->
+  <div class="arrow2-container">
+    <img
+      loading="lazy"
+      src="{{ url_for('static', filename='images/about us/arrow2.png') }}"
+      alt="Decorative arrow pointing down"
+      class="arrow2"
+    />
+  </div>
+  <!-- Our Mission Section -->
+  <section id="mission" class="mission-container zoom-in">
+    <div class="heading-content">
+    <!-- Mission Title -->
+    <h1>
+      <img src="{{ url_for('static', filename='images/about us/flat-lay-bad-habit-morning-concept.jpg') }}" alt="Bad Habits" class="mission-container-top">
+      Our Mission</h1>
+    </div>
+    <!-- Our Mission Section -->
+    <p>
+      To empower individuals to overcome harmful habits, establish positive routines,
+      and stay motivated on their self-improvement journey. We combine technology,
+      emotional support, and gamification to deliver a personalized experience
+      that encourages lasting change.
+    </p>
+    <!-- Footer Images -->
+    <div class="footer-images">
+          <img src="{{ url_for('static', filename='images/about us/human-characters-with-bad-habits-alcohol-drug-shopaholism-fast-food-isometric-icons-set_98292-7891.svg') }}" alt="First Child" class="first-child" >
+          <img src="{{ url_for('static', filename='images/companions/sprout lv6.svg') }}" alt="Cute Character" class="last-child">
+    </div>
+  </section>
+  <!-- Arrow -->
+  <div class="arrow3-container">
+    <img
+      loading="lazy"
+      src="{{ url_for('static', filename='images/about us/arrow3.png') }}"
+      alt="Decorative arrow pointing down"
+      class="arrow3"
+    />
+  </div>
+  <!-- Our Vision section-->
+  <div class="about-us-page vision-future-section rotate-in">
+    <h1 class="section-title">Our Vision & Future</h1>
+    <div class="content-wrapper">
+      <!-- Top Left - Text Content -->
+      <div class="main-content">
+        <p>
+          To create a world where everyone has the tools and support to become their best selves. HabiTrain strives to be
+          the leading platform for habit transformation, building a global community dedicated to healthier and happier
+          lives.
+        </p>
+      </div>
+  
+      <!-- Top Right - Image -->
+      <div class="top-right-image">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/istockphoto-517521860-612x612.jpg') }}"
+          alt="Key to Success Illustration"
+        />
+      </div>
+  
+      <!-- Bottom Left - Image -->
+      <div class="bottom-left-image">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/dragondemo.svg')}}"
+          alt="Dragon demo"
+        />
+      </div>
+  
+      <!-- Bottom Right - Image -->
+      <div class="bottom-right-image">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/slimedemo.svg') }}"
+          alt="Change Habits Poster"
+        />
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Arrow -->
+  <div class="arrow4-container">
+    <img
+      loading="lazy"
+      src="{{ url_for('static', filename='images/about us/arrow4.png') }}"
+      alt="Decorative arrow pointing down"
+      class="arrow4"
+    />
+  </div>
+  {% from "components/modals.html" import member_modal %}
+  <!--Our Team-->
+  <section class="about-us-page team-section" aria-labelledby="team-heading">
+    <h1 id="team-heading" class="team-heading flip-in">Meet the Masterminds</h1>
+    <div class="team-grid">
+      <!-- Team Member 1 -->
+      <div class="team-member">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/y_img.jpg') }}"
+          alt="Iuliana Cherevko"
+          class="member-image"
+          onclick="openModal('modal-iuliana')"
+        />
+        <p class="member-name">Iuliana Cherevko</p>
+      </div>
+
+      <!-- Team Member 2 -->
+      <div class="team-member">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/a_img.jpg') }}"
+          alt="Anthony Rodriguez"
+          class="member-image"
+          onclick="openModal('modal-anthony')"
+        />
+        <p class="member-name">Anthony Rodriguez</p>
+      </div>
+      <!-- Team Member 3 -->
+      <div class="team-member">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/l_img.jpg') }}"
+          alt="Long Nguyen"
+          class="member-image"
+          onclick="openModal('modal-long')"
+        />
+        <p class="member-name">Long Nguyen</p>
+      </div>
+      <!-- Team Member 4 -->
+      <div class="team-member">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/s_img.jpg') }}"
+          alt="Shai Y"
+          class="member-image"
+          onclick="openModal('modal-shai')"
+        />
+        <p class="member-name">Shai Y</p>
+      </div>
+    </div>
+    <!-- Modal for Long Nguyen -->
+    {{ member_modal(
+      modal_id='modal-long',
+      name='Long Nguyen',
+      title='Full-stack Student',
+      short_description='Loves exploring cuisines and building games.',
+      full_description='Originally residing from Vietnam, I’m a recent adventurer in the U.S. I’m a total foodie and can’t resist exploring new cuisines. When I’m not buried in my game projects, you might catch me sneaking outside to grab some fresh air and recharge.',
+      linkedin_url='https://www.linkedin.com/in/long-nguyen-386073264',
+      image_url=url_for('static', filename='images/about us/l_img.jpg'),
+      tags=["Leadership", "Advocacy", "Marketing"],
+      extra_images=[
+          url_for('static', filename='images/about us/extra1.jpg'),
+          url_for('static', filename='images/about us/extra2.jpg')
+      ]
+    ) }}
+
+    {{ member_modal(
+      modal_id="modal-iuliana",
+      name="Iuliana Cherevko",
+      title="Front-End Developer & UX Designer",
+      short_description="Coding, problem-solving, or getting lost in a good book, I’m always eager to learn and grow.",
+      full_description="I'm a STEM enthusiast passionate about coding, engineering, and robotics. Outside of tech, you’ll find me reading, playing my guitar, or tackling a new project.",
+      linkedin_url="https://www.linkedin.com/in/iuliana-cherevko",
+      image_url=url_for('static', filename='images/about us/y_img.jpg'),
+      tags=["Leadership", "Dev Team", "Innovator"],
+      extra_images=[
+          url_for('static', filename='images/about us/extra3.jpg'),
+          url_for('static', filename='images/about us/extra4.jpg')
+      ]
+    ) }}
+  {{ member_modal("anthony", "images/about us/a_img.jpg", "Anthony Rodriguez", "Backend Developer", "Anthony loves backend development and tackling challenges...", "https://linkedin.com/in/anthony?", ["images/about us/extra3.jpg", "images/about us/extra4.jpg"]) }}
+  {{ member_modal("shai", "images/about us/s_img.jpg", "Shai Y", "Backend Developer", "Shai enjoys designing clean, functional, and visually appealing user interfaces...", "https://linkedin.com/in/shai?", ["images/about us/extra7.jpg", "images/about us/extra8.jpg"]) }}
+
+    
+    
+  </section>
+
+  <!--Footer-->
+  <section class="cta-section">
+    <div class="cta-container">
+      <p class="cta-text">
+        Your transformation starts now: <br />
+        Let <strong>HabiTrain</strong> help you <strong>create</strong> routines that last and <strong>unlock</strong> a brighter <strong>future</strong>.
+      </p>
+      <button class="cta-button">Hop on the HabiTrain!</button>
+    </div>
+  </section>
+  <!-- Footer and Wave Section -->
+  {% include 'components/wave.html' %}
+  {% include 'components/footer.html' %}
+  {% include 'components/footer-bottom.html' %}
+
+
     <!-- Html Code for Modals / Popups -->
-    {% include '/components/modals.html' %}
+    {% include 'components/modals.html' %}
 
 
   <script>
