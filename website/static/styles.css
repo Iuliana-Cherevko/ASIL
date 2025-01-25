@@ -288,7 +288,7 @@ header {
     width: 100%;
     padding: 10px 50px;
     background-color: var(--background-color);
-    z-index: 2;
+    z-index: 4;
     border-bottom: 1px solid var(--light-grey);
     transition: top 0.3s ease-in-out; 
 }
@@ -476,7 +476,7 @@ header {
 .modal {
     display: none;
     position: fixed;
-    z-index: 4;
+    z-index: 5;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -864,7 +864,7 @@ button[type="submit"]:hover {
 
 .image-selector input[type="radio"] {
     position: absolute;
-    z-index: 5;
+    z-index: 6;
     top: 10px;
     left: 10px;
     appearance: none;
@@ -1886,7 +1886,7 @@ h2 {
 
 .companion-card input[type="radio"] {
     position: absolute;
-    z-index: 5;
+    z-index: 6;
     top: 10px;
     left: 10px;
     appearance: none;

@@ -70,7 +70,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      runAllFunctions("{{ companion }}");
+        runAllFunctions("{{ companion }}", true, current_user.is_authenticated, current_user.bad_babit);
     });
   </script>
 
