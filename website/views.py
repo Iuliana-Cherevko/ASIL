@@ -27,7 +27,6 @@ users = {
         "bad_habit_placeholder": "Smoking",
     }
 }
-
 @views.route('Index')
 def index():
     if request.method == "PUT":
@@ -42,27 +41,30 @@ def index():
                 render_template('profile.html', user = current_user)
                 #return redirect(url_for('profile.html', user = current_user))
             
-    return render_template("index.html", user = current_user, companion="dog")
+    return render_template("index.html", user = current_user)
 
-@views.route('Settings', methods = ['GET','POST'])
-def settings():
-    username = "Cara"
+
+@views.route('Profile', methods = ['GET','POST'])
+def profile():
+    username = "Katy Lio"
     user_data = users[username] 
 
     today = "November 17, 2024"
     checked_in_today = today in user_data['checked_in_days']
 
     return render_template(
-        "settings.html",
+        "profile.html",
         user_logged_in=True,
-        username=username,
+        username_placeholder=username,
         days_kept_up_placeholder=user_data['days_kept_up'],
+        pet_name_placeholder=user_data['creature_name'],
+        current_goal_placeholder=user_data['current_goal'],
         pet_level_placeholder=user_data['creature_level'],
         checked_in_days=user_data['checked_in_days'],
         checked_in_today=checked_in_today,
         bad_habit_placeholder=user_data['bad_habit_placeholder']
     )
-#    return render_template("profile.html")
+   #return render_template("profile.html")
 
 @views.route('Check-in', methods= ['GET', 'POST'])
 def check_in():
@@ -73,5 +75,4 @@ def check_in():
         #users[name]['journal'] = journal
         #return render_template("checkin.html")
     return render_template('checkin.html')
-
     
