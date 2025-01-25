@@ -55,13 +55,186 @@
 
     
 
+    <!-- Bottom Right Image -->
+    <div class="story-image-wrapper img-image4">
+      <img
+        src="{{ url_for('static', filename='images/companions/cat lv5.svg') }}"
+        alt="Team Photo 4"
+      />
+    </div>
+  </div>
+</section>
+  <!-- Arrow -->
+  <div class="arrow2-container">
+    <img
+      loading="lazy"
+      src="{{ url_for('static', filename='images/about us/arrow2.png') }}"
+      alt="Decorative arrow pointing down"
+      class="arrow2"
+    />
+  </div>
+  <!-- Our Mission Section -->
+  <section id="mission" class="mission-container zoom-in">
+    <div class="heading-content">
+    <!-- Mission Title -->
+    <h1>
+      <img src="{{ url_for('static', filename='images/about us/flat-lay-bad-habit-morning-concept.jpg') }}" alt="Bad Habits" class="mission-container-top">
+      Our Mission</h1>
+    </div>
+    <!-- Our Mission Section -->
+    <p>
+      To empower individuals to overcome harmful habits, establish positive routines,
+      and stay motivated on their self-improvement journey. We combine technology,
+      emotional support, and gamification to deliver a personalized experience
+      that encourages lasting change.
+    </p>
+    <!-- Footer Images -->
+    <div class="footer-images">
+          <img src="{{ url_for('static', filename='images/about us/human-characters-with-bad-habits-alcohol-drug-shopaholism-fast-food-isometric-icons-set_98292-7891.svg') }}" alt="First Child" class="first-child" >
+          <img src="{{ url_for('static', filename='images/companions/sprout lv6.svg') }}" alt="Cute Character" class="last-child">
+    </div>
+  </section>
+  <!-- Arrow -->
+  <div class="arrow3-container">
+    <img
+      loading="lazy"
+      src="{{ url_for('static', filename='images/about us/arrow3.png') }}"
+      alt="Decorative arrow pointing down"
+      class="arrow3"
+    />
+  </div>
+  <!-- Our Vision section-->
+  <div class="about-us-page vision-future-section rotate-in">
+    <h1 class="section-title">Our Vision & Future</h1>
+    <div class="content-wrapper">
+      <!-- Top Left - Text Content -->
+      <div class="main-content">
+        <p>
+          To create a world where everyone has the tools and support to become their best selves. HabiTrain strives to be
+          the leading platform for habit transformation, building a global community dedicated to healthier and happier
+          lives.
+        </p>
+      </div>
+  
+      <!-- Top Right - Image -->
+      <div class="top-right-image">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/istockphoto-517521860-612x612.jpg') }}"
+          alt="Key to Success Illustration"
+        />
+      </div>
+  
+      <!-- Bottom Left - Image -->
+      <div class="bottom-left-image">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/dragondemo.svg')}}"
+          alt="Dragon demo"
+        />
+      </div>
+  
+      <!-- Bottom Right - Image -->
+      <div class="bottom-right-image">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/slimedemo.svg') }}"
+          alt="Change Habits Poster"
+        />
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Arrow -->
+  <div class="arrow4-container">
+    <img
+      loading="lazy"
+      src="{{ url_for('static', filename='images/about us/arrow4.png') }}"
+      alt="Decorative arrow pointing down"
+      class="arrow4"
+    />
+  </div>
+  <!--Our Team-->
+
+  <section class="about-us-page team-section" aria-labelledby="team-heading">
+    <h1 id="team-heading" class="team-heading flip-in">Meet the Masterminds</h1>
+    <div class="team-grid">
+      <!-- Team Member 1 -->
+      <div class="team-member">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/y_img.jpg') }}"
+          alt="Iuliana Cherevko"
+          class="member-image"
+          onclick="openModal('modal-iuliana')"
+        />
+        <p class="member-name">Iuliana Cherevko</p>
+      </div>
+
+      <!-- Team Member 2 -->
+      <div class="team-member">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/a_img.jpg') }}"
+          alt="Anthony Rodriguez"
+          class="member-image"
+          onclick="openModal('modal-anthony')"
+        />
+        <p class="member-name">Anthony Rodriguez</p>
+      </div>
+      <!-- Team Member 3 -->
+      <div class="team-member">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/l_img.jpg') }}"
+          alt="Long Nguyen"
+          class="member-image"
+          onclick="openModal('modal-long')"
+        />
+        <p class="member-name">Long Nguyen</p>
+      </div>
+      <!-- Team Member 4 -->
+      <div class="team-member">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/s_img.jpg') }}"
+          alt="Shai Y"
+          class="member-image"
+          onclick="openModal('modal-shai')"
+        />
+        <p class="member-name">Shai Y</p>
+      </div>
+    </div>
+
+
+    <!-- Modal for Long Nguyen -->
+    <!-- for the modal code and realated look into the "modal for about us page. html" file -->
+  
+  </section>
+
+  <!--Footer-->
+  <section class="cta-section">
+    <div class="cta-container">
+      <p class="cta-text">
+        Your transformation starts now: <br />
+        Let <strong>HabiTrain</strong> help you <strong>create</strong> routines that last and <strong>unlock</strong> a brighter <strong>future</strong>.
+      </p>
+      <button class="cta-button">Hop on the HabiTrain!</button>
+    </div>
+  </section>
+  <!-- Footer and Wave Section -->
+  {% include 'components/wave.html' %}
+  {% include 'components/footer.html' %}
+  {% include 'components/footer-bottom.html' %}
+
+
     <!-- Html Code for Modals / Popups -->
     {% include '/components/modals.html' %}
 
 
   <script>
   document.addEventListener('DOMContentLoaded', () => {
-    runAllFunctions("{{ companion }}");
+    runAllFunctions("{{ companion }}", true, current_user.is_authenticated, current_user.bad_babit);
   });
 </script>
 
