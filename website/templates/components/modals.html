@@ -234,3 +234,43 @@
     </div>
   </form>
 </section>
+  <!-- Modal for about us page-->
+   <!-- modal.html -->
+   {% macro member_modal(modal_id, name, title, short_description, full_description, linkedin_url, image_url, tags, extra_images) %}
+   <div id="{{ modal_id }}" class="modal about-us-page">
+     <div class="modal-content">
+       <span class="close-btn" onclick="closeModal('{{ modal_id }}')">&times;</span>
+       
+       <!-- Decorative Tags -->
+      {% for tag in tags %}
+      <p class="tag{{ loop.index }}">{{ tag }}</p>
+      {% endfor %}
+   
+       <!-- Profile Image -->
+       <img src="{{ image_url }}" alt="{{ name }}" class="l-img" />
+   
+       <!-- Name and Title -->
+       <h2 class="name">{{ name }}</h2>
+       <p class="title">{{ title }}</p>
+   
+      <!-- Short Description -->
+      {% if short_description %}
+      <p class="short-description">{{ short_description }}</p>
+      {% endif %}
+
+      <!-- Full Description -->
+      <p class="full-description">{{ full_description }}</p>       <!-- LinkedIn Link -->
+      <a href="{{ linkedin_url }}" target="_blank" class="linkedin-link">{{ linkedin_url }}</a>
+   
+       <!-- Additional Images Section -->
+       <div class="extra-images">
+         {% for extra_image in extra_images %}
+         <div>
+           <img src="{{ extra_image }}" >
+           <p>Extra Image</p>
+         </div>
+         {% endfor %}
+       </div>
+     </div>
+   </div>
+   {% endmacro %}

@@ -83,11 +83,11 @@
 
 // CODE FOR ALL PAGES
 // Function that runs all functions that are necessary on all pages
-function runAllFunctions(companion) {
+function runAllFunctions(companion, questionnaire_needed, user_is_authenticated, bad_babit_value) {
     expectModalClick();
     setNavLinkActive();
     showCorrectCompanionIcon(companion);
-    if (user_logged_in && bad_habit === 0) {
+    if (questionnaire_needed && user_is_authenticated && bad_babit_value === 0) {
         launchBriefQuestionnaire();
     }
 }
@@ -656,3 +656,33 @@ function revertChanges(originalValues) {
     showSelectedCompanion(originalValues.selectedCompanion);
     showSelectedGoalDuration(originalValues.goalDuration);
 }
+
+//Code for About us page
+// Function to open the modal
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.style.display = "block"; // Show the modal
+      document.body.style.overflow = "hidden"; // Prevent background scrolling
+    }
+  }
+  
+  // Function to close the modal
+  function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.style.display = "none"; // Hide the modal
+      document.body.style.overflow = ""; // Restore background scrolling
+    }
+  }
+  
+  // Add event listeners to close modals when clicking outside or on close button
+  window.addEventListener("click", function (event) {
+    const modals = document.querySelectorAll(".modal");
+    modals.forEach((modal) => {
+      if (event.target === modal) {
+        modal.style.display = "none"; // Close modal if clicked outside content
+        document.body.classList.remove("stopScroll");
+      }
+    });
+  });
