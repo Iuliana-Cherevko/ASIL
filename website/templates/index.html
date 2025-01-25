@@ -33,6 +33,7 @@
       <div id="slider-container-2" class="slider-container"></div>
     </div>
 </section>
+
   
 <!-- Features section -->
   <section id="features" class="features-section">
@@ -145,17 +146,18 @@
   {% include '/components/footer.html' %}
   {% include '/components/footer-bottom.html' %}
 
+
   <!-- Html Code for Modals / Popups -->
   {% include '/components/modals.html' %}
 
 <script>
   // Temp variables for test purposes
-  // const user_logged_in = true;
-  // const bad_babit = 0;
+  // const current_user.is_authenticated = true;
+  // const current_user.bad_habit = 0;
 
   document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => showSlider(), 0);
-    setTimeout(() =>  runAllFunctions("{{ companion }}", true, current_user.is_authenticated, current_user.bad_babit), 0);
+    setTimeout(() =>  runAllFunctions("{{ companion }}"), 0);
     setTimeout(() => expectTestimoniesAction(), 0);
   });
 </script>

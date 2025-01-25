@@ -288,7 +288,7 @@ header {
     width: 100%;
     padding: 10px 50px;
     background-color: var(--background-color);
-    z-index: 4;
+    z-index: 2;
     border-bottom: 1px solid var(--light-grey);
     transition: top 0.3s ease-in-out; 
 }
@@ -476,7 +476,7 @@ header {
 .modal {
     display: none;
     position: fixed;
-    z-index: 5;
+    z-index: 4;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -864,7 +864,7 @@ button[type="submit"]:hover {
 
 .image-selector input[type="radio"] {
     position: absolute;
-    z-index: 6;
+    z-index: 5;
     top: 10px;
     left: 10px;
     appearance: none;
@@ -1886,7 +1886,7 @@ h2 {
 
 .companion-card input[type="radio"] {
     position: absolute;
-    z-index: 6;
+    z-index: 5;
     top: 10px;
     left: 10px;
     appearance: none;
@@ -1959,57 +1959,6 @@ h2 {
 
 .save-btn:hover, .cancel-btn:hover {
     opacity: 0.9;
-}
-
-/* attribution page */
-.attribution-section {
-  padding: 50px 20px;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  font-family: var(--font-primary);
-  margin-top: 30px;
-  min-height: calc(100vh - 90px);
-  max-width: 1065px;
-}
-.attribution-section h1 {
-  font-size: var(--font-size-extra-large);
-  text-align: center;
-  margin-bottom: 20px;
-  color: var(--dark-grey);
-}
-.attribution-section p {
-  font-size: var(--font-size-regular);
-  text-align: center;
-  margin-bottom: 15px;
-}
-.attribution-item {
-  background-color: var(--white);
-  border: 1px solid var(--neutral-light);
-  border-radius: var(--card-border-radius);
-  margin-bottom: 30px;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.attribution-item h2 {
-  font-size: 1.8rem;
-  color: var(--dark-grey);
-  margin-bottom: 10px;
-}
-.attribution-item ul {
-  list-style: none;
-  padding-left: 0;
-}
-.attribution-item li {
-  margin-bottom: 8px;
-  font-size: 1rem;
-  line-height: 1.6;
-}
-.attribution-item li a {
-  color: var(--blue);
-  text-decoration: none;
-}
-.attribution-item li a:hover {
-  color: var(--blue);
 }
   
   /* @media (max-width: 991px) {
