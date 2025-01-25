@@ -83,10 +83,10 @@
 
 // CODE FOR ALL PAGES
 // Function that runs all functions that are necessary on all pages
-function runAllFunctions(companion, questionnaire_needed, user_is_authenticated, bad_babit_value) {
+function runAllFunctions(companion_img, questionnaire_needed, user_is_authenticated, bad_babit_value) {
     expectModalClick();
     setNavLinkActive();
-    showCorrectCompanionIcon(companion);
+    showCorrectCompanionIcon(companion_img);
     if (questionnaire_needed && user_is_authenticated && bad_babit_value === 0) {
         launchBriefQuestionnaire();
     }
