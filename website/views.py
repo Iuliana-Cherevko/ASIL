@@ -5,6 +5,7 @@ from .models import User
 from werkzeug.security import generate_password_hash , check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
 
+# File contains index and profile
 
 app = Flask(__name__)
 views = Blueprint("views", __name__)
@@ -16,7 +17,7 @@ users = {
         "creature_level": 1,
         "checked_in_days": ["November 17, 2024"],
         "current_goal": 30,
-        "bad_habit_placeholder": "Smoking",
+        "Fid": "Smoking",
     },
     "Bili Bob": {
         "days_kept_up": 1,
@@ -27,7 +28,7 @@ users = {
         "bad_habit_placeholder": "Smoking",
     }
 }
-@views.route('Index')
+@views.route('/index')
 def index():
     if request.method == "PUT":
         email = request.form.get('email')
@@ -44,29 +45,30 @@ def index():
     return render_template("index.html", user = current_user)
 
 
-@views.route('Profile', methods = ['GET','POST'])
-def profile():
-    username = "Katy Lio"
-    user_data = users[username] 
+#@views.route('/profile', methods = ['GET','POST'])
+#@login_required
+#def profile():
+    # username = "Katy Lio"
+    # user_data = users[username] 
 
-    today = "November 17, 2024"
-    checked_in_today = today in user_data['checked_in_days']
+    # today = "November 17, 2024"
+    # checked_in_today = today in user_data['checked_in_days']
 
-    return render_template(
-        "profile.html",
-        user_logged_in=True,
-        username_placeholder=username,
-        days_kept_up_placeholder=user_data['days_kept_up'],
-        pet_name_placeholder=user_data['creature_name'],
-        current_goal_placeholder=user_data['current_goal'],
-        pet_level_placeholder=user_data['creature_level'],
-        checked_in_days=user_data['checked_in_days'],
-        checked_in_today=checked_in_today,
-        bad_habit_placeholder=user_data['bad_habit_placeholder']
-    )
-   #return render_template("profile.html")
+    # return render_template(
+    #     "profile.html",
+    #     user_logged_in=True,
+    #     username_placeholder=username,
+    #     days_kept_up_placeholder=user_data['days_kept_up'],
+    #     pet_name_placeholder=user_data['creature_name'],
+    #     current_goal_placeholder=user_data['current_goal'],
+    #     pet_level_placeholder=user_data['creature_level'],
+    #     checked_in_days=user_data['checked_in_days'],
+    #     checked_in_today=checked_in_today,
+    #     bad_habit_placeholder=user_data['bad_habit_placeholder']
+    # )
+    #return render_template("profile.html")
 
-@views.route('Check-in', methods= ['GET', 'POST'])
+@views.route('/check-in', methods= ['GET', 'POST'])
 def check_in():
     if request.method == 'POST':
         name = current_user
@@ -75,4 +77,40 @@ def check_in():
         #users[name]['journal'] = journal
         #return render_template("checkin.html")
     return render_template('checkin.html')
+
+@views.route('/about-us')
+def about_us():
+    return render_template('about-us.html')
     
+@views.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@views.route('/attributions')
+def attributions():
+    return render_template('attributions.html')
+
+@views.route('/checkin')
+def checkin():
+    return render_template('checkin.html')# doesnt work rn 
+
+@views.route('/settings', methods = ['GET', 'POST'])
+@login_required
+def settings():
+    # Manage form submission
+    return render_template('settings.html',
+                           user_logged_in=True,
+                           username=current_user.username,
+                           email=current_user.email,
+                           habit=current_user.habit,
+                           goal_duration=current_user.goal,
+                           companion_name=current_user.character,
+                           companion=current_user.character)
+ 
+@views.route('/companion-hub', methods = ['GET', 'POST'])
+@login_required
+def companion_hub():
+    return render_template('companion-hub.html',
+                           user_logged_in=True,
+                           username=current_user.username,
+                           companion=current_user.character)

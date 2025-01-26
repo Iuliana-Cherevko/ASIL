@@ -1,0 +1,885 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+body {
+    background-color: #f4f4f4; 
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    z-index: -1;
+}
+
+.back {
+    background-color: #f4f4f4; 
+    width:100%;
+}
+
+header, section, footer {
+    padding: 50px 20px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.nav-links .nav-item {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.get-started-btn {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border-radius: 10px;
+    font-size: 16px;
+    text-decoration: none;
+    border: 2px solid white;
+}
+
+body.registration-page .nav-links a {
+    pointer-events: none; 
+    color: #888;
+}
+
+body.registration-page .nav-links a:hover {
+    background-color: transparent;
+    color: #888;
+}
+
+.top-bar {
+    width: 100%;
+    background-color: #f19b0e;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.page-container {
+    background-color: #f4f4f4;
+}
+
+.logo {
+    font-size: 28px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-links a {
+    color: white;
+    align-items: right;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+}
+
+.sign-up-btn {
+    background-color: #f4f4f4; 
+    color: #f19b0e; 
+    padding: 0px 0px;
+    border: 2px solid white;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.sign-in-link {
+    display: inline-block;
+    margin-top: 20px; 
+    font-size: 18px; 
+    color: black;  
+    text-decoration: none; 
+}
+
+.sign-in-link:link,
+.sign-in-link:visited {
+    color: black;
+}
+
+button, .get-started-btn, .register-btn {
+    padding: 15px 30px;
+    background-color: #f19b0e;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, .get-started-btn:hover, .register-btn:hover {
+    background-color: #d07a05;
+}
+
+.register-btn {
+    font-size: 20px;
+    padding: 15px 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #f19b0e;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+  }
+
+.container {
+    background: #f4f4f4;
+    padding-top: 120px;
+    display: grid;
+    align-items: center; 
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5px;
+}
+
+.hero-section profile {
+    background-color: #f4f4f4;
+    padding-top: 100px;
+    padding-left:20px;
+    margin-bottom: -100px;
+    display: grid;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 50px;
+}
+
+.hero-section h1 {
+    text-align: center;
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+
+.hero-section img {
+    width: 100%;
+    max-width: 550px;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.about-section p, .team-section p, .get-started-section ul {
+    font-size: 23px;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.about-section h2 {
+    margin-bottom: 30px;
+}
+
+.team-section .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.team-member {
+    text-align: center;
+}
+
+.team-member img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.team-member h3 {
+    font-size: 24px;
+}
+
+.team-member p {
+    font-size: 18px;
+}
+
+.register-btn, .sign-up-btn {
+    font-size: 22px;
+    padding: 15px 50px;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+.register-btn:hover, .sign-up-btn:hover {
+    background-color: #f19b0e;
+    color: white;
+}
+.get-started-section {
+    background-color: transparent;
+}
+
+.get-started-section {
+    text-align: center;
+    margin: 2rem auto;
+    padding: 2rem;
+    max-width: 800px;
+}
+
+.steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-top: 2rem;
+    padding-top: 10px;
+    padding-bottom: 100px;
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.step-number {
+    font-size: 40px;
+    padding: 5px;
+    font-weight: bold;
+    color: #f19b0e; 
+    flex-shrink: 0;
+}
+
+.step-text {
+    text-align: left;
+    font-size: 20px;
+    color: #333;
+}
+
+.contact-section {
+    padding: 1rem 2rem;
+    text-align: center;
+    margin-top: -5%;
+    margin-bottom: 3%;
+}
+
+.contact-section h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.contact-section p {
+    font-size: 16px;
+    color: #555;
+}
+
+.contact-section a {
+    color: #f19b0e;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-section a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #333; 
+    color: white;
+    font-size: 14px;
+    padding: 10px 20px;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+footer p {
+    margin: 0;
+}
+
+.text-section {
+    margin-top: -10%;
+}
+
+.text-section p {
+    font-size: 3-px;
+    font-size: 20px; 
+    line-height: 1.6;  
+    margin-bottom: 20px; 
+    margin-top: 7%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.check-in-section {
+    padding-top: 10%;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.registration-section {
+    padding-top: 120px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.registration-section h1, .check-in-section h1 {
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.check-in-section p {
+    font-size: 3-px;
+    font-size: 20px; 
+    line-height: 1.6;  
+    margin-bottom: 20px; 
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.registration-form,
+.check-in-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.styled-dropdown {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    color: #333;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.styled-dropdown:focus {
+    border-color: #f19b0e; 
+    outline: none;
+    box-shadow: 0 0 5px #f19b0e;
+}
+
+.form-group label {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: #333;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.form-group input {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: #333;
+    text-align: left;
+}
+
+.registration-form .form-group {
+    margin-bottom: 20px;
+}
+
+input[type="email"],
+input[type="text"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea {
+    height: 100px;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+button {
+    padding: 15px 30px;
+    background-color: #f19b0e;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #d07a05;
+}
+
+.image-selection {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.image-selection label {
+    width: 80px;
+    height: 80px;
+    display: block;
+    cursor: pointer;
+}
+
+.image-selection img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    transition: transform 0.3s ease;
+}
+
+.image-selection input:checked + label img {
+    transform: scale(1.1);
+}
+
+.register-btn:hover {
+    background-color: #d07a05;
+}
+
+.creature-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.creature-details {
+    margin-top: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 50%;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    padding-top:2%;
+}
+
+.modal-content label {
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.modal-content input {
+    margin-bottom: 15px;
+    padding: 10px; 
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 18px;
+}
+
+.modal-content button {
+    margin-top: 15px;
+    padding: 10px 20px; 
+    background-color: #f19b0e;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #d07a05;
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover, .close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.profile-container {
+    justify-content: space-between;
+    padding: 20px;
+    width: 80%;
+    margin-top: 30px;
+    padding-top: 120px;
+    display: grid;
+    align-items: center; 
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5px;
+}
+
+.profile-text, .creature-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-picture img {
+    width: 300px;
+    height: auto;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.username-status {
+    margin-top: 10px;
+}
+
+.profile-text {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px; 
+}
+
+.profile-text .large-profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.profile-pic .username,
+.profile-pic .status,
+.profile-pic .pet-name,
+.profile-pic .pet-level {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+
+#check-in-btn {
+    padding: 20px 40px;  
+    font-size: 22px; 
+    background-color: #f19b0e;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin-top: 20px; 
+}
+
+.large-btn {
+    padding: 15px 30px;
+    padding-top: -100px;
+    background-color: #f19b0e;
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 5%;
+}
+
+.large-btn:hover {
+    background-color: #d07a05;
+}
+
+.weekly-report-section {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    margin-bottom: 100px;
+}
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-container {
+    width: 200px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.calendar__month,
+.calendar__year {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.calendar__days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    text-align: center;
+}
+
+.calendar__day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.calendar__day:hover {
+    background-color: #f0f0f0;
+}
+    
+.day {
+    padding: 15px;
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    background-color: #f4f4f4;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.day:hover {
+    background-color: #D6890C;
+    color: white;
+}
+
+#sun, #mon, #tue, #wed, #thu, #fri, #sat {
+    background-color: #f9f9f9;
+    font-weight: normal;
+}
+
+.hero-section.profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 100px 20px;
+    background-color: #f4f4f4;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.profile-text {
+    flex: 1;
+    text-align: left;
+}
+
+.profile-pic {
+    flex: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.username-status p {
+    font-size: 22px;
+    margin: 10px 0;
+}
+
+.report-container {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-top: 20px;
+    gap: 30px;
+}
+
+.calendar-container {
+    width: 50%;
+}
+
+.week-view {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.week-view .day {
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.week-view .day:hover {
+    background-color: #f19b0e;
+    color: white;
+}
+
+.week-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    font-weight: bold;
+}
+
+.weekday {
+    padding: 10px;
+    background-color: #c07a0a;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.weekday:hover {
+    background-color: #c07a0a;
+}
+
+.journal-container {
+    margin-top: 20px;
+    position: relative;
+}
+
+.journal-box {
+    /* background-color: #f9f9f9; */
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+    position: relative;
+    z-index: 1;
+}
+
+.journal-box p {
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+}
+
+.journal-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.5;
+    z-index: 0;
+}
+
+@media (max-width: 768px) {
+    .hero-section, .about-section, .team-section, .get-started-section {
+        padding: 40px 20px;
+    }
+
+    .hero-section h1 {
+        font-size: 36px;
+    }
+
+    .hero-section p {
+        font-size: 20px;
+    }
+
+    .team-member img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .hero-section.profile {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-picture img {
+        width: 80%;
+        margin-top: 20px;
+    }
+
+    .report-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .calendar-container, .week-view {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .week-view .day {
+        font-size: 18px;
+    }
+}

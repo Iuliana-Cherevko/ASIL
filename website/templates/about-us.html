@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <title>HabiTrain | Overcome Bad Habits</title>
+</head>
+<body class="about-us-page">
+  <!-- Navigation Bar -->
+  {% include '/components/navbar.html' %}
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="container">
+      <div class="heading-wrapper">
+        <!-- Heading Text -->
+    <div class="hero-content fade-in">
+      <h1>
+        <span class="text-xlarge">Hey,</span>
+      </h1>
+          <h2 class="heading-content">
+            <span class="text-normal">We are</span>
+            <span class="text-large">HabiTrain!!!</span>
+          </h2>
+        
+        </div>
+        <!--Heading iamge-->
+        <div class="heading-image-wrapper fade-in">
+          <img
+            loading="lazy"
+            id="hero-image"
+            src="{{ url_for('static', filename='images/about us/bad-habits-cartoon-concept-with-unhealthy-addiction-symbols-vector-illustration_1284-80087.svg') }}"
+            alt="Cartoon illustrating bad habits and unhealthy addictions"
+            class="heading-image"
+          />
+        </div>
+      </div>
+      <!-- Welcome Text -->
+      <p id="welcome-text" class="welcome-text fade-in">
+        Welcome to HabiTrain, your partner in building a healthier and more fulfilling life. By combining journaling,
+        habit tracking, and interactive features, we help you break harmful habits, develop positive ones, and stay
+        motivated to become your best self.
+        </p>
+      
+    </div>
+
+    
+      <!-- Blob Image -->
+      <div class="blob-container">
+        <img
+          loading="lazy"
+          id="decorative-image"
+          src="{{ url_for('static', filename='images/about us/watersalamander.svg') }}"
+          alt="Cute bloblike decorative illustration"
+          class="blob-image"
+        />
+      </div>
+      
+    
+  </section>
+  <!-- Arrow -->
+  <div class="arrow1-container">
+    <img
+      loading="lazy"
+      src="{{ url_for('static', filename='images/about us/arrow1.png') }}"
+      alt="Decorative arrow pointing down"
+      class="arrow1"
+    />
+  </div>
+<!-- Our Story Section -->
+<section id="our-story" class="our-story-section bounce-in">
+  
+  <div class="content-wrapper">
+    <!-- Top Left Image -->
+    <div class="story-image-wrapper img-image1">
+      <img
+        src="{{ url_for('static', filename='images/about us/IMG_1415.webp') }}"
+        alt="Team Photo 1"
+      />
+    </div>
+    <h2 class="story-title">Our Story</h2>
+    <!-- Top Right Image -->
+    <div class="story-image-wrapper img-image2">
+      <img
+        src="{{ url_for('static', filename='images/about us/IMG_0080.webp') }}"
+        alt="Team Photo 2"
+      />
+    </div>
+    <!-- Bottom Left Image -->
+    <div class="story-image-wrapper img-image3">
+      <img
+        src="{{ url_for('static', filename='images/about us/IMG_2625.webp') }}"
+        alt="Team Photo 3"
+      />
+    </div>
+    <!-- Middle Text -->
+    <div class="story-text-container">
+      <p>
+        Life moves fast, and it's easy to overlook the habits that shape our
+        well-being. Harmful routines like smoking, overeating, or poor sleep
+        can subtly undermine our health and happiness. At HabiTrain, we’re
+        inspired to empower individuals to take control of their habits, unlock
+        their potential, and embrace a healthier lifestyle.
+      </p>
+    </div>
+
+    
+
+    <!-- Bottom Right Image -->
+    <div class="story-image-wrapper img-image4">
+      <img
+        src="{{ url_for('static', filename='images/companions/cat lv5.svg') }}"
+        alt="Team Photo 4"
+      />
+    </div>
+  </div>
+</section>
+  <!-- Arrow -->
+  <div class="arrow2-container">
+    <img
+      loading="lazy"
+      src="{{ url_for('static', filename='images/about us/arrow2.png') }}"
+      alt="Decorative arrow pointing down"
+      class="arrow2"
+    />
+  </div>
+  <!-- Our Mission Section -->
+  <section id="mission" class="mission-container zoom-in">
+    <div class="heading-content">
+    <!-- Mission Title -->
+    <h1>
+      <img src="{{ url_for('static', filename='images/about us/flat-lay-bad-habit-morning-concept.jpg') }}" alt="Bad Habits" class="mission-container-top">
+      Our Mission</h1>
+    </div>
+    <!-- Our Mission Section -->
+    <p>
+      To empower individuals to overcome harmful habits, establish positive routines,
+      and stay motivated on their self-improvement journey. We combine technology,
+      emotional support, and gamification to deliver a personalized experience
+      that encourages lasting change.
+    </p>
+    <!-- Footer Images -->
+    <div class="footer-images">
+          <img src="{{ url_for('static', filename='images/about us/human-characters-with-bad-habits-alcohol-drug-shopaholism-fast-food-isometric-icons-set_98292-7891.svg') }}" alt="First Child" class="first-child" >
+          <img src="{{ url_for('static', filename='images/companions/sprout lv6.svg') }}" alt="Cute Character" class="last-child">
+    </div>
+  </section>
+  <!-- Arrow -->
+  <div class="arrow3-container">
+    <img
+      loading="lazy"
+      src="{{ url_for('static', filename='images/about us/arrow3.png') }}"
+      alt="Decorative arrow pointing down"
+      class="arrow3"
+    />
+  </div>
+  <!-- Our Vision section-->
+  <div class="about-us-page vision-future-section rotate-in">
+    <h1 class="section-title">Our Vision & Future</h1>
+    <div class="content-wrapper">
+      <!-- Top Left - Text Content -->
+      <div class="main-content">
+        <p>
+          To create a world where everyone has the tools and support to become their best selves. HabiTrain strives to be
+          the leading platform for habit transformation, building a global community dedicated to healthier and happier
+          lives.
+        </p>
+      </div>
+  
+      <!-- Top Right - Image -->
+      <div class="top-right-image">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/istockphoto-517521860-612x612.jpg') }}"
+          alt="Key to Success Illustration"
+        />
+      </div>
+  
+      <!-- Bottom Left - Image -->
+      <div class="bottom-left-image">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/dragondemo.svg')}}"
+          alt="Dragon demo"
+        />
+      </div>
+  
+      <!-- Bottom Right - Image -->
+      <div class="bottom-right-image">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/slimedemo.svg') }}"
+          alt="Change Habits Poster"
+        />
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Arrow -->
+  <div class="arrow4-container">
+    <img
+      loading="lazy"
+      src="{{ url_for('static', filename='images/about us/arrow4.png') }}"
+      alt="Decorative arrow pointing down"
+      class="arrow4"
+    />
+  </div>
+  <!--Our Team-->
+
+  <section class="about-us-page team-section" aria-labelledby="team-heading">
+    <h1 id="team-heading" class="team-heading flip-in">Meet the Masterminds</h1>
+    <div class="team-grid">
+      <!-- Team Member 1 -->
+      <div class="team-member">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/y_img.jpg') }}"
+          alt="Iuliana Cherevko"
+          class="member-image"
+          onclick="openModal('modal-iuliana')"
+        />
+        <p class="member-name">Iuliana Cherevko</p>
+      </div>
+
+      <!-- Team Member 2 -->
+      <div class="team-member">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/a_img.jpg') }}"
+          alt="Anthony Rodriguez"
+          class="member-image"
+          onclick="openModal('modal-anthony')"
+        />
+        <p class="member-name">Anthony Rodriguez</p>
+      </div>
+      <!-- Team Member 3 -->
+      <div class="team-member">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/l_img.jpg') }}"
+          alt="Long Nguyen"
+          class="member-image"
+          onclick="openModal('modal-long')"
+        />
+        <p class="member-name">Long Nguyen</p>
+      </div>
+      <!-- Team Member 4 -->
+      <div class="team-member">
+        <img
+          loading="lazy"
+          src="{{ url_for('static', filename='images/about us/s_img.jpg') }}"
+          alt="Shai Y"
+          class="member-image"
+          onclick="openModal('modal-shai')"
+        />
+        <p class="member-name">Shai Y</p>
+      </div>
+    </div>
+
+
+    <!-- Modal for Long Nguyen -->
+    <!-- for the modal code and realated look into the "modal for about us page. html" file -->
+  
+  </section>
+
+  <!--Footer-->
+  <section class="cta-section">
+    <div class="cta-container">
+      <p class="cta-text">
+        Your transformation starts now: <br />
+        Let <strong>HabiTrain</strong> help you <strong>create</strong> routines that last and <strong>unlock</strong> a brighter <strong>future</strong>.
+      </p>
+      <button class="cta-button">Hop on the HabiTrain!</button>
+    </div>
+  </section>
+  <!-- Footer and Wave Section -->
+  {% include 'components/wave.html' %}
+  {% include 'components/footer.html' %}
+  {% include 'components/footer-bottom.html' %}
+
+
+    <!-- Html Code for Modals / Popups -->
+    {% include 'components/modals.html' %}
+
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => runAllFunctions("{{ companion }}", true, "{{ current_user.is_authenticated }}", "{{ current_user.habit }}"), 0);
+  });
+</script>
+
+</body>
+</html>

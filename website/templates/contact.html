@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <title>HabiTrain | Overcome Bad Habits</title>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  {% include '/components/navbar.html' %}
+
+
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="hero-content fade-in">
+      <h1>
+        Contact
+        <span class="hero-title-highlight">HabiTrain</span>
+      </h1>
+      <p>Feel Free to write anything....</p>
+    </div>
+  </section>
+
+   <!-- Footer and Wave Section -->
+   {% include '/components/wave.html' %}
+   {% include '/components/footer.html' %}
+   {% include '/components/footer-bottom.html' %}
+
+   
+  <!-- Html Code for Modals / Popups -->
+  {% include '/components/modals.html' %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => runAllFunctions("{{ companion }}", true, "{{ current_user.is_authenticated }}", "{{ current_user.habit }}"), 0);
+  });
+</script>
+
+</body>
+</html>

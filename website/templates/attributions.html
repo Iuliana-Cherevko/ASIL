@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <title>HabiTrain | Overcome Bad Habits</title>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    {% include '/components/navbar.html' %}
+
+    <section class="attribution-section fade-in">
+        <div class="container">
+            <h1 class="">Attributions</h1>
+            <p class="">This website utilizes various resources and tools. Below is a list of the credits and attributions for these materials.</p>
+
+            <div class="attribution-item">
+                <h2>Images</h2>
+                <p>Various images used in the project are from the following sources under a Free License or Creative Commons:</p>
+                <ul>
+                    <li><strong>"Change Habit Message with Apple"</strong> by Freepik from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <!-- <li>Unsplash - Available at <a href="https://unsplash.com" target="_blank">Unsplash</a></li>
+                    <li>Pixabay - Available at <a href="https://pixabay.com" target="_blank">Pixabay</a></li> -->
+                    <li>+ add more later</li>
+                </ul>
+            </div>
+
+            <div class="attribution-item">
+                <h2>Icons</h2>
+                <p>Icons used on the website are sourced from the following creators under a Free License or Creative Commons:</p>
+                <ul>
+                    <li><strong>"Logout free icon"</strong> by <a href="https://www.flaticon.com/authors/sumberrejeki" target="_blank">SumberRejeki</a> from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <li><strong>"Home free icon"</strong> by <a href="https://www.flaticon.com/authors/freepik" target="_blank">Freepik</a> from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <li><strong>"Settings free icon"</strong> by <a href="https://www.flaticon.com/authors/pixel-perfect" target="_blank">Pixel perfect</a> from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <li><strong>"Black Instagram icon"</strong> by <a href="https://uxwing.com" target="_blank">UXWing</a> from <a href="https://www.uxwing.com" target="_blank">www.uxwing.com</a></li>
+                    <li><strong>"Care icon"</strong> by <a href="https://uxwing.com" target="_blank">UXWing</a> from <a href="https://www.uxwing.com" target="_blank">www.uxwing.com</a></li>
+                    <li><strong>"Yes No free icon"</strong> by <a href="https://www.flaticon.com/authors/freepik" target="_blank">Freepik</a> from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <li><strong>"Eye free icon"</strong> by <a href="https://www.flaticon.com/authors/stasy" target="_blank">Stasy</a> from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <li><strong>"Viewer free icon"</strong> by <a href="https://www.flaticon.com/authors/freepik" target="_blank">Freepik</a> from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <li><strong>"User free icon"</strong> by <a href="https://www.flaticon.com/authors/freepik" target="_blank">Freepik</a> from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <li><strong>"Information free icon"</strong> by <a href="https://www.flaticon.com/authors/freepik" target="_blank">Freepik</a> from <a href="https://www.flaticon.com" target="_blank">www.flaticon.com</a></li>
+                    <li>+ add more later</li>
+                </ul>
+            </div>
+            
+
+            <div class="attribution-item">
+                <h2>AI-Generated Images</h2>
+                <p>Some images on the website were created using AI tools. These images are not directly licensed but are clearly identified as AI-generated for transparency. The tools used include:</p>
+                <ul>
+                    <li><a href="https://character.ai" target="_blank">Character.ai</a></li>
+                    <li><a href="https://www.canva.com" target="_blank">Canva</a></li>
+                    <li><a href="https://creator.nightcafe.studio" target="_blank">Night Cafe</a></li>
+                </ul>
+            </div>            
+        </div>
+    </section>      
+       
+  
+  <!-- Footer and Wave Section -->
+  {% include '/components/wave.html' %}
+  {% include '/components/footer.html' %}
+  {% include '/components/footer-bottom.html' %}
+  
+  
+  <!-- Html Code for Modals / Popups -->
+  {% include '/components/modals.html' %}
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => runAllFunctions("{{ companion }}", true, "{{ current_user.is_authenticated }}", "{{ current_user.habit }}"), 0);
+    });
+  </script>
+
+
+
+</body>
+</html>
