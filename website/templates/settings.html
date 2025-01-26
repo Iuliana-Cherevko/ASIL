@@ -28,7 +28,7 @@
             </button>
         </div>
 
-        <form class="settings-form" id="settings-form" method="POST" action="{{ url_for('auth.registration') }}">
+        <form class="settings-form" id="settings-form" method="POST" action="{{ url_for('views.index') }}">
 
             <label for="username">Username</label>
             <input type="text" id="username" value="{{ current_user.username }}" readonly>
@@ -116,11 +116,11 @@
     };
 
     document.addEventListener('DOMContentLoaded', () => {
-        showCorrectCompanionIcon("{{ companion }}");
-        showSelectedGoalDuration(originalValues[goalDuration]);
-        showSelectedCompanion(originalValues[selectedCompanion]);
-        
-        setupSettingsForm(originalValues);
+        setTimeout(() => showCorrectCompanionIcon("{{ companion }}"), 0);
+        setTimeout(() => showSelectedGoalDuration(originalValues[goalDuration]), 0);
+        setTimeout(() => showSelectedCompanion(originalValues[selectedCompanion]), 0);
+        setTimeout(() => setupSettingsForm(originalValues), 0);
+
     });
 </script>
 
