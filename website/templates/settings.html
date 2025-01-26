@@ -16,7 +16,7 @@
         <h1>Settings</h1>
         <div class="settings-divider"></div>
         <div class="settings-header">
-            <img src="{{ url_for('static', filename='images/dog.png')}}" class="avatar">
+            <img src="{{ url_for('static', filename='images/user-icon.png')}}" id="profile-image" class="avatar">
             <div class="greeting-text">
                 <h2>Hey there, {{ current_user.username }}!</h2>
                 <p>Ready to tweak your journey?</p>
@@ -120,7 +120,6 @@
         setTimeout(() => showSelectedGoalDuration(originalValues[goalDuration]), 0);
         setTimeout(() => showSelectedCompanion(originalValues[selectedCompanion]), 0);
         setTimeout(() => setupSettingsForm(originalValues), 0);
-
     });
 </script>
 

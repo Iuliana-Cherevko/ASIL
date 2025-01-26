@@ -131,9 +131,14 @@ function showCorrectCompanionIcon(companion) {
     const imageFilename = companionImages[companion] || "user-icon.png"; // Default image if companion not found
 
     const companionImage = document.getElementById('companion-image');
-    if (companionImage) {
+    const avatarImage = document.getElementById('avatar-image');
+    const profileImage = document.getElementById('profile-image');
+    if (companionImage || avatarImage || profileImage) {
         companionImage.src = "static/images/" + imageFilename;
+        avatarImage.scr = "static/images/" + imageFilename;
+        profileImage.scr = "static/images/" + imageFilename;
     }
+
 }
 
 // Navbar animation code
@@ -286,6 +291,11 @@ function expectModalClick() {
                             otherModal.style.display = "none";
                         }
                     });
+
+                    if (modal.id === "sign-in-modal" || modal.id === "registration-modal") {
+                        handlePasswordLogic(modal);
+                        togglePasswordVisibility();
+                    }
                 });
             });
         } else {
@@ -300,6 +310,11 @@ function expectModalClick() {
                         otherModal.style.display = "none";
                     }
                 });
+
+                if (modal.id === "sign-in-modal" || modal.id === "registration-modal") {
+                    handlePasswordLogic(modal);
+                    togglePasswordVisibility();
+                }
             });
         }
 
@@ -318,8 +333,19 @@ function expectModalClick() {
         });
     });
 
-    togglePasswordVisibility();
+    window.addEventListener("keydown", function(event) {
+        if (event.key === "Escape") {
+            modals.forEach(({modal}) => {
+                if (modal.style.display === "block") {
+                    modal.style.display = "none";
+                    document.body.classList.remove('stopScroll');
+                }
+            });
+        }
+    });
+}
 
+function handlePasswordLogic() {
     // hide & show confirm_password field
     passwordInput1.addEventListener("blur", function() {
         if (passwordInput1.value.trim() !== "") {
@@ -331,15 +357,15 @@ function expectModalClick() {
     document.getElementById("registration-form").addEventListener("submit", function(event) {
         const password = document.getElementById("registration-password").value;
         const confirmPassword = document.getElementById("confirm-password").value;
-        
+
         document.getElementById("registration-password").classList.remove("error");
         document.getElementById("confirm-password").classList.remove("error");
-        passwordMismatchError.style.display = "none"; 
+        passwordMismatchError.style.display = "none";
 
         if (password !== confirmPassword) {
             event.preventDefault();
             passwordMismatchError.style.display = "flex";
-            document.getElementById("confirm-password").classList.add("error"); 
+            document.getElementById("confirm-password").classList.add("error");
             document.getElementById("registration-password").classList.add("error");
         }
     });
@@ -352,12 +378,18 @@ function launchBriefQuestionnaire() {
 
     briefQuestionnaireModal.style.display = 'block';
     document.body.classList.add('stopScroll');
-    
+
     showPage(0);
 
     function showPage(pageIndex) {
         pages.forEach((page, index) => page.style.display = index === pageIndex ? 'block' : 'none');
     }
+
+    briefQuestionnaireModal.addEventListener('click', function(e) {
+        if (e.target === briefQuestionnaireModal) {
+            e.stopPropagation();
+        }
+    });
 
     // event listener for navigation buttons (next/previous)
     document.querySelectorAll('.navigate-button').forEach(button => {
@@ -685,4 +717,4 @@ function openModal(modalId) {
         document.body.classList.remove("stopScroll");
       }
     });
-  });
+});
