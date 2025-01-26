@@ -172,11 +172,11 @@ window.addEventListener('scroll', function() {
 // Set active navigation link in navbar if the user is on that page
 function setNavLinkActive() {
     const pageMap = {
-        "/Index": "home-link",
-        "/About": "about-link",
-        "/Contact": "contact-link",
-        "/Settings": "settings-link",
-        "/Companion-hub": "companion-hub-link",
+        "/index": "home-link",
+        "/about-us": "about-link",
+        "/contact": "contact-link",
+        "/settings": "settings-link",
+        "/companion-hub": "companion-hub-link",
     };
     const currentPath = window.location.pathname;
     const activeLinkId = pageMap[currentPath];
@@ -255,10 +255,6 @@ const passwordFields = [
     { toggle: document.getElementById("toggle-confirm-password"), input: document.getElementById("confirm-password") }
 ];
 
-const passwordInput1 = document.getElementById("registration-password");
-const confirmPasswordContainer = document.getElementById("confirm-password-container");
-const passwordMismatchError = document.getElementById("password-mismatch-error");
-
 function togglePasswordVisibility() {
     passwordFields.forEach(field => {
         field.toggle.addEventListener("click", () => {
@@ -295,7 +291,7 @@ function expectModalClick() {
                     });
 
                     if (modal.id === "sign-in-modal" || modal.id === "registration-modal") {
-                        handlePasswordLogic(modal);
+                        handleRegistrationLogic(modal);
                         togglePasswordVisibility();
                     }
                 });
@@ -314,7 +310,7 @@ function expectModalClick() {
                 });
 
                 if (modal.id === "sign-in-modal" || modal.id === "registration-modal") {
-                    handlePasswordLogic(modal);
+                    handleRegistrationLogic(modal);
                     togglePasswordVisibility();
                 }
             });
@@ -347,7 +343,12 @@ function expectModalClick() {
     });
 }
 
-function handlePasswordLogic() {
+function handleRegistrationLogic() {
+    const passwordInput1 = document.getElementById("registration-password");
+    const confirmPasswordContainer = document.getElementById("confirm-password-container");
+    const passwordMismatchError = document.getElementById("password-mismatch-error");
+    const usernameTakenError = document.getElementById("username-taken-error");
+
     // hide & show confirm_password field
     passwordInput1.addEventListener("blur", function() {
         if (passwordInput1.value.trim() !== "") {
@@ -370,6 +371,7 @@ function handlePasswordLogic() {
             document.getElementById("confirm-password").classList.add("error");
             document.getElementById("registration-password").classList.add("error");
         }
+
     });
 }
 

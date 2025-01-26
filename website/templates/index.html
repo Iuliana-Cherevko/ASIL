@@ -20,7 +20,12 @@
       </h1>
       <img src="{{url_for('static', filename='images/hero-image.png')}}" class="hero-img">
       <p>Break free from what's holding you back. Start your journey to a healthier, happier you today.</p>
+      
+      {% if current_user.is_authenticated %}
+        <button href="{{url_for('views.companion_hub')}}" class="btn get-started-btn">Navigate to Companion Hub!</button>
+      {% else %}
       <button href="#" id="registration-link" class="btn get-started-btn">Get Started</button>
+      {% endif %}
     </div>
   </section>
 
