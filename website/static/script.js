@@ -133,12 +133,14 @@ function showCorrectCompanionIcon(companion) {
     const companionImage = document.getElementById('companion-image');
     const avatarImage = document.getElementById('avatar-image');
     const profileImage = document.getElementById('profile-image');
-    if (companionImage || avatarImage || profileImage) {
+    if (companionImage || avatarImage) {
         companionImage.src = "static/images/" + imageFilename;
         avatarImage.scr = "static/images/" + imageFilename;
-        profileImage.scr = "static/images/" + imageFilename;
     }
 
+    if (profileImage) {
+        profileImage.scr = "static/images/" + imageFilename;
+    }
 }
 
 // Navbar animation code
