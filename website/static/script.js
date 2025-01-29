@@ -738,15 +738,15 @@ function openModal(modalId) {
 // COMPANION HUB CODE 
 //Weekly view code: displaying correct checkin-status-container and coloring days of week
 const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-const checkInData = {
-    "01/20/2025": { mood: 3, habit: false, journal: "Felt a bit off today. Couldn't focus much, but at least I got some reading done. Hoping tomorrow will be more productive." },
-    "01/21/2025": { mood: 4, habit: true, journal: "Had a good day! Got through my coding assignment and even went for a walk in the evening. Feeling accomplished." },
-    "01/22/2025": { mood: 2, habit: false, journal:  "Struggled with motivation. Kept procrastinating, and now I feel guilty. Need to get back on track tomorrow."  },
-    "01/23/2025": { mood: 5, habit: true, journal: "Amazing day! Finished all my tasks early, watched a great movie (*Interstellar*, of course), and had a nice dinner with family." },
-    "01/26/2025": { mood: 2, habit: false, journal: "Mixed feelings today. Got some work done but didn't feel very engaged. Might just need more sleep." },
-    "01/27/2025": { mood: 4, habit: true, journal: "Really tough day. Nothing seemed to go right, and I felt overwhelmed. Hoping for a fresh start tomorrow." },
-    "01/28/2025": { mood: 5, habit: true, journal: "Felt productive and energized! Finished my CS assignment early and treated myself to some reading time."  },
-};
+// const checkInData = {
+//     "01/20/2025": { mood: 3, habit: false, journal: "Felt a bit off today. Couldn't focus much, but at least I got some reading done. Hoping tomorrow will be more productive." },
+//     "01/21/2025": { mood: 4, habit: true, journal: "Had a good day! Got through my coding assignment and even went for a walk in the evening. Feeling accomplished." },
+//     "01/22/2025": { mood: 2, habit: false, journal:  "Struggled with motivation. Kept procrastinating, and now I feel guilty. Need to get back on track tomorrow."  },
+//     "01/23/2025": { mood: 5, habit: true, journal: "Amazing day! Finished all my tasks early, watched a great movie (*Interstellar*, of course), and had a nice dinner with family." },
+//     "01/26/2025": { mood: 2, habit: false, journal: "Mixed feelings today. Got some work done but didn't feel very engaged. Might just need more sleep." },
+//     "01/27/2025": { mood: 4, habit: true, journal: "Really tough day. Nothing seemed to go right, and I felt overwhelmed. Hoping for a fresh start tomorrow." },
+//     "01/28/2025": { mood: 5, habit: true, journal: "Felt productive and energized! Finished my CS assignment early and treated myself to some reading time."  },
+// };
 
 function formatDate(date) {
     return `${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}/${date.getFullYear()}`;
@@ -773,7 +773,7 @@ function checkForData(checkIn) {
 }
   
 // main function to initialize Weekly View
-function initializeWeeklyView() {
+function initializeWeeklyView(checkInData) {
     const pastWeekCheckInData = getPastWeekData(checkInData);
 
     const today = new Date();
@@ -884,7 +884,6 @@ function updateCheckinSummary(checkIn, date, today) {
         }
 
         // habit Status
-        console.log("you have checked in?" + checkIn.habit);
         const habit_yes = document.getElementById('readonly-habit-yes');
         const habit_no = document.getElementById('readonly-habit-no');
 
@@ -934,11 +933,6 @@ function openCheckInModal() {
             const habitStatus = document.querySelector('input[name="habit_status"]:checked')?.value;
             const journalEntry = document.getElementById('modal-journal').value;
 
-            console.log('Date:', todayFormatted);
-            console.log('Mood:', mood);
-            console.log('Habit Status:', habitStatus);
-            console.log('Journal Entry:', journalEntry);
-
             document.querySelector('.checkin-form').submit(); 
 
             modal.style.display = 'none';  
@@ -954,3 +948,38 @@ function openCheckInModal() {
         });
     });
 };
+
+// user progress dashboard
+const progressQuotes = [
+    "Every small step matters—keep going!",
+    "You're building a habit, one day at a time!",
+    "Consistency is the key to success.",
+    "Keep pushing forward—you're doing great!",
+    "Progress is progress, no matter how small!",
+    "Each day you check in, you prove your commitment!",
+    "You're on a roll—don't stop now!",
+];
+
+function getProgressMessage(checkInCount) {
+    if (checkInCount === 0) {
+        return "No check-ins yet! Start today and track your progress.";
+    }
+    
+    const quoteIndex = Math.min(checkInCount - 1, progressQuotes.length - 1);
+    return progressQuotes[quoteIndex];
+}
+
+function updateUserProgress(goalDuration, checkInData) {
+    const goal = Number(goalDuration);
+    const checkInCount = Object.keys(checkInData).length;
+    
+    document.getElementById("goal-progress").textContent = `${checkInCount}/${goal}`;
+    document.getElementById("checkin-status").textContent = checkInData[formatDate(new Date())] ? "Completed ✅" : "Not Completed ❌";
+    if(checkInCount >= goal) {
+        document.getElementById("progress-quote").textContent = "Congratulations! You have reached your goal! Time to find a new one:";
+        document.getElementById("new-goal-btn").style.display = "flex";    
+    } else {
+        document.getElementById("progress-quote").textContent = getProgressMessage(checkInCount);
+        document.getElementById("new-goal-btn").style.display = "none";
+    }
+}

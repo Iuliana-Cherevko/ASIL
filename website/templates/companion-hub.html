@@ -70,9 +70,18 @@
 
   <section class="user-progress-section">
     <h3>Your Progress Dashboard</h3>
-
-    <div class="user-progress-container">
-        <p>todo</p>
+    <div class="user-progress-container" >
+        <div class="progress-info">
+          <div class="progress-card">
+            <p><strong>Bad Habit:</strong> <span id="habit-name">{{ current_user.habit }}</span></p>
+            <p><strong>Goal Progress:</strong> <span id="goal-progress">{{ current_user.goal_duration }}</span></p>
+            <p><strong>Check-in:</strong> <span id="checkin-status">Loading...</span></p>
+            <p id="progress-quote">Loading...</p>
+            <button id="new-goal-btn" class="new-goal-btn">Set Up New Goal</button>
+          </div>
+        </div>
+        
+        <img class="progress-image" src="{{ url_for('static', filename='/images/journey-picture.png')}}" alt="Progress Journey">
     </div>
   </section>
 
@@ -329,14 +338,16 @@
 
 
   <script>
-    const companion = "dog";
-
     document.addEventListener('DOMContentLoaded', () => {
+      const checkInData = {{ check_in_data | tojson | safe }};
+      console.log(checkInData);
+
       setTimeout(() => setNavLinkActive(), 0);
-      setTimeout(() => showCorrectCompanionIcon(companion), 0);
+      setTimeout(() => showCorrectCompanionIcon("{{ companion }}"), 0);
       setTimeout(() => displayIcons("happy", "goal"), 0);
-      setTimeout(() => initializeWeeklyView(), 0);
+      setTimeout(() => initializeWeeklyView(checkInData), 0);
       setTimeout(() => openCheckInModal(), 0);
+      setTimeout(() => updateUserProgress("{{ current_user.goal_duration }}", checkInData), 0);
     });
 
   </script>

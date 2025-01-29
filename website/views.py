@@ -110,7 +110,20 @@ def settings():
 @views.route('/companion-hub', methods = ['GET', 'POST'])
 @login_required
 def companion_hub():
+    # sample of check-in data, in a form that will be easy for me to analyse, process in js.
+    check_in_data = {
+    "01/20/2025": {"mood": 3, "habit": False, "journal": "Felt a bit off today. Couldn't focus much, but at least I got some reading done. Hoping tomorrow will be more productive."},
+    "01/21/2025": {"mood": 4, "habit": True, "journal": "Had a good day! Got through my coding assignment and even went for a walk in the evening. Feeling accomplished."},
+    "01/22/2025": {"mood": 2, "habit": False, "journal": "Struggled with motivation. Kept procrastinating, and now I feel guilty. Need to get back on track tomorrow."},
+    "01/23/2025": {"mood": 5, "habit": True, "journal": "Amazing day! Finished all my tasks early, watched a great movie (*Interstellar*, of course), and had a nice dinner with family."},
+    "01/26/2025": {"mood": 2, "habit": False, "journal": "Mixed feelings today. Got some work done but didn't feel very engaged. Might just need more sleep."},
+    "01/27/2025": {"mood": 4, "habit": True, "journal": "Really tough day. Nothing seemed to go right, and I felt overwhelmed. Hoping for a fresh start tomorrow."},
+    "01/28/2025": {"mood": 5, "habit": True, "journal": "Felt productive and energized! Finished my CS assignment early and treated myself to some reading time."}
+    }
+
     return render_template('companion-hub.html',
                            user_logged_in=True,
                            username=current_user.username,
-                           companion=current_user.character)
+                           companion=current_user.character,
+                           goal_duration=current_user.goal,
+                           check_in_data=check_in_data)
