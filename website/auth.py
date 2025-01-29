@@ -71,7 +71,7 @@ def registration():
 
         #hashed_password = generate_password_hash(password, method='sha256')
         new_user = User(username=username, password=generate_password_hash(password,method='pbkdf2:sha256')
-                            , email=email,habit=0,character=0,experience=0,goal=0)
+                            , email=email,bad_habit=0,companion=0,experience=0,goal=0)
         db.session.add(new_user)
         db.session.commit()
         print(username,password,email) 

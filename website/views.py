@@ -44,6 +44,23 @@ def index():
             
     return render_template("index.html", user = current_user)
 
+@views.route('/questionaire',  methods = ['GET','POST'])
+def questionaire():
+    if request.method == 'POST':
+        current_user.bad_habit = request.form.get('bad_habit')
+        current_user.goal_duration = request.form.get('goal_duration')
+        current_user.companion_name = request.form.get('companion_name')
+        current_user.companion = request.form.get('companion')
+        print(current_user.bad_habit, current_user.goal_duration, current_user.companion_name, current_user.companion)
+        return render_template('index.html')
+
+        
+
+
+
+
+
+
 
 #@views.route('/profile', methods = ['GET','POST'])
 #@login_required
@@ -99,19 +116,19 @@ def checkin():
 @login_required
 def settings():
     # Manage form submission
-    return render_template('settings.html',
-                           user_logged_in=True,
-                           username=current_user.username,
-                           email=current_user.email,
-                           habit=current_user.habit,
-                           goal_duration=current_user.goal,
-                           companion_name=current_user.character,
-                           companion=current_user.character)
- 
+    return render_template('settings.html')
+                           #user_logged_in=True,
+                           #username=current_user.username,
+                           #email=current_user.email,
+                           #habit=current_user.habit,
+                           #goal_duration=current_user.goal,
+                           #companion_name=current_user.companion_name,
+                           #companion=current_user.companion)
+    
 @views.route('/companion-hub', methods = ['GET', 'POST'])
 @login_required
 def companion_hub():
-    return render_template('companion-hub.html',
-                           user_logged_in=True,
-                           username=current_user.username,
-                           companion=current_user.character)
+    return render_template('companion-hub.html')
+                           #user_logged_in=True,
+                           #username=current_user.username,
+                           #companion=current_user.companion)
