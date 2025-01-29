@@ -739,12 +739,13 @@ function openModal(modalId) {
 //Weekly view code: displaying correct checkin-status-container and coloring days of week
 const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const checkInData = {
-    "01/20/2025": { mood: 3, habit: false, journal: "Sample journal entry for 01/20/2025" },
-    "01/21/2025": { mood: 4, habit: true, journal: "Sample journal entry for 01/21/2025" },
-    "01/22/2025": { mood: 2, habit: false, journal: "Sample journal entry for 01/22/2025" },
-    "01/23/2025": { mood: 5, habit: true, journal: "Sample journal entry for 01/23/2025" },
-    "01/26/2025": { mood: 2, habit: true, journal: "Sample journal entry for 01/26/2025"},
-    "01/27/2025": { mood: 4, habit: true, journal: "Sample journal entry for 01/27/2025"},
+    "01/20/2025": { mood: 3, habit: false, journal: "Felt a bit off today. Couldn't focus much, but at least I got some reading done. Hoping tomorrow will be more productive." },
+    "01/21/2025": { mood: 4, habit: true, journal: "Had a good day! Got through my coding assignment and even went for a walk in the evening. Feeling accomplished." },
+    "01/22/2025": { mood: 2, habit: false, journal:  "Struggled with motivation. Kept procrastinating, and now I feel guilty. Need to get back on track tomorrow."  },
+    "01/23/2025": { mood: 5, habit: true, journal: "Amazing day! Finished all my tasks early, watched a great movie (*Interstellar*, of course), and had a nice dinner with family." },
+    "01/26/2025": { mood: 2, habit: false, journal: "Mixed feelings today. Got some work done but didn't feel very engaged. Might just need more sleep." },
+    "01/27/2025": { mood: 4, habit: true, journal: "Really tough day. Nothing seemed to go right, and I felt overwhelmed. Hoping for a fresh start tomorrow." },
+    "01/28/2025": { mood: 5, habit: true, journal: "Felt productive and energized! Finished my CS assignment early and treated myself to some reading time."  },
 };
 
 function formatDate(date) {
@@ -846,18 +847,16 @@ function updateCheckinSummary(checkIn, date, today) {
 
     // Check if check-in data exists, if not, show corresponding page.
     if (date == today && !checkForData(checkIn, date)) {
-        checkinDefault.style.display = 'block';
-    } 
-
-    else if (!checkForData(checkIn, date)) {
+        checkinDefault.style.display = 'flex';
+    } else if (!checkForData(checkIn, date)) {
         checkinNoData.style.display = 'block';
-        document.getElementById('nodata-date').innerText = date; // Show the date
-        document.getElementById('nodata-mood').innerText = 'No mood recorded';
-        document.getElementById('nodata-habit').innerText = 'No data recorded';
+        document.getElementById('nodata-date').value = date; 
+        document.getElementById('nodata-checkin-no').checked = true;
+        document.querySelector("label[for='nodata-checkin-yes']").style.color = 'var(--grey)';
         document.getElementById('nodata-journal').innerText = 'Looks like today’s page is blank. Tomorrow is a fresh start—let’s make it count!';
     } else {
         checkinReadonly.style.display = 'block';
-        document.getElementById('readonly-date').innerText = date; // Show the date
+        document.getElementById('readonly-date').value = date; // Show the date
 
         // map mood value to correct radio button
         const moodValue = checkIn.mood;
@@ -868,13 +867,38 @@ function updateCheckinSummary(checkIn, date, today) {
         document.getElementById('readonly-mood-5').checked = moodValue === 5;
 
         // check-in status
-        const checkInStatus = checkForData(checkIn);
-        document.getElementById('readonly-checkin-yes').checked = checkInStatus == true;
-        document.getElementById('readonly-checkin-no').checked = checkInStatus == false;
+        const checkin_yes = document.getElementById('readonly-checkin-yes');
+        const checkin_no = document.getElementById('readonly-checkin-no');
+
+        if(checkForData(checkIn)) {
+            checkin_yes.checked = true;
+            checkin_no.checked = false;
+            document.querySelector("label[for='readonly-checkin-no']").style.color = 'var(--grey)';
+            document.querySelector("label[for='readonly-checkin-yes']").style.color = 'var(--text-color)';
+
+        } else {
+            checkin_no.checked = true;
+            checkin_yes.checked = false;
+            document.querySelector("label[for='readonly-checkin-yes']").style.color = 'var(--grey)';
+            document.querySelector("label[for='readonly-checkin-no']").style.color = 'var(--text-color)';
+        }
 
         // habit Status
-        document.getElementById('readonly-habit-yes').checked = checkIn.habit == true;
-        document.getElementById('readonly-habit-no').checked = checkIn.habit == false;
+        console.log("you have checked in?" + checkIn.habit);
+        const habit_yes = document.getElementById('readonly-habit-yes');
+        const habit_no = document.getElementById('readonly-habit-no');
+
+        if(checkIn.habit) {
+            habit_yes.checked = true;
+            habit_no.checked = false;
+            document.querySelector("label[for='readonly-habit-no']").style.color = 'var(--grey)';
+            document.querySelector("label[for='readonly-habit-yes']").style.color = 'var(--text-color)';
+        } else {
+            habit_yes.checked = false;
+            habit_no.checked = true;
+            document.querySelector("label[for='readonly-habit-yes']").style.color = 'var(--grey)';
+            document.querySelector("label[for='readonly-habit-no']").style.color = 'var(--text-color)';
+        }
 
         // journal Entry
         document.getElementById('readonly-journal').innerText = checkIn.journal;
