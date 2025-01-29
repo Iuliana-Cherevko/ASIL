@@ -122,25 +122,36 @@ document.addEventListener("DOMContentLoaded", () => {
 function showCorrectCompanionIcon(companion) {
     const companionImages = {
         "dog": "dog.png",
-        "plant": "plant.jpg",
-        "slime": "slime.png",
-        "cat": "cat.jpg",
+        "plant": "plant.png",
+        "slime": "dog.png",
+        "cat": "cat.png",
         "dragon": "dragon.png",
     };
 
-    const imageFilename = companionImages[companion] || "user-icon.png"; // Default image if companion not found
+    const imageFilename = companionImages[companion] || "user-icon.png";
 
     const companionImage = document.getElementById('companion-image');
     const avatarImage = document.getElementById('avatar-image');
     const profileImage = document.getElementById('profile-image');
+    const companionFullSize = document.getElementById('companion-full-size');
+
     if (companionImage || avatarImage) {
         companionImage.src = "static/images/" + imageFilename;
         avatarImage.scr = "static/images/" + imageFilename;
     }
 
+    if (companionFullSize) {
+        companionFullSize.src = "static/images/" + imageFilename; 
+    }
+
     if (profileImage) {
         profileImage.scr = "static/images/" + imageFilename;
     }
+}
+
+function displayIcons(mood, goal) {
+    document.getElementById("mood-emoji").src = "static/images/companion-icons/" + (mood || "happy") + ".png";
+    document.getElementById("goal-icon").src = "static/images/companion-icons/" + (goal || "goal") + ".png";
 }
 
 // Navbar animation code
@@ -201,14 +212,14 @@ function showSlider() {
       { type: "color", value: "var(--neutral-foam)" },
       { type: "image", value: "dog.png" },
       { type: "color", value: "var(--neutral-pink)" },
-      { type: "image", value: "cat.jpg" },
+      { type: "image", value: "cat.png" },
       { type: "color", value: "var(--neutral-cinderella)" },
       { type: "color", value: "var(--neutral-pink)" },
-      { type: "image", value: "cat.jpg" },
+      { type: "image", value: "cat.png" },
       { type: "image", value: "dog.png" },
       { type: "color", value: "var(--neutral-cinderella)" },
       { type: "color", value: "var(--neutral-foam)" },
-      { type: "image", value: "plant.jpg" },
+      { type: "image", value: "plant.png" },
     ];
   
     const totalSquares = 50;
@@ -514,7 +525,7 @@ const testimonials = [
         text: "Energy drinks used to control my life — I struggled for years to cut back, trying every method I could find, but nothing really worked. Then I found HabiTrain, and it made all the difference. It gave me the motivation I desperately needed, and honestly, it was so rewarding to see my little puppy grow as I made progress. Breaking this bad habit finally felt doable — and even fun. Thank you, HabiTrain!"
     },
     {
-        avatar: "static/images/plant.jpg",
+        avatar: "static/images/plant.png",
         name: "Alex Martin",
         title: "Quit for Good!",
         rating: "⭐⭐⭐⭐⭐",
@@ -528,7 +539,7 @@ const testimonials = [
         text: "I used to waste hours endlessly scrolling on my phone — it was draining and unproductive. HabiTrain helped me break free from that cycle with its simple steps and progress tracking. Seeing how much time I regained every day was incredibly motivating, and now, I spend my time doing what really matters. Whether it's focusing on my hobbies or spending quality time with loved ones, I feel happier and more in control of my life.",
     },
     {
-        avatar: "static/images/plant.jpg",
+        avatar: "static/images/plant.png",
         name: "John Doe",
         title: "Changed My Life!",
         rating: "⭐⭐⭐⭐⭐",
@@ -722,3 +733,200 @@ function openModal(modalId) {
       }
     });
 });
+
+
+// COMPANION HUB CODE 
+//Weekly view code: displaying correct checkin-status-container and coloring days of week
+const weekDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const checkInData = {
+    "01/20/2025": { mood: 3, habit: false, journal: "Sample journal entry for 01/20/2025" },
+    "01/21/2025": { mood: 4, habit: true, journal: "Sample journal entry for 01/21/2025" },
+    "01/22/2025": { mood: 2, habit: false, journal: "Sample journal entry for 01/22/2025" },
+    "01/23/2025": { mood: 5, habit: true, journal: "Sample journal entry for 01/23/2025" },
+    "01/26/2025": { mood: 2, habit: true, journal: "Sample journal entry for 01/26/2025"},
+    "01/27/2025": { mood: 4, habit: true, journal: "Sample journal entry for 01/27/2025"},
+};
+
+function formatDate(date) {
+    return `${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}/${date.getFullYear()}`;
+}
+
+// get past 7 days from today
+function getPastWeekData(checkInData) {
+    const today = new Date();
+    const sevenDaysAgo = new Date(today).setDate(today.getDate() - 6);
+    const pastWeekData = {};
+
+    for (let d = new Date(sevenDaysAgo); d <= today; d.setDate(d.getDate() + 1)) {
+        const formattedDate = formatDate(d);
+        if (checkInData[formattedDate]) {
+            pastWeekData[formattedDate] = checkInData[formattedDate] || {};
+        }
+    }
+
+    return pastWeekData;
+}
+
+function checkForData(checkIn) {
+    return checkIn && checkIn.habit !== undefined;
+}
+  
+// main function to initialize Weekly View
+function initializeWeeklyView() {
+    const pastWeekCheckInData = getPastWeekData(checkInData);
+
+    const today = new Date();
+    const sevenDaysAgo = new Date(today);
+    sevenDaysAgo.setDate(today.getDate() - 6);
+
+    // color from start
+    updateDayColors(pastWeekCheckInData, today);
+    updateSelectedDay(weekDays[today.getDay()]);
+
+    for (let i = 0; i < 7; i++) {
+        const dayDate = new Date(sevenDaysAgo);
+        dayDate.setDate(sevenDaysAgo.getDate() + i);
+
+        const formattedDate = formatDate(dayDate);
+        const dayOfWeek = weekDays[dayDate.getDay()];
+        const dayBox = document.getElementById(dayOfWeek.toLowerCase());
+
+        if (dayBox) {
+            dayBox.addEventListener("click", function () {
+                const checkIn = pastWeekCheckInData[formattedDate];
+                updateCheckinSummary(checkIn, formattedDate, formatDate(today));
+                updateSelectedDay(dayOfWeek);
+            });
+        }
+    }
+}
+
+function updateDayColors(pastWeekCheckInData, today) {
+    const todayFormatted = formatDate(today);
+
+    weekDays.forEach(day => {
+        const dayBox = document.getElementById(day.toLowerCase());
+        if (!dayBox) return;
+
+        const date = Object.keys(pastWeekCheckInData).find(d => 
+            weekDays[new Date(d).getDay()].toLowerCase() === day.toLowerCase()
+        ) || null;
+
+        const isToday = weekDays[today.getDay()] == day;
+        const checkIn = date ? pastWeekCheckInData[date] : null;
+        const hasCheckIn = checkIn && checkIn.habit;
+
+        dayBox.classList.remove("default", "green", "red");
+        dayBox.classList.add(!hasCheckIn ? (isToday ? "default" : "red") : hasCheckIn ? "green" : "red");
+
+        const triangle = dayBox.querySelector(".triangle");
+        if (triangle) {
+            triangle.style.borderTopColor = isToday ? "var(--background-color-2)" : hasCheckIn ? "var(--neutral-green)" : "var(--neutral-pink)";
+        }
+    });
+}
+
+// when user selects different date, update its view
+function updateSelectedDay(selectedDay) {
+    document.querySelectorAll('.day-box').forEach(d => {
+        d.classList.toggle('selected', d.id === selectedDay.toLowerCase());
+        const triangle = d.querySelector('.triangle');
+        triangle.style.display = d.classList.contains('selected') ? 'block' : 'none';
+    });
+}
+
+// show correct page
+function updateCheckinSummary(checkIn, date, today) {
+    const checkinDefault = document.getElementById('checkin-default');
+    const checkinReadonly = document.getElementById('checkin-readonly');
+    const checkinNoData = document.getElementById('checkin-nodata');
+    checkinDefault.style.display = 'none';
+    checkinReadonly.style.display = 'none';
+    checkinNoData.style.display = 'none';
+
+    // Check if check-in data exists, if not, show corresponding page.
+    if (date == today && !checkForData(checkIn, date)) {
+        checkinDefault.style.display = 'block';
+    } 
+
+    else if (!checkForData(checkIn, date)) {
+        checkinNoData.style.display = 'block';
+        document.getElementById('nodata-date').innerText = date; // Show the date
+        document.getElementById('nodata-mood').innerText = 'No mood recorded';
+        document.getElementById('nodata-habit').innerText = 'No data recorded';
+        document.getElementById('nodata-journal').innerText = 'Looks like today’s page is blank. Tomorrow is a fresh start—let’s make it count!';
+    } else {
+        checkinReadonly.style.display = 'block';
+        document.getElementById('readonly-date').innerText = date; // Show the date
+
+        // map mood value to correct radio button
+        const moodValue = checkIn.mood;
+        document.getElementById('readonly-mood-1').checked = moodValue === 1;
+        document.getElementById('readonly-mood-2').checked = moodValue === 2;
+        document.getElementById('readonly-mood-3').checked = moodValue === 3;
+        document.getElementById('readonly-mood-4').checked = moodValue === 4;
+        document.getElementById('readonly-mood-5').checked = moodValue === 5;
+
+        // check-in status
+        const checkInStatus = checkForData(checkIn);
+        document.getElementById('readonly-checkin-yes').checked = checkInStatus == true;
+        document.getElementById('readonly-checkin-no').checked = checkInStatus == false;
+
+        // habit Status
+        document.getElementById('readonly-habit-yes').checked = checkIn.habit == true;
+        document.getElementById('readonly-habit-no').checked = checkIn.habit == false;
+
+        // journal Entry
+        document.getElementById('readonly-journal').innerText = checkIn.journal;
+    }
+}
+
+// function openCheckInModal(isEditing, selectedDay) {
+//     const modal = document.getElementById('edit-checkin-modal');
+//     const currentDate = getCurrentDateForWeek(selectedDay);
+//     const checkInStatus = checkInData[currentDate] || {};
+
+//     document.getElementById('edit-date').value = currentDate;
+//     document.getElementById('edit-mood').value = isEditing && checkInStatus.mood ? checkInStatus.mood : "";
+//     document.getElementById('edit-habit').value = isEditing && checkInStatus.habit ? "Completed" : "";
+//     document.getElementById('edit-journal').value = isEditing && checkInStatus.journal ? checkInStatus.journal : "";
+
+//     modal.style.display = 'block';
+// }
+
+function openCheckInModal() {
+    document.querySelector('.check-in-btn').addEventListener('click', function() {
+        const today = new Date();
+        const todayFormatted = formatDate(today);
+
+        const modal = document.getElementById('checkin-modal');
+        const modalDateInput = document.getElementById('modal-date');
+        
+        modal.style.display = 'block';
+        modalDateInput.value = todayFormatted; 
+
+        document.getElementById('modal-submit-btn').addEventListener('click', function() {
+            const mood = document.querySelector('input[name="mood"]:checked')?.value;
+            const habitStatus = document.querySelector('input[name="habit_status"]:checked')?.value;
+            const journalEntry = document.getElementById('modal-journal').value;
+
+            console.log('Date:', todayFormatted);
+            console.log('Mood:', mood);
+            console.log('Habit Status:', habitStatus);
+            console.log('Journal Entry:', journalEntry);
+
+            document.querySelector('.checkin-form').submit(); 
+
+            modal.style.display = 'none';  
+        });
+
+        document.getElementById('modal-close').addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+};

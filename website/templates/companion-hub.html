@@ -11,15 +11,298 @@
   <!-- Navigation Bar -->
   {% include '/components/navbar.html' %}
 
+  <div class="spacer"></div>
+  <h2>Your Companion Hub</h2>
+
+  <section class="companion-section">
+    <h3>Your Trusted Companion</h3>
+
+      <div class="companion-container">
+
+          <div class="companion-left">
+            <img id="companion-full-size" class="companion-full-size" src="{{ url_for('static', filename='images/dog.png') }}">
+              <img class="bed-image" src="{{ url_for('static', filename='images/companions/bed.png') }}">
+              
+              <div class="progress-container">
+                  <div class="level-info">
+                      <img class="tooltip-icon" src="{{ url_for('static', filename='images/information-icon.png') }}" alt="Info">
+                      <span>Lvl {% if current_user.companion_level %} {{ current_user.companion_level }} {% else %} 1 {% endif %}</span>
+                      <div class="tooltip-text">XP until next level: 100<br>Levels until evolution: 4
+                          <div class="tooltip-arrow"></div>
+                      </div>
+                  </div>
+                  <div class="progress-bar">
+                      <span class="progress-text">75%</span>
+                  </div>
+              </div>
+
+              <p>{% if current_user.companion_name %} {{ current_user.companion_name }} {% else %} Fido {% endif %}</p>
+          </div>
+
+          <div class="companion-info">
+            <div class="companion-info-row">
+                <div class="companion-text">
+                    <h4>Companion's Mood:</h4>
+                    <p>{% if current_user.mood_text %} {{ current_user.mood_text }} {% else %} Fido is in a cheerful mood! {% endif %}</p>
+                </div>
+                <img id="mood-emoji" src="" class="info-icon">
+            </div>
+        
+            <div class="companion-info-row">
+                <div class="companion-text">
+                    <h4>Personality Badge:</h4>
+                    <p>{% if current_user.personality_badge %} {{ current_user.personality_badge }} {% else %} Fido's bold and fearless attitude is guiding him today. ⚡ {% endif %}</p>
+                </div>
+            </div>
+        
+            <div class="companion-info-row">
+                <div class="companion-text">
+                    <h4>Companion's Goal Today:</h4>
+                    <p>{% if current_user.companion_goal_text %} {{ current_user.companion_goal_text }} {% else %} Encourage Cara to hit their goal! {% endif %}</p>
+                </div>
+                <img id="goal-icon" src="" class="info-icon">
+            </div>
+        </div>
+      </div>
+
+      <div class="companion-background"></div>
+  </section>
+
+  <section class="user-progress-section">
+    <h3>Your Progress Dashboard</h3>
+
+    <div class="user-progress-container">
+        <p>todo</p>
+    </div>
+  </section>
+
+
+    <div class="section-header">
+      <h2>Weekly View</h2>
+    </div>
+    <section class="weekly-view">
+      <div class="inner-box">
+        <div class="weekly-grid">
+          <div id="sun" class="day-box left">Sun<div class="triangle"></div></div>
+          <div id="mon" class="day-box">Mon<div class="triangle"></div></div>
+          <div id="tue" class="day-box">Tue<div class="triangle"></div></div>
+          <div id="wed" class="day-box">Wed<div class="triangle"></div></div>
+          <div id="thu" class="day-box">Thu<div class="triangle"></div></div>
+          <div id="fri" class="day-box">Fri<div class="triangle"></div></div>
+          <div id="sat" class="day-box right">Sat<div class="triangle"></div></div>
+        </div>
+        <div class="checkin-status-container" id="checkin-container">
+
+          <!-- default page for today -->
+          <div class="checkin-page" id="checkin-default">
+            <h3>Your Daily Check-in is waiting!</h3>
+            <p>Click the button below to get started and track your progress.<br>Or, select any date to review your check-in for that day.</p>
+            <button class="check-in-btn">Complete Check-In</button>
+          </div>
+    
+          <!-- view and edit previous check-ins -->
+          <div class="checkin-page" id="checkin-readonly" style="display: none;">
+            <form class="checkin-form-summary" method="POST">
+              <div class="check-in-questions">
+                <label for="readonly-date" class="bolded-label">Date:</label>
+                <input type="text" id="readonly-date" name="date" value="March 5, 2025" readonly>
+              </div>
+
+              <div class="check-in-questions">
+                <label for="readonly-mood" class="bolded-label">Mood:</label>
+                <div class="mood-icons">
+                  <input type="radio" id="readonly-mood-1" name="mood" value="1" disabled>
+                  <label for="readonly-mood-1" class="mood-icon">
+                    <img src="{{ url_for('static', filename='images/mood/mood-1.png') }}">
+                  </label>
+
+                  <input type="radio" id="readonly-mood-2" name="mood" value="2" disabled>
+                  <label for="readonly-mood-2" class="mood-icon">
+                    <img src="{{ url_for('static', filename='images/mood/mood-2.png') }}">
+                  </label>
+
+                  <input type="radio" id="readonly-mood-3" name="mood" value="3" disabled>
+                  <label for="readonly-mood-3" class="mood-icon">
+                    <img src="{{ url_for('static', filename='images/mood/mood-3.png') }}">
+                  </label>
+
+                  <input type="radio" id="readonly-mood-4" name="mood" value="4" disabled>
+                  <label for="readonly-mood-4" class="mood-icon">
+                    <img src="{{ url_for('static', filename='images/mood/mood-4.png') }}">
+                  </label>
+
+                  <input type="radio" id="readonly-mood-5" name="mood" value="5" disabled>
+                  <label for="readonly-mood-5" class="mood-icon">
+                    <img src="{{ url_for('static', filename='images/mood/mood-5.png') }}">
+                  </label>
+                </div>
+              </div>
+
+              <div class="check-in-questions">
+                <label for="readonly-checkin" class="bolded-label">Daily Check-In:</label>
+                <div class="checkin-status">
+                  <input type="radio" id="readonly-checkin-yes" value="true" disabled>
+                  <label for="readonly-checkin-yes" class="checkin-option">
+                    <img src="{{ url_for('static', filename='images/companion-icons/yes-icon.png') }}" class="habit-icon">
+                    <span class="checkin-text">Completed</span>
+                  </label>
+
+                  <input type="radio" id="readonly-checkin-no" value="false" disabled>
+                  <label for="readonly-checkin-no" class="checkin-option">
+                    <img src="{{ url_for('static', filename='images/companion-icons/no-icon.png') }}" class="habit-icon">
+                    <span class="checkin-text">Skipped</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="check-in-questions">
+                <label for="readonly-habit" class="bolded-label">Habit Status:</label>
+                <div class="tooltip-container-p">
+                  <img class="tooltip-icon-p" src="{{ url_for('static', filename='images/information-icon.png') }}" alt="Info">
+                  <div class="tooltip-text-p">
+                    This habit status reflects whether you followed your goal today. Be honest—it’s your journal, and tracking your progress will help you stay accountable and see your full journey.
+                  </div>
+                </div>
+
+                <div class="habit-status">
+                  <input type="radio" id="readonly-habit-yes" name="habit_status" value="true" disabled>
+                  <label for="readonly-habit-yes" class="habit-option">
+                    <img src="{{ url_for('static', filename='images/companion-icons/yes-icon.png') }}" class="habit-icon">
+                    <span class="habit-text">Stayed on track</span>
+                  </label>
+
+                  <input type="radio" id="readonly-habit-no" name="habit_status" value="false" disabled>
+                  <label for="readonly-habit-no" class="habit-option">
+                    <img src="{{ url_for('static', filename='images/companion-icons/no-icon.png') }}" class="habit-icon">
+                    <span class="habit-text">Skipped</span>
+                  </label>
+                </div>
+              </div>
+
+              <label for="readonly-journal" class="bolded-label">Journal Entry:</label>
+              <textarea id="readonly-journal" name="journal" readonly>Had a productive day at work and finished my project early!</textarea>
+            </form>
+          </div>
+        </div>
+
+    
+          <!-- date when No Data was recorded -->
+          <div class="checkin-page" id="checkin-nodata" style="display: none;">
+            <h3>Daily Check-in Summary</h3>
+            <p><strong>Date:</strong> <span id="nodata-date">MM/DD/YYYY</span></p>
+            <p><strong>Mood:</strong> <span id="nodata-mood">No mood recorded</span></p>
+            <p><strong>Daily Check-In:</strong> <span id="nodata-checkin">No mood recorded</span></p>
+            <p><strong>Habit Status:</strong> <span id="nodata-habit">No data recorded</span></p>
+            <p><strong>Journal Entry:</strong></p>
+            <p id="nodata-journal">Looks like today's page is blank. Tomorrow is a fresh start—let's make it count!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Check-in Popup -->
+  <div id="checkin-modal" class="checkin-modal" style="display: none;">
+    <div class="checkin-modal-content">
+      <div class="primary-header">
+        <h2 id="modal-title">Daily Check-in</h2>
+        <div class="tooltip-container">
+          <img class="tooltip-icon-heading" src="{{ url_for('static', filename='images/information-icon.png') }}" alt="Info">
+          <div class="tooltip-text-heading">This daily check-in is a powerful tool that allows you to reflect on your journey, track your progress, and see how your habits evolve over time. With every check-in, you move closer to your goal, and your companion grows alongside you.
+          </div>
+        </div>
+      </div>
+
+      <div class="checkin-inner-padding">
+        <form class="checkin-form" method="POST">
+          <div class="check-in-questions">
+            <label for="modal-date" class="bolded-label">Date:</label>
+            <input type="text" id="modal-date" name="date" readonly placeholder="MM/DD/YYYY">
+          </div>
+
+          <div class="check-in-questions">
+            <label for="modal-mood" class="bolded-label">Mood:</label>
+            <div class="mood-icons">
+              <input type="radio" id="mood-1" name="mood" value="1">
+              <label for="mood-1" class="mood-icon">
+                <img src="{{ url_for('static', filename='images/mood/mood-1.png') }}">
+              </label>
+          
+              <input type="radio" id="mood-2" name="mood" value="2">
+              <label for="mood-2" class="mood-icon">
+                <img src="{{ url_for('static', filename='images/mood/mood-2.png') }}">
+              </label>
+          
+              <input type="radio" id="mood-3" name="mood" value="3">
+              <label for="mood-3" class="mood-icon">
+                <img src="{{ url_for('static', filename='images/mood/mood-3.png') }}">
+              </label>
+          
+              <input type="radio" id="mood-4" name="mood" value="4">
+              <label for="mood-4" class="mood-icon">
+                <img src="{{ url_for('static', filename='images/mood/mood-4.png') }}">
+              </label>
+          
+              <input type="radio" id="mood-5" name="mood" value="5">
+              <label for="mood-5" class="mood-icon">
+                <img src="{{ url_for('static', filename='images/mood/mood-5.png') }}">
+              </label>
+            </div>
+          </div>
+
+          <div class="check-in-questions">
+            <label for="modal-habit" class="bolded-label">Habit Status:</label>
+            <div class="tooltip-container-p">
+              <img class="tooltip-icon-p" src="{{ url_for('static', filename='images/information-icon.png') }}" alt="Info">
+              <div class="tooltip-text-p">
+                This habit status reflects whether you followed your goal today. Be honest—it’s your journal, and tracking your progress will help you stay accountable and see your full journey.
+              </div>
+            </div>
+          
+            <div class="habit-status">
+              <input type="radio" id="habit-yes" name="habit_status" value="true">
+              <label for="habit-yes" class="habit-option">
+                <img src="{{ url_for('static', filename='images/companion-icons/yes-icon.png') }}" class="habit-icon">
+                <span class="habit-text">Stayed on track</span>
+              </label>
+          
+              <input type="radio" id="habit-no" name="habit_status" value="false">
+              <label for="habit-no" class="habit-option">
+                <img src="{{ url_for('static', filename='images/companion-icons/no-icon.png') }}" class="habit-icon">
+                <span class="habit-text">Skipped</span>
+              </label>
+            </div>
+          </div>
+
+            <label for="modal-journal" class="bolded-label">Journal Entry:</label>
+            <textarea id="modal-journal" name="journal" placeholder="Write about your day, reflect on your progress, or share your thoughts. This is your space!"></textarea>
+        </form>
+
+        <div class="modal-buttons">
+          <button id="modal-close" class="btn-foam">Finish Later</button>
+          <button id="modal-submit-btn" class="btn-cin">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   
   <!-- Footer and Wave Section -->
   {% include '/components/wave.html' %}
   {% include '/components/footer-bottom.html' %}  
 
+
   <script>
+    const companion = "dog";
+
     document.addEventListener('DOMContentLoaded', () => {
-      runAllFunctions("{{ companion }}");
+      setTimeout(() => setNavLinkActive(), 0);
+      setTimeout(() => showCorrectCompanionIcon(companion), 0);
+      setTimeout(() => displayIcons("happy", "goal"), 0);
+      setTimeout(() => initializeWeeklyView(), 0);
+      setTimeout(() => openCheckInModal(), 0);
     });
+
   </script>
 
 </body>
