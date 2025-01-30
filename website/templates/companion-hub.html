@@ -76,8 +76,10 @@
             <p><strong>Bad Habit:</strong> <span id="habit-name">{{ current_user.habit }}</span></p>
             <p><strong>Goal Progress:</strong> <span id="goal-progress">{{ current_user.goal_duration }}</span></p>
             <p><strong>Check-in:</strong> <span id="checkin-status">Loading...</span></p>
-            <p id="progress-quote">Loading...</p>
-            <button id="new-goal-btn" class="new-goal-btn">Set Up New Goal</button>
+            <div class="center-text">
+              <p id="progress-quote">Loading...</p>
+              <button id="new-goal-btn" class="new-goal-btn">Set Up New Goal</button>
+            </div>
           </div>
         </div>
         
@@ -258,7 +260,7 @@
       </div>
 
       <div class="checkin-inner-padding">
-        <form class="checkin-form" method="POST">
+        <form class="checkin-form" action="{{ url_for('views.checkin')}}" method="POST">
           <div class="check-in-questions">
             <label for="modal-date" class="bolded-label">Date:</label>
             <input type="text" id="modal-date" name="date" readonly placeholder="MM/DD/YYYY">
