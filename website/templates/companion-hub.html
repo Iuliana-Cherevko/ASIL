@@ -258,7 +258,7 @@
       </div>
 
       <div class="checkin-inner-padding">
-        <form class="checkin-form" method="POST">
+        <form class="checkin-form" method="POST" action="{{url_for('views.checkin')}}">
           <div class="check-in-questions">
             <label for="modal-date" class="bolded-label">Date:</label>
             <input type="text" id="modal-date" name="date" readonly placeholder="MM/DD/YYYY">

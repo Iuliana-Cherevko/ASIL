@@ -2,6 +2,7 @@ from flask import Blueprint , render_template , request, Flask, redirect, url_fo
 from datetime import datetime
 from . import db
 from .models import User 
+from .models import Journal
 from werkzeug.security import generate_password_hash , check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
 
@@ -54,46 +55,7 @@ def questionaire():
         print(current_user.bad_habit, current_user.goal_duration, current_user.companion_name, current_user.companion)
         return render_template('index.html')
 
-        
-
-
-
-
-
-
-
-#@views.route('/profile', methods = ['GET','POST'])
-#@login_required
-#def profile():
-    # username = "Katy Lio"
-    # user_data = users[username] 
-
-    # today = "November 17, 2024"
-    # checked_in_today = today in user_data['checked_in_days']
-
-    # return render_template(
-    #     "profile.html",
-    #     user_logged_in=True,
-    #     username_placeholder=username,
-    #     days_kept_up_placeholder=user_data['days_kept_up'],
-    #     pet_name_placeholder=user_data['creature_name'],
-    #     current_goal_placeholder=user_data['current_goal'],
-    #     pet_level_placeholder=user_data['creature_level'],
-    #     checked_in_days=user_data['checked_in_days'],
-    #     checked_in_today=checked_in_today,
-    #     bad_habit_placeholder=user_data['bad_habit_placeholder']
-    # )
-    #return render_template("profile.html")
-
-@views.route('/check-in', methods= ['GET', 'POST'])
-def check_in():
-    if request.method == 'POST':
-        name = current_user
-        return render_template('index.html', user_logged_in = True)
-        #journal = request.form.get('journal')
-        #users[name]['journal'] = journal
-        #return render_template("checkin.html")
-    return render_template('checkin.html')
+             
 
 @views.route('/about-us')
 def about_us():
@@ -107,9 +69,36 @@ def contact():
 def attributions():
     return render_template('attributions.html')
 
-@views.route('/checkin')
+@views.route('/checkin', methods = ['GET', 'POST'])#working i think can use more testing
+@login_required
 def checkin():
-    return render_template('checkin.html')# doesnt work rn 
+    check_in_data = {
+    "01/20/2025": {"mood": 3, "habit": False, "journal": "Felt a bit off today. Couldn't focus much, but at least I got some reading done. Hoping tomorrow will be more productive."},
+    "01/21/2025": {"mood": 4, "habit": True, "journal": "Had a good day! Got through my coding assignment and even went for a walk in the evening. Feeling accomplished."},
+    "01/22/2025": {"mood": 2, "habit": False, "journal": "Struggled with motivation. Kept procrastinating, and now I feel guilty. Need to get back on track tomorrow."},
+    "01/23/2025": {"mood": 5, "habit": True, "journal": "Amazing day! Finished all my tasks early, watched a great movie (*Interstellar*, of course), and had a nice dinner with family."},
+    "01/26/2025": {"mood": 2, "habit": False, "journal": "Mixed feelings today. Got some work done but didn't feel very engaged. Might just need more sleep."},
+    "01/27/2025": {"mood": 4, "habit": True, "journal": "Really tough day. Nothing seemed to go right, and I felt overwhelmed. Hoping for a fresh start tomorrow."},
+    "01/28/2025": {"mood": 5, "habit": True, "journal": "Felt productive and energized! Finished my CS assignment early and treated myself to some reading time."}
+    }
+    if request.method == 'POST':
+       #date = datetime.now() dont think its needed
+        mood = request.form.get('mood')
+        habit_status = request.form.get('habit_status')
+        data = request.form.get('journal')
+        user_username = current_user.username
+
+        new_journal = Journal(mood=mood, habit_status=habit_status,data=data,user_username=current_user.username)
+        print(data, user_username)
+        db.session.add(new_journal)
+        db.session.commit
+
+        return render_template('companion-hub.html',
+                            user_logged_in=True,
+                            username=current_user.username,
+                            companion=current_user.companion,
+                            goal_duration=current_user.goal,
+                            check_in_data=check_in_data)
 
 @views.route('/settings', methods = ['GET', 'POST'])
 @login_required
