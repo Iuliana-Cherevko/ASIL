@@ -856,68 +856,32 @@ function updateCheckinSummary(checkIn, date, today) {
         document.getElementById('nodata-journal').innerText = 'Looks like today’s page is blank. Tomorrow is a fresh start—let’s make it count!';
     } else {
         checkinReadonly.style.display = 'block';
-        document.getElementById('readonly-date').value = date; // Show the date
+        document.getElementById('readonly-date').value = date; 
 
         // map mood value to correct radio button
-        const moodValue = checkIn.mood;
-        document.getElementById('readonly-mood-1').checked = moodValue === 1;
-        document.getElementById('readonly-mood-2').checked = moodValue === 2;
-        document.getElementById('readonly-mood-3').checked = moodValue === 3;
-        document.getElementById('readonly-mood-4').checked = moodValue === 4;
-        document.getElementById('readonly-mood-5').checked = moodValue === 5;
+        document.querySelector(`#readonly-mood-${checkIn.mood}`).checked = true;
 
         // check-in status
-        const checkin_yes = document.getElementById('readonly-checkin-yes');
-        const checkin_no = document.getElementById('readonly-checkin-no');
-
-        if(checkForData(checkIn)) {
-            checkin_yes.checked = true;
-            checkin_no.checked = false;
-            document.querySelector("label[for='readonly-checkin-no']").style.color = 'var(--grey)';
-            document.querySelector("label[for='readonly-checkin-yes']").style.color = 'var(--text-color)';
-
-        } else {
-            checkin_no.checked = true;
-            checkin_yes.checked = false;
-            document.querySelector("label[for='readonly-checkin-yes']").style.color = 'var(--grey)';
-            document.querySelector("label[for='readonly-checkin-no']").style.color = 'var(--text-color)';
-        }
+        const checkinRadio = checkForData(checkIn) ? 'readonly-checkin-yes' : 'readonly-checkin-no';
+        document.getElementById(checkinRadio).checked = true;
+        document.querySelector(`label[for='readonly-checkin-yes']`).style.color = checkForData(checkIn) ? 'var(--text-color)' : 'var(--grey)';
+        document.querySelector(`label[for='readonly-checkin-no']`).style.color = checkForData(checkIn) ? 'var(--grey)' : 'var(--text-color)';
 
         // habit Status
         const habit_yes = document.getElementById('readonly-habit-yes');
         const habit_no = document.getElementById('readonly-habit-no');
 
-        if(checkIn.habit) {
-            habit_yes.checked = true;
-            habit_no.checked = false;
-            document.querySelector("label[for='readonly-habit-no']").style.color = 'var(--grey)';
-            document.querySelector("label[for='readonly-habit-yes']").style.color = 'var(--text-color)';
-        } else {
-            habit_yes.checked = false;
-            habit_no.checked = true;
-            document.querySelector("label[for='readonly-habit-yes']").style.color = 'var(--grey)';
-            document.querySelector("label[for='readonly-habit-no']").style.color = 'var(--text-color)';
-        }
+        const habitRadio = checkIn.habit ? 'readonly-habit-yes' : 'readonly-habit-no';
+        document.getElementById(habitRadio).checked = true;
+        document.querySelector("label[for='readonly-habit-yes']").style.color = checkIn.habit ? 'var(--text-color)' : 'var(--grey)';
+        document.querySelector("label[for='readonly-habit-no']").style.color = checkIn.habit ? 'var(--grey)' : 'var(--text-color)';
 
         // journal Entry
         document.getElementById('readonly-journal').innerText = checkIn.journal;
     }
 }
 
-// function openCheckInModal(isEditing, selectedDay) {
-//     const modal = document.getElementById('edit-checkin-modal');
-//     const currentDate = getCurrentDateForWeek(selectedDay);
-//     const checkInStatus = checkInData[currentDate] || {};
-
-//     document.getElementById('edit-date').value = currentDate;
-//     document.getElementById('edit-mood').value = isEditing && checkInStatus.mood ? checkInStatus.mood : "";
-//     document.getElementById('edit-habit').value = isEditing && checkInStatus.habit ? "Completed" : "";
-//     document.getElementById('edit-journal').value = isEditing && checkInStatus.journal ? checkInStatus.journal : "";
-
-//     modal.style.display = 'block';
-// }
-
-function openCheckInModal() {
+function openCheckInModal(checkInData) {
     document.querySelector('.check-in-btn').addEventListener('click', function() {
         const today = new Date();
         const todayFormatted = formatDate(today);
@@ -937,17 +901,39 @@ function openCheckInModal() {
 
             modal.style.display = 'none';  
         });
-
-        document.getElementById('modal-close').addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
+    
         modal.addEventListener('click', function(event) {
             if (event.target === modal) {
                 modal.style.display = 'none';
             }
         });
+
+        document.getElementById('modal-close').addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
     });
+
+    document.getElementById("checkin-edit-button").addEventListener("click", function() {
+        document.getElementById('modal-close').textContent = 'Cancel';
+
+        const selectedDate = document.getElementById("readonly-date").value; // Get the date from readonly field
+        const checkIn = checkInData[selectedDate]; // Get the check-in data for that date
+    
+        if (checkIn) {
+            document.getElementById("checkin-modal").style.display = "block";
+    
+            document.getElementById("modal-date").value = selectedDate;
+    
+            document.querySelector(`#mood-${checkIn.mood}`).checked = true;
+    
+            const habitRadio = checkIn.habit ? 'habit-yes' : 'habit-no';
+            document.getElementById(habitRadio).checked = true;
+    
+            document.getElementById("modal-journal").value = checkIn.journal;
+        }
+    });    
 };
+
 
 // user progress dashboard
 const progressQuotes = [

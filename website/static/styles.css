@@ -60,7 +60,7 @@
     --spacing-extra-large: 4rem;
 
     /* Button Styles */
-    --btn-padding-small: 7px 20px;
+    --btn-padding-small: 7px 15px;
     --btn-padding-regular: 10px 25px;
     --btn-padding-large: 15px 25px;
     --btn-border-radius: 15px;
@@ -2432,6 +2432,7 @@ h2 {
 }
 
 .checkin-form-summary {
+  position: relative;
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -2444,6 +2445,30 @@ h2 {
   border-radius: var(--modal-border-radius);
   border: 1px solid var(--light-grey);
   margin: var(--spacing-regular) var(--spacing-large);
+}
+
+.checkin-edit-button {
+  display: block;
+  border-radius: var(--btn-border-radius);
+  background-color: var(--neutral-foam);
+  display: flex;
+  position: absolute;
+  gap: 6px;
+  padding: var(--btn-padding-small);
+  border: 1px solid var(--black);
+  font: var(--font-weight-medium) var(--font-size-regular) var(--font-secondary);
+  cursor: pointer;
+  top: 0; 
+  right: 0;
+  margin-top: 20px; 
+  margin-right: 20px;
+}
+
+.checkin-edit-button svg {
+  aspect-ratio: 1;
+  object-fit: contain;
+  width: 20px;
+  margin: auto 0;
 }
 
 .checkin-form-summary input {
