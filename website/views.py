@@ -115,14 +115,14 @@ def checkin():
 @login_required
 def settings():
     # Manage form submission
-    return render_template('settings.html')
-                           #user_logged_in=True,
-                           #username=current_user.username,
-                           #email=current_user.email,
-                           #habit=current_user.habit,
-                           #goal_duration=current_user.goal,
-                           #companion_name=current_user.companion_name,
-                           #companion=current_user.companion)
+    return render_template('settings.html',
+                           user_logged_in=True,
+                           username=current_user.username,
+                           email=current_user.email,
+                           habit=current_user.bad_habit,
+                           goal_duration=current_user.goal,
+                           companion_name=current_user.companion_name,
+                           companion=current_user.companion)
     
 @views.route('/companion-hub', methods = ['GET', 'POST'])
 @login_required
@@ -138,9 +138,9 @@ def companion_hub():
     "01/28/2025": {"mood": 5, "habit": True, "journal": "Felt productive and energized! Finished my CS assignment early and treated myself to some reading time."}
     }
 
-    return render_template('companion-hub.html')
-                        #    user_logged_in=True,
-                        #    username=current_user.username,
-                        #    companion=current_user.character,
-                        #    goal_duration=current_user.goal,
-                        #    check_in_data=check_in_data)
+    return render_template('companion-hub.html',
+                            user_logged_in=True,
+                            username=current_user.username,
+                            companion=current_user.companion,
+                            goal_duration=current_user.goal,
+                            check_in_data=check_in_data)
