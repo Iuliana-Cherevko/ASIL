@@ -7,8 +7,8 @@
         </div></a>
         <div class="nav-links">
             <a href="{{ url_for('views.index') }}" id="home-link">Home</a>
-            <a href="{{ url_for('views.index') }}"  id="about-link" >About us</a>
-            <a href="{{ url_for('views.index') }}" id="contact-link" >Contact</a>
+            <a href="{{ url_for('views.about_us') }}"  id="about-link" >About us</a>
+            <a href="{{ url_for('views.contact') }}" id="contact-link" >Contact</a>
         </div>
        
         <div class="nav-btns">
@@ -17,24 +17,24 @@
             <div class = "sub-menu-container" id="sub-menu-container">
               <div class="sub-menu">
                 <div class = "user-info">
-                  <img src="{{url_for('static', filename='images/dog.png')}}">
-                  <h1> {% if current_user.name %} {{ current_user.name }} {% else %} Username {% endif %}</h1>
+                  <img src="{{url_for('static', filename='images/user-icon.png')}}" id="avatar-image">
+                  <h1> {% if current_user.username %} {{ current_user.username }} {% else %} Username {% endif %}</h1>
                 </div>
                 <hr>
 
-                <a href="{{url_for('views.index')}}" id="settings-link" class="sub-menu-link">
+                <a href="{{url_for('views.settings')}}" id="settings-link" class="sub-menu-link">
                   <img src="{{url_for('static', filename='images/settings-icon.png')}}">
                   <p>Settings</p>
                   <span>></span>
                 </a>
 
-                <a href="{{url_for('views.index')}}" id="companion-hub-link" class="sub-menu-link">
+                <a href="{{url_for('views.companion_hub')}}" id="companion-hub-link" class="sub-menu-link">
                   <img src="{{url_for('static', filename='images/home.png')}}">
                   <p>Companion Hub</p>
                   <span>></span>
                 </a>
 
-                <a href="{{url_for('auth.index')}}" id="logout-link" class="sub-menu-link">
+                <a href="{{url_for('auth.logout')}}" id="logout-link" class="sub-menu-link">
                   <img src="{{url_for('static', filename='images/logout.png')}}">
                   <p>Log out</p>
                   <span>></span>

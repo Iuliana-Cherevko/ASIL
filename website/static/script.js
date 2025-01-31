@@ -87,7 +87,7 @@ function runAllFunctions(companion_img, questionnaire_needed, user_is_authentica
     expectModalClick();
     setNavLinkActive();
     showCorrectCompanionIcon(companion_img);
-    if (questionnaire_needed && user_is_authenticated && bad_babit_value === 0) {
+    if (questionnaire_needed && user_is_authenticated == "True" && bad_babit_value == "0") {
         launchBriefQuestionnaire();
     }
 }
@@ -131,8 +131,15 @@ function showCorrectCompanionIcon(companion) {
     const imageFilename = companionImages[companion] || "user-icon.png"; // Default image if companion not found
 
     const companionImage = document.getElementById('companion-image');
-    if (companionImage) {
+    const avatarImage = document.getElementById('avatar-image');
+    const profileImage = document.getElementById('profile-image');
+    if (companionImage || avatarImage) {
         companionImage.src = "static/images/" + imageFilename;
+        avatarImage.scr = "static/images/" + imageFilename;
+    }
+
+    if (profileImage) {
+        profileImage.scr = "static/images/" + imageFilename;
     }
 }
 
@@ -165,11 +172,11 @@ window.addEventListener('scroll', function() {
 // Set active navigation link in navbar if the user is on that page
 function setNavLinkActive() {
     const pageMap = {
-        "/Index": "home-link",
-        "/About": "about-link",
-        "/Contact": "contact-link",
-        "/Settings": "settings-link",
-        "/Companion-hub": "companion-hub-link",
+        "/index": "home-link",
+        "/about-us": "about-link",
+        "/contact": "contact-link",
+        "/settings": "settings-link",
+        "/companion-hub": "companion-hub-link",
     };
     const currentPath = window.location.pathname;
     const activeLinkId = pageMap[currentPath];
@@ -248,10 +255,6 @@ const passwordFields = [
     { toggle: document.getElementById("toggle-confirm-password"), input: document.getElementById("confirm-password") }
 ];
 
-const passwordInput1 = document.getElementById("registration-password");
-const confirmPasswordContainer = document.getElementById("confirm-password-container");
-const passwordMismatchError = document.getElementById("password-mismatch-error");
-
 function togglePasswordVisibility() {
     passwordFields.forEach(field => {
         field.toggle.addEventListener("click", () => {
@@ -286,6 +289,11 @@ function expectModalClick() {
                             otherModal.style.display = "none";
                         }
                     });
+
+                    if (modal.id === "sign-in-modal" || modal.id === "registration-modal") {
+                        handleRegistrationLogic(modal);
+                        togglePasswordVisibility();
+                    }
                 });
             });
         } else {
@@ -300,6 +308,11 @@ function expectModalClick() {
                         otherModal.style.display = "none";
                     }
                 });
+
+                if (modal.id === "sign-in-modal" || modal.id === "registration-modal") {
+                    handleRegistrationLogic(modal);
+                    togglePasswordVisibility();
+                }
             });
         }
 
@@ -318,7 +331,23 @@ function expectModalClick() {
         });
     });
 
-    togglePasswordVisibility();
+    window.addEventListener("keydown", function(event) {
+        if (event.key === "Escape") {
+            modals.forEach(({modal}) => {
+                if (modal.style.display === "block") {
+                    modal.style.display = "none";
+                    document.body.classList.remove('stopScroll');
+                }
+            });
+        }
+    });
+}
+
+function handleRegistrationLogic() {
+    const passwordInput1 = document.getElementById("registration-password");
+    const confirmPasswordContainer = document.getElementById("confirm-password-container");
+    const passwordMismatchError = document.getElementById("password-mismatch-error");
+    const usernameTakenError = document.getElementById("username-taken-error");
 
     // hide & show confirm_password field
     passwordInput1.addEventListener("blur", function() {
@@ -331,17 +360,18 @@ function expectModalClick() {
     document.getElementById("registration-form").addEventListener("submit", function(event) {
         const password = document.getElementById("registration-password").value;
         const confirmPassword = document.getElementById("confirm-password").value;
-        
+
         document.getElementById("registration-password").classList.remove("error");
         document.getElementById("confirm-password").classList.remove("error");
-        passwordMismatchError.style.display = "none"; 
+        passwordMismatchError.style.display = "none";
 
         if (password !== confirmPassword) {
             event.preventDefault();
             passwordMismatchError.style.display = "flex";
-            document.getElementById("confirm-password").classList.add("error"); 
+            document.getElementById("confirm-password").classList.add("error");
             document.getElementById("registration-password").classList.add("error");
         }
+
     });
 }
 
@@ -352,12 +382,18 @@ function launchBriefQuestionnaire() {
 
     briefQuestionnaireModal.style.display = 'block';
     document.body.classList.add('stopScroll');
-    
+
     showPage(0);
 
     function showPage(pageIndex) {
         pages.forEach((page, index) => page.style.display = index === pageIndex ? 'block' : 'none');
     }
+
+    briefQuestionnaireModal.addEventListener('click', function(e) {
+        if (e.target === briefQuestionnaireModal) {
+            e.stopPropagation();
+        }
+    });
 
     // event listener for navigation buttons (next/previous)
     document.querySelectorAll('.navigate-button').forEach(button => {
@@ -685,4 +721,4 @@ function openModal(modalId) {
         document.body.classList.remove("stopScroll");
       }
     });
-  });
+});

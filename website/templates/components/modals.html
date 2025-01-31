@@ -47,7 +47,12 @@
             
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" autocomplete="username" placeholder="Enter your username" required>
-                
+
+                <div id="username-taken-error" class="error-container" style="display: none; width:fit-content">
+                  <span class="error-icon">!</span>
+                  <span class="error-message-text">This username is already taken!</span>
+                </div>
+
                 <label for="email">Email Address:</label>
                 <input type="email" id="email" name="email" autocomplete="email" placeholder="Enter your email address" required>
                 
@@ -208,7 +213,7 @@
                   <div class="image-selector">
                     <input type="radio" id="companion5" name="companion" value="slime" required>
                     <label for="companion5">
-                      <img src="{{ url_for('static', filename='images/slime.png') }}" class="companion-img">
+                      <img src="{{ url_for('static', filename='images/dog.png') }}" class="companion-img">
                     </label>
                   </div>
 
@@ -233,4 +238,3 @@
     </div>
   </form>
 </section>
- 

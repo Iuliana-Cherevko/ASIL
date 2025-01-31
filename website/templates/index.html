@@ -20,7 +20,12 @@
       </h1>
       <img src="{{url_for('static', filename='images/hero-image.png')}}" class="hero-img">
       <p>Break free from what's holding you back. Start your journey to a healthier, happier you today.</p>
+      
+      {% if current_user.is_authenticated %}
+        <button href="{{url_for('views.companion_hub')}}" class="btn get-started-btn">Navigate to Companion Hub!</button>
+      {% else %}
       <button href="#" id="registration-link" class="btn get-started-btn">Get Started</button>
+      {% endif %}
     </div>
   </section>
 
@@ -33,6 +38,7 @@
       <div id="slider-container-2" class="slider-container"></div>
     </div>
 </section>
+
   
 <!-- Features section -->
   <section id="features" class="features-section">
@@ -140,25 +146,24 @@
   </section>
 
 
+
+
   <!-- Footer and Wave Section -->
   {% include '/components/wave.html' %}
   {% include '/components/footer.html' %}
   {% include '/components/footer-bottom.html' %}
 
+
   <!-- Html Code for Modals / Popups -->
   {% include '/components/modals.html' %}
 
-<script>
-  // Temp variables for test purposes
-  // const user_logged_in = true;
-  // const bad_babit = 0;
-
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => showSlider(), 0);
-    setTimeout(() => runAllFunctions("{{ companion }}", true, "{{ current_user.is_authenticated }}", "{{ current_user.bad_babit }}"), 0);
-    setTimeout(() => expectTestimoniesAction(), 0);
-  });
-</script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => showSlider(), 0);
+      setTimeout(() => runAllFunctions("{{ companion }}", true, "{{ current_user.is_authenticated }}", "{{ current_user.habit }}"), 0);
+      setTimeout(() => expectTestimoniesAction(), 0);
+    });
+  </script>
 
 </body>
 </html>
