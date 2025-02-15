@@ -302,7 +302,9 @@ function expectModalClick() {
                     });
 
                     if (modal.id === "sign-in-modal" || modal.id === "registration-modal") {
-                        handleRegistrationLogic(modal);
+                        if(modal.id === "registration-modal") {
+                            handleRegistrationLogic(modal);
+                        }
                         togglePasswordVisibility();
                     }
                 });
@@ -321,7 +323,9 @@ function expectModalClick() {
                 });
 
                 if (modal.id === "sign-in-modal" || modal.id === "registration-modal") {
-                    handleRegistrationLogic(modal);
+                    if(modal.id === "registration-modal") {
+                        handleRegistrationLogic(modal);
+                    }
                     togglePasswordVisibility();
                 }
             });
@@ -358,7 +362,6 @@ function handleRegistrationLogic() {
     const passwordInput1 = document.getElementById("registration-password");
     const confirmPasswordContainer = document.getElementById("confirm-password-container");
     const passwordMismatchError = document.getElementById("password-mismatch-error");
-    const usernameTakenError = document.getElementById("username-taken-error");
 
     // hide & show confirm_password field
     passwordInput1.addEventListener("blur", function() {
@@ -382,8 +385,41 @@ function handleRegistrationLogic() {
             document.getElementById("confirm-password").classList.add("error");
             document.getElementById("registration-password").classList.add("error");
         }
-
     });
+}
+
+function usernameEmailError(username_taken, email_taken) {
+    const usernameInput = document.getElementById("username-register");
+    const emailInput = document.getElementById("email");
+    const usernameError = document.getElementById("username-taken-error");
+    const emailError = document.getElementById("email-taken-error");
+    const registrationModal = document.getElementById("registration-modal");
+
+    if(username_taken == "True" || email_taken == "True") {
+        registrationModal.style.display = "block";
+        if(username_taken == "True") {
+            usernameError.style.display = "block";
+        }
+        if(email_taken == "True") {
+            emailError.style.display = "block";
+        }
+    }
+
+    if (usernameInput && usernameError) {
+        usernameInput.addEventListener("keypress", () => {
+            if (usernameError.style.display !== "none") {
+                usernameError.style.display = "none";
+            }
+        });
+    }
+
+    if (emailInput && emailError) {
+        emailInput.addEventListener("input", () => {
+            if (emailError.style.display !== "none") {
+                emailError.style.display = "none";            
+            }
+        });
+    }
 }
 
 // Brief Questionnaire code to show multiple pages

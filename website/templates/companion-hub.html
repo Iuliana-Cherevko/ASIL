@@ -20,7 +20,8 @@
       <div class="companion-container">
 
           <div class="companion-left">
-            <img id="companion-full-size" class="companion-full-size" src="{{ url_for('static', filename='images/dog.png') }}">
+            <!-- <img id="companion-full-size" class="companion-full-size" src="{{ url_for('static', filename='images/dog.png') }}"> -->
+            <img class="companion-full-size" src="{{ url_for('static', filename='images/dog.png') }}">
               <img class="bed-image" src="{{ url_for('static', filename='images/companions/bed.png') }}">
               
               <div class="progress-container">
@@ -339,7 +340,6 @@
   </div>
 
 
-  
   <!-- Footer and Wave Section -->
   {% include '/components/wave.html' %}
   {% include '/components/footer-bottom.html' %}  

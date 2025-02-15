@@ -117,8 +117,8 @@ def companion_hub():
     "01/22/2025": {"mood": 2, "habit": False, "journal": "Struggled with motivation. Kept procrastinating, and now I feel guilty. Need to get back on track tomorrow."},
     "01/23/2025": {"mood": 5, "habit": True, "journal": "Amazing day! Finished all my tasks early, watched a great movie (*Interstellar*, of course), and had a nice dinner with family."},
     "01/26/2025": {"mood": 2, "habit": False, "journal": "Mixed feelings today. Got some work done but didn't feel very engaged. Might just need more sleep."},
-    "01/27/2025": {"mood": 4, "habit": True, "journal": "Really tough day. Nothing seemed to go right, and I felt overwhelmed. Hoping for a fresh start tomorrow."},
-    "01/28/2025": {"mood": 5, "habit": True, "journal": "Felt productive and energized! Finished my CS assignment early and treated myself to some reading time."}
+    "02/13/2025": {"mood": 4, "habit": True, "journal": "Really tough day. Nothing seemed to go right, and I felt overwhelmed. Hoping for a fresh start tomorrow."},
+    "02/14/2025": {"mood": 5, "habit": True, "journal": "Felt productive and energized! Finished my CS assignment early and treated myself to some reading time."}
     }
 
     return render_template('companion-hub.html',
