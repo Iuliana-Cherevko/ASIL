@@ -48,6 +48,8 @@
                 </div>
                 <img id="mood-emoji" src="" class="info-icon">
             </div>
+
+            <hr>
         
             <div class="companion-info-row">
                 <div class="companion-text">
@@ -55,6 +57,8 @@
                     <p>{% if current_user.personality_badge %} {{ current_user.personality_badge }} {% else %} Fido's bold and fearless attitude is guiding him today. ⚡ {% endif %}</p>
                 </div>
             </div>
+
+            <hr>
         
             <div class="companion-info-row">
                 <div class="companion-text">
@@ -84,7 +88,9 @@
           </div>
         </div>
         
-        <img class="progress-image" src="{{ url_for('static', filename='/images/journey-picture.png')}}" alt="Progress Journey">
+        <div class="box-shadow">
+          <img class="progress-image" src="{{ url_for('static', filename='/images/journey-picture.png')}}" alt="Progress Journey">
+        </div>
     </div>
   </section>
 
