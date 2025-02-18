@@ -23,7 +23,21 @@ class Journal(db.Model):
     date = db.Column(db.DateTime(timezone=True), default=func.now)
     user_username = db.Column(db.String(150), db.ForeignKey('user.username'))
 
-
+class Concern(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    concern = db.Column(db.Text, nullable=False)
+    date_submitted = db.Column(db.DateTime, default=db.func.current_timestamp())
+class ContactStory(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(100), nullable=False)
+    last_name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), nullable=False)
+    job_role = db.Column(db.String(50))
+    habit = db.Column(db.String(255), nullable=False)
+    goals = db.Column(db.Text, nullable=False)
+    date_submitted = db.Column(db.DateTime, default=db.func.current_timestamp())
 
 
     # def __init__(self, name, password, email, journal):

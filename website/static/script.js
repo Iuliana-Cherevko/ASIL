@@ -718,7 +718,53 @@ function openModal(modalId) {
     modals.forEach((modal) => {
       if (event.target === modal) {
         modal.style.display = "none"; // Close modal if clicked outside content
-        document.body.classList.remove("stopScroll");
+        document.body.style.overflow = ""; // Restore background scrolling
       }
+    });
+});
+
+// Code for background animation
+document.addEventListener("DOMContentLoaded", function () {
+    const particleContainer = document.createElement("div");
+    particleContainer.classList.add("particle-container");
+    document.body.appendChild(particleContainer); // Append to body for full-page effect
+
+    for (let i = 0; i < 150; i++) { // Adjust the number of particles
+        let particle = document.createElement("div");
+        particle.classList.add("particle");
+
+        // Random positions across the viewport
+        particle.style.left = Math.random() * 100 + "vw";
+        particle.style.top = Math.random() * 100 + "vh";
+
+        // Random animation delay & size variation
+        particle.style.animationDelay = Math.random() * 5 + "s";
+        let size = Math.random() * 6 + 2 + "px"; // Particle size range: 2px - 8px
+        particle.style.width = size;
+        particle.style.height = size;
+
+        particleContainer.appendChild(particle);
+    }
+});
+
+// Code for Contact page
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contact-form");
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        
+        // Validation
+        const firstName = form.first_name.value.trim();
+        const email = form.email.value.trim();
+        const goals = form.goals.value.trim();
+
+        if (firstName === "" || email === "" || goals === "") {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
+        alert("Thank you for sharing your story! We will get back to you soon.");
+        form.reset();
     });
 });

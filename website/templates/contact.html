@@ -5,39 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}" defer></script>
-    <title>HabiTrain | Overcome Bad Habits</title>
 </head>
 <body>
+ 
   <!-- Navigation Bar -->
   {% include '/components/navbar.html' %}
-
-
+  <section class="contact-us">
+     <!-- Background Animation -->
+  <div class="background-container">
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <div class="clouds"></div>
+    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/moon2.png" alt="Moon" class="moon"> 
+  </div>
 
   <!-- Hero Section -->
   <section id="hero" class="hero-section">
     <div class="hero-content fade-in">
-      <h1>
-        Contact
-        <span class="hero-title-highlight">HabiTrain</span>
-      </h1>
-      <p>Feel Free to write anything....</p>
+      <h1> <span class="hero-title-highlight">Contact Us</span></h1>
+      <p><strong><span class="hero-title-highlight">Feel free to write to us anything!!!</span></strong></p>
     </div>
   </section>
 
-   <!-- Footer and Wave Section -->
-   {% include '/components/wave.html' %}
-   {% include '/components/footer.html' %}
-   {% include '/components/footer-bottom.html' %}
+  <!-- Contact Form Section -->
+  
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Left Column: Tell Me Your Concern -->
+        <div class="concern-column">
+          <h2 class="form-title">Tell Me Your Feedback</h2>
+          <p>If you have any general questions, feedback, or inquiries, feel free to reach out. We're happy to help!</p>
+          <form id="concern-form" action="{{ url_for('views.concern') }}" method="POST">
+            <div class="form-group">
+              <label class="required">Name</label>
+              <input type="text" name="name" required>
+            </div>
+            <div class="form-group">
+              <label class="required">Email Address</label>
+              <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label class="required">Your Concern</label>
+              <textarea name="concern" placeholder="Write your concern here..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Concern</button>
+          </form>
+        </div>
 
-   
-  <!-- Html Code for Modals / Popups -->
+        <!-- Right Column: Tell Me Your Story -->
+        <div class="story-column">
+          <h2 class="form-title">Tell Me Your Story</h2>
+          <form id="contact-form" action="{{ url_for('views.contact') }}" method="POST">
+            <div class="form-group">
+              <label class="required">First Name</label>
+              <input type="text" name="first_name" required>
+            </div>
+            <div class="form-group">
+              <label class="required">Last Name</label>
+              <input type="text" name="last_name" required>
+            </div>
+            <div class="form-group">
+              <label class="required">Email Address</label>
+              <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label>Job Role</label>
+              <select name="job_role">
+                <option value="">Select role</option>
+                <option>Student</option>
+                <option>Professional</option>
+                <option>Educator</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="required">What habit are you trying to change?</label>
+              <input type="text" name="habit" required>
+            </div>
+            <div class="form-group">
+              <label class="required">Please tell us about your goals</label>
+              <textarea name="goals" placeholder="Share your habit challenges and objectives..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Your Story</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  {% include '/components/wave.html' %}
+  {% include '/components/footer.html' %}
+  {% include '/components/footer-bottom.html' %}
   {% include '/components/modals.html' %}
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => runAllFunctions("{{ companion }}", true, "{{ current_user.is_authenticated }}", "{{ current_user.habit }}"), 0);
-  });
-</script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => runAllFunctions("{{ companion }}", true, "{{ current_user.is_authenticated }}", "{{ current_user.habit }}"), 0);
+    });
+  </script>
 
 </body>
 </html>

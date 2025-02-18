@@ -10,7 +10,9 @@
 <body class="about-us-page">
   <!-- Navigation Bar -->
   {% include '/components/navbar.html' %}
-
+  <div class="particle-container">
+    <div class="particle"></div>
+  </div>
   <!-- Hero Section -->
   <section id="hero" class="hero-section">
     <div class="container">
@@ -39,24 +41,24 @@
       </div>
       <!-- Welcome Text -->
       <p id="welcome-text" class="welcome-text fade-in">
-        Welcome to HabiTrain, your partner in building a healthier and more fulfilling life. By combining journaling,
-        habit tracking, and interactive features, we help you break harmful habits, develop positive ones, and stay
-        motivated to become your best self.
+       
+<strong>Welcome to HabiTrain—your guide to a healthier, better you.</strong>
+Track habits, journal, and stay motivated with interactive tools designed to help you <strong>break bad habits and build better ones.</strong>
         </p>
+      <!-- Blob Image -->
       
     </div>
-
+    <div class="blob-container">
+      <img
+        loading="lazy"
+        id="decorative-image"
+        src="{{ url_for('static', filename='images/about us/watersalamander.svg') }}"
+        alt="Cute bloblike decorative illustration"
+        class="blob-image"
+      />
+    </div>
     
-      <!-- Blob Image -->
-      <div class="blob-container">
-        <img
-          loading="lazy"
-          id="decorative-image"
-          src="{{ url_for('static', filename='images/about us/watersalamander.svg') }}"
-          alt="Cute bloblike decorative illustration"
-          class="blob-image"
-        />
-      </div>
+      
       
     
   </section>
@@ -98,11 +100,8 @@
     <!-- Middle Text -->
     <div class="story-text-container">
       <p>
-        Life moves fast, and it's easy to overlook the habits that shape our
-        well-being. Harmful routines like smoking, overeating, or poor sleep
-        can subtly undermine our health and happiness. At HabiTrain, we’re
-        inspired to empower individuals to take control of their habits, unlock
-        their potential, and embrace a healthier lifestyle.
+        <strong>Life moves fast, and habits shape your well-being.</strong>
+Unhealthy routines like smoking, overeating, or poor sleep can quietly hold you back. At HabiTrain, we help you <strong>take control, break bad habits, and build a healthier, happier life. 🚀</strong>
       </p>
     </div>
 
@@ -126,6 +125,7 @@
       class="arrow2"
     />
   </div>
+  
   <!-- Our Mission Section -->
   <section id="mission" class="mission-container zoom-in">
     <div class="heading-content">
@@ -136,10 +136,7 @@
     </div>
     <!-- Our Mission Section -->
     <p>
-      To empower individuals to overcome harmful habits, establish positive routines,
-      and stay motivated on their self-improvement journey. We combine technology,
-      emotional support, and gamification to deliver a personalized experience
-      that encourages lasting change.
+      We empower you to <strong>break bad habits, build positive routines, and stay motivated.</strong> With technology, support, and gamification, HabiTrain makes <strong>lasting change achievable.</strong>
     </p>
     <!-- Footer Images -->
     <div class="footer-images">
@@ -163,9 +160,7 @@
       <!-- Top Left - Text Content -->
       <div class="main-content">
         <p>
-          To create a world where everyone has the tools and support to become their best selves. HabiTrain strives to be
-          the leading platform for habit transformation, building a global community dedicated to healthier and happier
-          lives.
+          HabiTrain envisions a world where <strong>everyone has the tools to thrive.</strong> We're building a global community dedicated to <strong>habit transformation, health, and happiness. 🌍✨</strong>
         </p>
       </div>
   
@@ -207,95 +202,19 @@
       class="arrow4"
     />
   </div>
-  <!--Our Team-->
+<!-- Our Team -->
+<section class="about-us-page team-section" aria-labelledby="team-heading">
+  <h1 id="team-heading" class="team-heading flip-in">Meet the Masterminds</h1>
 
-  <section class="about-us-page team-section" aria-labelledby="team-heading">
-    <h1 id="team-heading" class="team-heading flip-in">Meet the Masterminds</h1>
-    <div class="team-grid">
-      <!-- Team Member 1 -->
-      <div class="team-member">
-        <img
-          loading="lazy"
-          src="{{ url_for('static', filename='images/about us/y_img.jpg') }}"
-          alt="Iuliana Cherevko"
-          class="member-image"
-          onclick="openModal('modal-iuliana')"
-        />
-        <p class="member-name">Iuliana Cherevko</p>
-      </div>
+  <!-- Include members.html here -->
+  {% include 'members.html' %}
+  <!-- Include Modals -->
+  {% include 'members-modals.html' %}
+</section>
 
-      <!-- Team Member 2 -->
-      <div class="team-member">
-        <img
-          loading="lazy"
-          src="{{ url_for('static', filename='images/about us/a_img.jpg') }}"
-          alt="Anthony Rodriguez"
-          class="member-image"
-          onclick="openModal('modal-anthony')"
-        />
-        <p class="member-name">Anthony Rodriguez</p>
-      </div>
-      <!-- Team Member 3 -->
-      <div class="team-member">
-        <img
-          loading="lazy"
-          src="{{ url_for('static', filename='images/about us/l_img.jpg') }}"
-          alt="Long Nguyen"
-          class="member-image"
-          onclick="openModal('modal-long')"
-        />
-        <p class="member-name">Long Nguyen</p>
-      </div>
-      <!-- Team Member 4 -->
-      <div class="team-member">
-        <img
-          loading="lazy"
-          src="{{ url_for('static', filename='images/about us/s_img.jpg') }}"
-          alt="Shai Y"
-          class="member-image"
-          onclick="openModal('modal-shai')"
-        />
-        <p class="member-name">Shai Y</p>
-      </div>
-    </div>
-
-
-    <!-- Modal for Long Nguyen -->
-    {{ member_modal(
-      modal_id='modal-long',
-      name='Long Nguyen',
-      title='Full-stack Student',
-      short_description='Loves exploring cuisines and building games.',
-      full_description='Originally residing from Vietnam, I’m a recent adventurer in the U.S. I’m a total foodie and can’t resist exploring new cuisines. When I’m not buried in my game projects, you might catch me sneaking outside to grab some fresh air and recharge.',
-      linkedin_url='https://www.linkedin.com/in/long-nguyen-386073264',
-      image_url=url_for('static', filename='images/about us/l_img.jpg'),
-      tags=["Leadership", "Advocacy", "Marketing"],
-      extra_images=[
-          url_for('static', filename='images/about us/extra1.jpg'),
-          url_for('static', filename='images/about us/extra2.jpg')
-      ]
-    ) }}
-
-    {{ member_modal(
-      modal_id="modal-iuliana",
-      name="Iuliana Cherevko",
-      title="Front-End Developer & UX Designer",
-      short_description="Coding, problem-solving, or getting lost in a good book, I’m always eager to learn and grow.",
-      full_description="I'm a STEM enthusiast passionate about coding, engineering, and robotics. Outside of tech, you’ll find me reading, playing my guitar, or tackling a new project.",
-      linkedin_url="https://www.linkedin.com/in/iuliana-cherevko",
-      image_url=url_for('static', filename='images/about us/y_img.jpg'),
-      tags=["Leadership", "Dev Team", "Innovator"],
-      extra_images=[
-          url_for('static', filename='images/about us/extra3.jpg'),
-          url_for('static', filename='images/about us/extra4.jpg')
-      ]
-    ) }}
-  {{ member_modal("anthony", "images/about us/a_img.jpg", "Anthony Rodriguez", "Backend Developer", "Anthony loves backend development and tackling challenges...", "https://linkedin.com/in/anthony?", ["images/about us/extra3.jpg", "images/about us/extra4.jpg"]) }}
-  {{ member_modal("shai", "images/about us/s_img.jpg", "Shai Y", "Backend Developer", "Shai enjoys designing clean, functional, and visually appealing user interfaces...", "https://linkedin.com/in/shai?", ["images/about us/extra7.jpg", "images/about us/extra8.jpg"]) }}
+  
 
     
-    
-  </section>
 
   <!--Footer-->
   <section class="cta-section">

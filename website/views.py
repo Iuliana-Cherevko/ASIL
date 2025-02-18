@@ -84,7 +84,50 @@ def about_us():
     
 @views.route('/contact')
 def contact():
+    if request.method == 'POST':
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        email = request.form.get('email')
+        job_role = request.form.get('job_role')
+        habit = request.form.get('habit')
+        goals = request.form.get('goals')
+
+        # Simple validation (ensure fields are not empty)
+        if not first_name or not last_name or not email or not habit or not goals:
+            flash("All fields are required!", category='error')
+        else:
+            # Save to database
+            new_story = ContactStory(
+                first_name=first_name,
+                last_name=last_name,
+                email=email,
+                job_role=job_role,
+                habit=habit,
+                goals=goals
+            )
+            db.session.add(new_story)
+            db.session.commit()
+
+            flash("Your story has been submitted successfully!", category='success')
+
     return render_template('contact.html')
+@views.route('/concern', methods=['GET', 'POST'])
+def concern():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        concern = request.form.get('concern')
+
+        # Simple validation
+        if not name or not email or not concern:
+            flash("All fields are required!", category='error')
+        else:
+            new_concern = Concern(name=name, email=email, concern=concern)
+            db.session.add(new_concern)
+            db.session.commit()
+            flash("Your concern has been submitted successfully!", category='success')
+
+    return redirect(url_for('views.contact'))  # Redirect back to contact page after submission
 
 @views.route('/attributions')
 def attributions():

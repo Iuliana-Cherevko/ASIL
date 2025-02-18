@@ -1,7 +1,7 @@
 /* Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Open Sans:wght@300;400;500&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Rubik Doodle Shadow:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Rubik+Doodle Shadow:wght@300;400;500&display=swap");
 :root {
     /* Color Palette */
     --text-color: #160e03;
@@ -197,7 +197,7 @@ a {
     }
   }
   
-  .heading {
+  .heading-rotate {
     animation: rotateIn 1s ease;
   }
   @keyframes flipIn {
@@ -211,7 +211,7 @@ a {
     }
   }
   
-  .heading {
+  .heading-flip {
     animation: flipIn 1s ease;
   }
   @keyframes typewriter {
@@ -239,7 +239,7 @@ a {
     }
   }
   
-  .heading {
+  .heading-zoom {
     animation: zoomIn 1s ease;
   }
   @keyframes bounceIn {
@@ -264,7 +264,7 @@ a {
       transform: translateX(-50%) translateY(-10px);
     }
   }
-  .heading {
+  .heading-bounce {
     animation: bounceIn 1s ease;
   }
     
@@ -273,7 +273,7 @@ a {
     white-space: nowrap;
     border-right: 2px solid black;
     font-family: monospace;
-    animation: typewriter 2s steps(20, end), blink 0.5s step-end infinite;
+    animation: zoomIn 5s ease;
   }
       
 /* Header */
@@ -2058,13 +2058,15 @@ h2 {
 /* ========================= */
 .about-us-page .hero-section {
     display: flex;
-    flex-direction: column;
-    padding: 50px 20px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    
   }
   
   .about-us-page .hero-section .container {
     max-width: 1200px;
-    width: 100%;
+    width: 300%;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -2073,7 +2075,7 @@ h2 {
     }
   
   .about-us-page .hero-section .heading-wrapper {
-    gap: 20px;
+
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -2081,17 +2083,18 @@ h2 {
   }
   .about-us-page .hero-section .hero-content {
     flex: 1;
+    margin-top: -30px;
   }
   
   .about-us-page .hero-section .heading-content {
     font-family: "Rubik Doodle Shadow", sans-serif;
     font-weight: 400;
     display: flex; /* Enables horizontal alignment */
-    align-items: left; /* Aligns vertically in the middle */
+    align-items: flex-start; /* Aligns vertically in the middle */
     gap: 10px; /* Adds spacing between "We are" and "HabiTrain" */
     color: #000000;
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    margin: 50;
+    margin: 10px;
     /*text-align: left;*/
     white-space: nowrap;
     
@@ -2099,14 +2102,14 @@ h2 {
   .about-us-page .hero-section .text-normal {
     font-family: "Rubik Doodle Shadow", sans-serif;
     font-size: 40px;
-    margin-left: 100px;
+    margin-left: 0px;
   }
   .about-us-page .hero-section .text-xlarge {
     font-family: "Rubik Doodle Shadow", sans-serif;
     font-weight: 400;
     font-size: 80px;
-    margin-left: -410px;
-    margin-bottom: -100px;
+    margin-left: -450px;
+    
   }
   .about-us-page .hero-section .text-large {
     font-family: "Rubik Doodle Shadow", sans-serif;
@@ -2116,18 +2119,21 @@ h2 {
   }
   
   .about-us-page .hero-section .heading-image-wrapper {
-    flex: 1;
+    flex: 1.5; /* Takes up the remaining space */
     display: flex;
-    justify-content: flex-end;
-  }
-  .about-us-page .hero-section .heading-image {
-    width: 60%; /* Scales the image properly */
-    object-fit: contain;
-    border-radius: 20px;
-    margin-right: 80px;
-    margin-top: -100px;
-    margin-bottom: -100px;
-  }
+    width: 60vw; /* ⬆️ Increased from 50vw (controls container width) */
+    z-index:2;
+    align-items: center;
+    
+}
+
+.about-us-page .hero-section .heading-image {
+  width: 100%; /* ⬆️ Increased from original value (relative to container) */
+  max-width: 800px;
+    margin-top: -200px; /* Moves image up */
+    transform: translateX(-10%); /* ⬅️ Pulls image further right */
+    padding: 0px;
+}
   
   .about-us-page .hero-section #welcome-text {
     color: #000;
@@ -2136,30 +2142,32 @@ h2 {
     text-align: justify; /* Align text to the left */
     font-size: 24px; /* Adjust font size */
     line-height: 1.6;
-    max-width: 1100px
+    max-width: 1100px;
+    align-items: flex-start; /* Align to the top */
+    padding: 0px;
+    margin-top: -150px;
   }
   
   /* Blob Styling */
-  .about-us-page .blob-container .blob-image {
-    width: 400px; /* Adjust size of the blob */
+  .about-us-page .blob-container {
+    
     transform: scaleX(-1); /* Flips the blob horizontally */
-    position: absolute; /* Position it relative to the hero section */
-  bottom: -300px; /* Align it to the bottom */
-  left: 0; /* Align it to the left */
-  z-index: -1; /* Place it behind other elements */
-    display: flex;
-    justify-content: left;
+    position:absolute; /* Position it relative to the hero section */
+    bottom: 50px;
+    left:0;
+    z-index:1;
   }
-
+  .about-us-page  .blob-image{
+    width: 400px; /* Adjust size of the blob */
+  }
 
   .about-us-page .arrow1-container {
     position: relative; /* Keeps arrow aligned with sections */
     width: 10%;
-    height: -350px; /* Adjust height for better visibility */
     overflow: visible; /* Allows arrow to overlap sections */
     display: flex; /* Center-align the arrow */
     justify-content: center; /* Centers arrow horizontally */
-    z-index: 2; /* Keeps arrow above background */
+    
   }
   
   /* Arrow Styling */
@@ -2178,13 +2186,12 @@ h2 {
 .about-us-page .our-story-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items:flex-start;
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 50px 20px;
-    background-color: #f9f9f9;
+    margin-bottom: -165px;
     gap: 20px;
+    position: relative;
   }
   
   
@@ -2198,6 +2205,7 @@ h2 {
     width: 100%;
     max-width: 1200px;
     margin-bottom: -10%;
+    padding: 0;
   }
   
   /* Image Wrappers */
@@ -2224,6 +2232,7 @@ h2 {
     grid-column: span 3; /* Center the heading across all columns */
     width: 150%;
     grid-row: 2; /* Position below the top images */
+    
   }
   /* Specific Image Placement */
   .about-us-page .our-story-section .img-image1 {
@@ -2237,7 +2246,7 @@ h2 {
     grid-column: 8/ 13; /* Span the next 6 columns */
     grid-row: 2; /* First row */
     width: 100%;
-    margin-bottom:-400px;
+    
   }
   
   .about-us-page .our-story-section .img-image3 {
@@ -2245,15 +2254,6 @@ h2 {
     grid-row: 3; /* Second row */
     width:100%;
   }
-  
-  .about-us-page .our-story-section .img-image4 {
-    grid-column: 11 / 13; /* Span the next 6 columns */
-    grid-row: 4; /* Second row */
-    margin-bottom: 55px;
-    width: 120%;
-
-  }
-  
   /* Text Container */
   .about-us-page .our-story-section .story-text-container {
     grid-column: 7/13; /* Span the full width of the grid */
@@ -2263,28 +2263,44 @@ h2 {
     font-size: 20px;
     color: #000000;
     margin-top: 100px;
-    margin-bottom: -550px;
+    margin-bottom: 150px;
     margin-left: -150px;
+    align-items: flex-start;
   }
+  .about-us-page .our-story-section .img-image4 {
+    grid-column: 11/13; /* Span the next 6 columns */
+    grid-row: 4; /* Second row */
+    width: 130%;
+    margin-top: -100px;
+    margin-bottom: -150px;
+    margin-left: -50px;
+    z-index: 2;
+  }
+  
+  
   
   .about-us-page .arrow2-container {
     position: relative; /* Keeps arrow aligned with sections */
     width: 100%;
-    height:-100px; /* Adjust height for better visibility */
     overflow: visible; /* Allows arrow to overlap sections */
-    margin-top: -50px;
+    margin-top: 150px;
     align-items: center;
     z-index: 2; /* Keeps arrow above background */
+    display: flex; /* Enables flexbox */
+    justify-content: center; /* Centers arrow horizontally */
+    padding: 0;
+    
   }
   
   /* Arrow Styling */
   .about-us-page .arrow2 {
     width: 150px; 
-    margin-top: -600px;
-    margin-left: 700px;
-    z-index: 1; 
+    margin-top: -50px;
+    z-index: 2; 
     animation: arrowSlide 3s infinite ease-in-out; /* Add animation */
   }
+  
+  
   /* "OUr mission" section */
   .about-us-page .mission-container {
     position: relative;
@@ -2354,19 +2370,20 @@ h2 {
 }
 .about-us-page .arrow3-container {
     position: relative; /* Keeps arrow aligned with sections */
-    width: 100%;
+    width: 150px;
     height:100px; /* Adjust height for better visibility */
     overflow: visible; /* Allows arrow to overlap sections */
     margin-top: -50px;
-    align-items: center;
-    z-index: 2; /* Keeps arrow above background */
+    left: 0;
+    align-items: left;
+    z-index: 1; /* Keeps arrow above background */
   }
   
   /* Arrow Styling */
   .about-us-page .arrow3 {
     width: 100px; 
-    margin-top: -5%;
-    margin-left: 300px;
+    margin-top: -10%;
+    margin-left: -250px;
     z-index: 1; 
     animation: arrowSlide 3s infinite ease-in-out; /* Add animation */
   }
@@ -2452,120 +2469,101 @@ h2 {
     border-radius: 30px;
   }
   
- /* @media (max-width: 991px) {
-    .about-us-page .vision-future-section {
-      padding: 40px 20px;
-    }
-  
-    .about-us-page .vision-future-section .section-title {
-      font-size: 40px;
-    }
-  
-    .about-us-page .vision-future-section .content-wrapper {
-      flex-direction: column;
-      gap: 20px;
-    }
-  
-    .about-us-page .vision-future-section .main-content {
-    text-align: center;
-    }
-  
-    .about-us-page .vision-future-section .right-images {
-      align-items: center;
-}
-
-    .about-us-page .vision-future-section .top-right-image,
-    .about-us-page .vision-future-section .bottom-right-image {
-      max-width: 80%;
-}}*/
+ 
 .about-us-page .arrow4-container {
     position: relative; /* Keeps arrow aligned with sections */
-    width: 100%;
+    width: 250px;
     height:100px; /* Adjust height for better visibility */
     overflow: visible; /* Allows arrow to overlap sections */
     margin-top: -50px;
-    align-items: center;
-    z-index: 2; /* Keeps arrow above background */
+    align-items: left;
+    z-index: 1; /* Keeps arrow above background */
   }
   
   /* Arrow Styling */
   .about-us-page .arrow4 {
     width: 200px; 
     margin-top: -250%;
-    margin-left: 520px;
+    
     z-index: 1; 
     animation: arrowSlide 3s infinite ease-in-out; /* Add animation */
   }
-  .about-us-page .team-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px;
-    max-width: 100%;
-    margin-top: -100px;
-  }
-
-  .about-us-page .team-heading {
-    color: #1e1e1e;
-    font: 400 50px Rubik Doodle Shadow, sans-serif;
-    text-align: center;
-    margin-bottom: 40px;
-  }
-
-  .about-us-page .team-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    justify-items: center;
-    width: 100%;
-  }
-
-  .about-us-page .team-member {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .about-us-page .member-image {
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 50%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    cursor: pointer; /* For clickable images */
-  transition: transform 0.3s ease-in-out; /* Hover animation */
+  /* Team Section */
+.about-us-page .team-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  max-width: 100%;
+  margin-top: -100px;
 }
+
+/* Team Heading */
+.about-us-page .team-heading {
+  color: #1e1e1e;
+  font: 400 50px Rubik Doodle Shadow, sans-serif;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Team Grid */
+.about-us-page .team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 120px;
+  justify-items: center;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Team Member */
+.about-us-page .team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.about-us-page .team-member:nth-child(odd) {
+  transform: translateY(5%) ;
+}
+
+.about-us-page .team-member:nth-child(even) {
+  transform: translateY(5%) ;
+}
+
+/* Hover Effect */
+.about-us-page .team-member:hover {
+  transform: translateY(-10px) scale(1.05);
+}
+
+
+
+/* Team Member Image */
+.about-us-page .member-image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Zoom Effect */
 .about-us-page .member-image:hover {
-    transform: scale(1.1); /* Slight zoom on hover */
-  }
-
-  .about-us-page .member-name {
-    margin-top: 15px;
-    font: 600 20px Poppins, sans-serif;
-    color: rgba(0, 0, 0, 0.8);
-  }
-
-  /*@media (max-width: 991px) {
-    .about-us-page .team-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .about-us-page .team-heading {
-      font-size: 40px;
-    }
-
-    .about-us-page .member-name {
-      font-size: 18px;
+  transform: scale(1.1);
 }
-  }
 
-  @media (max-width: 576px) {
-    .about-us-page .team-grid {
-      grid-template-columns: repeat(1, 1fr);
-    }
-  }*/
-  /* Call-to-Action Section */
+/* Member Name */
+.about-us-page .member-name {
+  margin-top: 15px;
+  font: 600 20px Poppins, sans-serif;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+  
 .about-us-page .cta-section {
     display: flex;
     justify-content: center;
@@ -2609,62 +2607,56 @@ h2 {
   }
   
   
-/* Modal Container */
+/* Modal Overlay (Dark Background) */
 .about-us-page .modal {
-    display: none;
-    position: fixed; /* Keeps modal in place */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%; /* Responsive width */
-    max-width: 1200px; /* Matches the given width */
-    height: 600px; /* Content-based height */
-    
-    background: #fdfdfd; /* Modal background */
-    border-radius: 80px; /* Rounded corners */
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    z-index: 1000; /* Ensure it's above all other elements */
-    overflow-y: auto; /* Add vertical scroll for overflow content */
-    padding: 30px;
-    
-  }
-  /* Show Modal */
-    .about-us-page .modal.show {
-        display: block; /* Show modal when triggered */
-    }
-    /* Close Button */
-    .about-us-page .close-btn {
-        position: absolute;
-        top: 15px;
-        right: 40px;
-        font-size: 50px;
-        cursor: pointer;
-        color: #000000
-    }
-    .about-us-page .stopScroll{
-        overflow: hidden;
-    }
-    
-    /* Modal Content */
-    .about-us-page .modal-content {
-        width: 100%;
-        max-width: 100%;
-        height: auto; /* Allow height to adjust to the content */
-        max-height: 90vh; /* Prevent the modal from overflowing */
-        overflow-y: auto; /* Add scrolling for long content */
-        flex-direction: column; /* Stack content vertically */
-        align-items: center; /* Center content horizontally */
-        justify-content: flex-start; /* Align items to the top */
-        gap: 20px; /* Space between modal elements */
-        overflow: hidden;
-        margin: 0;
-  }
-  
+  display: none;               /* hidden by default */
+  position: fixed;             /* stays in the same place on scroll/zoom */
+  top: 50%vp;                      /* fill the viewport */
+  left: 50%vp;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); /* semi-transparent background */
+  z-index: 1000;               /* above all other elements */
+  justify-content: center;     /* center the modal-content horizontally */
+  align-items: center;    
+}
+
+/* Show Modal (when .show is added) */
+.about-us-page .modal.show {
+  display: flex;
+}
+
+/* Modal Content (The White Popup) */
+.about-us-page .modal-content {
+  position: relative;     /* Position it within the overlay */
+  margin-top: -1%;
+  width: 70%;             /* Responsive width */
+  max-width: 70%;
+  height: 600px;          /* Fixed height */
+  background: rgba(255, 255, 255, 0.95); /* Nearly white background */
+  border-radius: 80px;    /* Rounded corners */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  overflow: hidden;
+  border: none;
+}
+
+/* Close Button */
+.about-us-page .close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 50px;
+  cursor: pointer;
+  color: #000000;
+  z-index: 1001;
+}
+
   /* Profile Image */
   .about-us-page .l-img {
     position: absolute;
-    width: 400px;
-    height: 420px;
+    width: 300px;
+    height: 300px;
     left: 60px;
     top: 60px;
     border-radius: 30px;
@@ -2675,7 +2667,7 @@ h2 {
   .about-us-page .name {
     position: absolute;
     width: auto;
-    left: 500px;
+    left: 400px;
     top: 80px;
     font-family: "Tai Heritage Pro", sans-serif;
     font-weight: 700;
@@ -2688,7 +2680,7 @@ h2 {
   .about-us-page .title {
     position: absolute;
     width: auto;
-    left: 500px;
+    left: 400px;
     top: 140px;
     font-family: "Ponnala", sans-serif;
     font-size: 20px;
@@ -2698,103 +2690,106 @@ h2 {
   
   
 
-  /* Decorative Tags */
-  .about-us-page .tag1,.about-us-page .tag2,.about-us-page .tag3{
-    position: absolute;
-    font-family: "Ponnala", sans-serif;
-    font-size: 14px;
-    line-height: 22px;
-    padding: 5px 10px;
-    border-radius: 20px;
-    text-align: center;
-  }
+
+
+/* Base Tag Style */
+.about-us-page .tags {
+  margin-left: 43.5%;
+  display: flex;
+  gap: 15px;
+}
+
+/* Each individual tag is a pill with shadow */
+.about-us-page .tag {
+  font-family: "Ponnala", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-align: center;
+  transition: transform 0.2s ease;
+  align-items: top;
   
-  .about-us-page .tag1{
-    width: auto;
-    left: 500px;
-    top: 40px;
-    
-  }
+}
+
+.about-us-page .tag:hover {
+  transform: translateY(-2px);
+  border: none;
+  background: none;
+}
+
+/* Individual Modal Tag Colors */
+/* Iuliana */
+#modal-iuliana .tag:nth-child(1) {
+  background-color: #ffa07a;
+  color: #000000;
   
-  .about-us-page .tag2{
-    width: auto;
-    left: 600px;
-    top: 40px;
-  }
+}
+
+#modal-iuliana .tag:nth-child(2) {
+  background-color: #98fb98;
+  color: #006400;
   
-  .about-us-page .tag3{
-    width: auto;
-    left: 700px;
-    top: 40px;
-  }
-    /* Specific Styling for Iuliana's Modal */
-#modal-iuliana .tag1 {
-    background-color: #ffa07a; /* Light coral */
-    color: #000000;
-  }
-  
-  #modal-iuliana .tag2{
-    background-color: #98fb98; /* Pale green */
-    color: #006400; /* Dark green */
-  }
-  
-  #modal-iuliana .tag3{
-    background-color: #add8e6; /* Light blue */
-    color: #00008b; /* Dark blue */
-  }
-  
-  /* Specific Styling for Long's Modal */
-  #modal-long .tag1{
-    background-color: #ffc092;
-    color: #000000;
-  }
-  
-  #modal-long .tag2{
-    background-color: #a6efff;
-    color: #083DA8;
-  }
-  
-  #modal-long .tag3{
-    background-color: #ffddff;
-    color: #81079C;
-  }
-  
-  /* Specific Styling for Anthony's Modal */
-  #modal-anthony .tag1{
-    background-color: #ffb347; /* Light orange */
-  }
-  
-  #modal-anthony .tag2{
-    background-color: #dcdcdc; /* Gainsboro */
-    color: #696969; /* Dim gray */
-  }
-  
-  #modal-anthony .tag3{
-    background-color: #dda0dd; /* Plum */
-    color: #4b0082; /* Indigo */
-  }
-  
-  /* Specific Styling for Shai's Modal */
-  #modal-shai .tag1{
-    background-color: #87cefa; /* Light sky blue */
-    color: #00008b; /* Dark blue */
-  }
-  
-  #modal-shai .tag2{
-    background-color: #ffe4b5; /* Moccasin */
-    color: #8b4513; /* Saddle brown */
-  }
-  
-  #modal-shai .tag3{
-    background-color: #ff7f50; /* Coral */
-    color: #8b0000; /* Dark red */
-  }
+}
+
+#modal-iuliana .tag:nth-child(3) {
+  background-color: #add8e6;
+  color: #00008b;
+}
+
+/* Long */
+#modal-long .tag:nth-child(1) {
+  background-color: #ffc092;
+  color: #000000;
+}
+
+#modal-long .tag:nth-child(2) {
+  background-color: #a6efff;
+  color: #083DA8;
+}
+
+#modal-long .tag:nth-child(3) {
+  background-color: #ffddff;
+  color: #81079C;
+}
+
+/* Anthony */
+#modal-anthony .tag:nth-child(1) {
+  background-color: #ffb347;
+  color: #000000;
+}
+
+#modal-anthony .tag:nth-child(2) {
+  background-color: #dcdcdc;
+  color: #696969;
+}
+
+#modal-anthony .tag:nth-child(3) {
+  background-color: #dda0dd;
+  color: #4b0082;
+}
+
+/* Shai */
+#modal-shai .tag:nth-child(1) {
+  background-color: #87cefa;
+  color: #00008b;
+}
+
+#modal-shai .tag:nth-child(2) {
+  background-color: #ffe4b5;
+  color: #8b4513;
+}
+
+#modal-shai .tag:nth-child(3) {
+  background-color: #ff7f50;
+  color: #8b0000;
+}
   /* Short Description */
 .about-us-page .short-description {
     position: absolute;
-    width: 600px;
-    max-width: 60%;
-    left: 500px;
+    width: 400px;
+    max-width: 100%;
+    left: 400px;
     top: 180px;
     font-family: "Sarala", sans-serif;
     font-size: 14px;
@@ -2805,12 +2800,12 @@ h2 {
   /* Description */
   .about-us-page .full-description {
     position: absolute;
-    width: 600px;
-    max-width: 60%;
-    left: 500px;
-    top: 220px;
+    width: 400px;
+    max-width: 100%;
+    left: 400px;
+    top: 260px;
     font-family: "Sarala", sans-serif;
-    font-size: 22px;
+    font-size: 18px;
     line-height: 24px;
     color: #000000;
     text-align: justify;
@@ -2820,18 +2815,25 @@ h2 {
   .about-us-page .linkedin-link {
     position: absolute;
     width: auto;
-    left: 500px;
-    top: 400px;
+    left: 650px;
+    top: 450px;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-size: 18px;
     line-height: 24px;
-    color: #170bf9;
+    color: white;
     text-decoration: none;
+    background-color: #0a66c2;
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: inline-block;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   }
   
   .about-us-page .linkedin-link:hover {
-    text-decoration: underline;
+    background-color: #084a99;
+    transform: translateY(-3px);
   }
   
   /* Bottom Images */
@@ -2839,7 +2841,7 @@ h2 {
     position: absolute;
     width: auto;
     left: 60px;
-    top: 520px; /* Positioned below the description and link */
+    top: 400px; /* Positioned below the description and link */
     display: flex;
     gap: 20px;
   }
@@ -2851,8 +2853,270 @@ h2 {
     object-fit: cover;
   }
   
+/* Particle Container (Covers the Whole Page) */
+ .about-us-page .particle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* Prevent interaction interference */
+  z-index: 9999; /* Ensures particles are above everything */
+  overflow: hidden;
+}
+
+/* Particle Glow Effect */
+.about-us-page .particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: rgba(186, 146, 109, 0.8); /* Soft white glow */
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(246, 201, 64, 0.9); /* Glowing effect */
+  opacity: 0;
+  animation: fade-in-out 3s infinite, float-up 15s linear infinite;
+}
+@keyframes fade-in-out {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+/* Floating Upwards */
+@keyframes float-up {
+  0% { transform: translateY(0) scale(0.8); }
+  100% { transform: translateY(-100px) scale(1.2); }
+} 
 
 
 /* ========================= */
 /* About Us Page Styles End*/
 /* ========================= */
+
+/* ========================= */
+/* Contact Us Page Styles Start */
+/* ========================= */
+/* Google Fonts */
+
+
+/* Hero Section */
+.contact-us .hero-section {
+  text-align: center;
+  padding: 100px 20px;
+  animation: fadeInContact 1.5s ease-in-out;
+}
+
+.contact-us .hero-title-highlight {
+  color: #a7e400;
+
+margin: 20px 0 10px 0;
+  padding: 0;
+  align-self: flex-end;
+}
+
+/* Contact Form Section */
+/* Contact Us Layout */
+.contact-us {
+background-color: transparent; /* Keep starry background visible */
+padding: 60px 20px;
+}
+
+/* Form Title Styling */
+.contact-us .form-title {
+font-family: "Poppins", sans-serif;
+font-size: 24px;
+font-weight: 700;
+color: white;
+text-align: center;
+margin-bottom: 20px;
+}
+
+.contact-us .container {
+max-width: 1000px;
+margin: 0 auto;
+}
+
+/* Two Column Layout */
+.contact-grid {
+display: grid;
+grid-template-columns: 1fr 1.2fr; /* Adjust width (concern smaller, story larger) */
+gap: 40px;
+align-items: start;
+}
+
+/* Left Column - Tell Me Your Concern */
+.concern-column {
+background: rgba(255, 255, 255, 0.1);
+padding: 30px;
+border-radius: 12px;
+box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+backdrop-filter: blur(10px);
+}
+
+.concern-column p {
+color: #ddd;
+font-size: 16px;
+margin-bottom: 20px;
+}
+
+/* Right Column - Tell Me Your Story */
+.story-column {
+background: rgba(255, 255, 255, 0.15);
+padding: 30px;
+border-radius: 12px;
+box-shadow: 0 4px 6px rgba(255, 255, 255, 0.15);
+backdrop-filter: blur(10px);
+}
+
+/* Form Elements */
+.form-group {
+margin-bottom: 16px;
+}
+
+.contact-us label {
+display: block;
+color: #fff;
+font-weight: 500;
+margin-bottom: 6px;
+}
+
+.contact-us input,
+.contact-us textarea,
+.contact-us select {
+width: 100%;
+padding: 12px;
+border: 1px solid #ccc;
+border-radius: 6px;
+font-size: 16px;
+transition: all 0.3s ease;
+}
+
+.contact-us input:focus,
+.contact-us textarea:focus,
+.contact-us select:focus {
+outline: none;
+border-color: #0066ff;
+box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2);
+}
+
+.contact-us textarea {
+height: 120px;
+resize: vertical;
+}
+
+/* Submit Button */
+.contact-us .submit-btn {
+background: #0066ff;
+color: white;
+padding: 14px 32px;
+border: none;
+border-radius: 6px;
+font-size: 16px;
+font-weight: 600;
+cursor: pointer;
+transition: background 0.3s ease;
+display: block;
+width: auto;
+align-items: center;
+margin: 20px auto;
+}
+
+.submit-btn:hover {
+background: #a6c3ee;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+.contact-grid {
+  grid-template-columns: 1fr;
+}
+}
+
+
+
+/* Animations */
+@keyframes fadeInContact {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Background Animation */
+.contact-us .background-container {
+position: fixed;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0;
+z-index: -1; /* Ensures it's behind all content */
+}
+
+/* Star Layer */
+.contact-us .stars {
+background: black url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png") repeat;
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+right: 0;
+display: block;
+z-index: 0;
+}
+
+/* Twinkling Stars */
+.contact-us .twinkling {
+width: 10000px;
+height: 100%;
+background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png") repeat;
+background-size: 1000px 1000px;
+position: absolute;
+right: 0;
+top: 0;
+bottom: 0;
+z-index: 1;
+
+animation: move-background 70s linear infinite;
+}
+
+/* Cloud Layer */
+.contact-us .clouds {
+width: 10000px;
+height: 100%;
+background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/clouds_repeat.png") repeat;
+background-size: 1000px 1000px;
+position: absolute;
+right: 0;
+top: 0;
+bottom: 0;
+z-index: 2;
+
+animation: move-background 150s linear infinite;
+}
+
+/* Moon */
+.contact-us img.moon {
+height: 70vh;
+width: 70vh;
+position: absolute;
+z-index: 3;
+right: 20px;
+}
+
+/* Keyframes for Background Movement */
+@keyframes move-background {
+from {
+  transform: translate3d(0px, 0px, 0px);
+}
+to { 
+  transform: translate3d(1000px, 0px, 0px);
+}
+}
+
+/* ========================= */
+/* Contact Us Page Styles End */
+/*========================= */
