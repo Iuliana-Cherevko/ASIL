@@ -261,8 +261,40 @@
 
 
     <!-- Modal for Long Nguyen -->
-    <!-- for the modal code and realated look into the "modal for about us page. html" file -->
-  
+    {{ member_modal(
+      modal_id='modal-long',
+      name='Long Nguyen',
+      title='Full-stack Student',
+      short_description='Loves exploring cuisines and building games.',
+      full_description='Originally residing from Vietnam, I’m a recent adventurer in the U.S. I’m a total foodie and can’t resist exploring new cuisines. When I’m not buried in my game projects, you might catch me sneaking outside to grab some fresh air and recharge.',
+      linkedin_url='https://www.linkedin.com/in/long-nguyen-386073264',
+      image_url=url_for('static', filename='images/about us/l_img.jpg'),
+      tags=["Leadership", "Advocacy", "Marketing"],
+      extra_images=[
+          url_for('static', filename='images/about us/extra1.jpg'),
+          url_for('static', filename='images/about us/extra2.jpg')
+      ]
+    ) }}
+
+    {{ member_modal(
+      modal_id="modal-iuliana",
+      name="Iuliana Cherevko",
+      title="Front-End Developer & UX Designer",
+      short_description="Coding, problem-solving, or getting lost in a good book, I’m always eager to learn and grow.",
+      full_description="I'm a STEM enthusiast passionate about coding, engineering, and robotics. Outside of tech, you’ll find me reading, playing my guitar, or tackling a new project.",
+      linkedin_url="https://www.linkedin.com/in/iuliana-cherevko",
+      image_url=url_for('static', filename='images/about us/y_img.jpg'),
+      tags=["Leadership", "Dev Team", "Innovator"],
+      extra_images=[
+          url_for('static', filename='images/about us/extra3.jpg'),
+          url_for('static', filename='images/about us/extra4.jpg')
+      ]
+    ) }}
+  {{ member_modal("anthony", "images/about us/a_img.jpg", "Anthony Rodriguez", "Backend Developer", "Anthony loves backend development and tackling challenges...", "https://linkedin.com/in/anthony?", ["images/about us/extra3.jpg", "images/about us/extra4.jpg"]) }}
+  {{ member_modal("shai", "images/about us/s_img.jpg", "Shai Y", "Backend Developer", "Shai enjoys designing clean, functional, and visually appealing user interfaces...", "https://linkedin.com/in/shai?", ["images/about us/extra7.jpg", "images/about us/extra8.jpg"]) }}
+
+    
+    
   </section>
 
   <!--Footer-->
