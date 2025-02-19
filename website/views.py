@@ -116,6 +116,18 @@ def settings():
 @views.route('/companion-hub', methods = ['GET', 'POST'])
 @login_required
 def companion_hub():
+    if request.method == 'POST':
+        date = request.form.get('date')
+        mood = request.form.get('mood')
+        habit_status = request.form.get('habit_status')
+        data = request.form.get('journal')
+        user_username = current_user.username
+
+        new_journal = Journal(date=date, mood=mood, habit_status=habit_status,data=data,user_username=current_user.username)
+        print(data, user_username)
+        db.session.add(new_journal)
+        db.session.commit
+
     # sample of check-in data, in a form that will be easy for me to analyse, process in js.
     check_in_data = {
     "01/20/2025": {"mood": 3, "habit": False, "journal": "Felt a bit off today. Couldn't focus much, but at least I got some reading done. Hoping tomorrow will be more productive."},
@@ -126,7 +138,6 @@ def companion_hub():
     "02/13/2025": {"mood": 4, "habit": True, "journal": "Really tough day. Nothing seemed to go right, and I felt overwhelmed. Hoping for a fresh start tomorrow."},
     "02/14/2025": {"mood": 5, "habit": True, "journal": "Felt productive and energized! Finished my CS assignment early and treated myself to some reading time."}
     }
-
     return render_template('companion-hub.html',
                             user_logged_in=True,
                             username=current_user.username,
