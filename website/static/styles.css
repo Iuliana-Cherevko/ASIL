@@ -60,7 +60,7 @@
     --spacing-extra-large: 4rem;
 
     /* Button Styles */
-    --btn-padding-small: 7px 20px;
+    --btn-padding-small: 7px 15px;
     --btn-padding-regular: 10px 25px;
     --btn-padding-large: 15px 25px;
     --btn-border-radius: 15px;
@@ -2031,7 +2031,7 @@ h2 {
   align-items: center;
 }
 
-.companion-section h3 {
+.companion-section h3, .user-progress-section h3 {
   text-align: center;
   font: var(--font-weight-medium) var(--font-size-large) var(--font-primary);
   padding-bottom: var(--spacing-regular)
@@ -2171,13 +2171,20 @@ h2 {
 }
 
 .companion-info {
-  width: 35%;
-  height: 60%;
-  background-color: var(--neutral-foam);
+  width: fit-content;
+  max-width: 40%;
+  height: fit-content;
+  /* background-color: var(--neutral-foam); */
+  background: radial-gradient(#FCEDF7, #FDD7EB);
   border-radius: var(--card-border-radius);
-  padding: var(--spacing-regular) 0 var(--spacing-large) var(--spacing-regular);
+  padding: var(--spacing-regular);
   margin: var(--spacing-extra-large) var(--spacing-extra-large) 0 0;
   box-shadow: 0 0 0 15px var(--background-color);
+}
+
+.companion-info hr {
+  margin: 1rem 0;
+  border: 1px solid var(--accent-color);
 }
 
 .companion-info-row {
@@ -2225,7 +2232,7 @@ h2 {
   max-width: 1065px;
   align-items: center;
   text-align: center;
-  background: var(--neutral-light);
+  background: var(--neutral-cinderella);
   border-radius: var(--card-border-radius);
   padding: var(--spacing-large);
   margin: var(--spacing-extra-large) 0;
@@ -2252,7 +2259,7 @@ h2 {
   background: var(--neutral-foam);
   border-radius: var(--card-border-radius);
   padding: var(--spacing-regular);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 15px var(--background-color);
   width: 80%;
 }
 
@@ -2271,6 +2278,13 @@ h2 {
 .check-in-status {
   font-weight: var(--font-weight-semi-bold);
   color: var(--primary-color);
+}
+
+.center-text{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .progress-message {
@@ -2296,16 +2310,17 @@ h2 {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.new-goal-btn:hover {
-  transform: scale(1.1);
-}
-
-
 .progress-image {
+  cursor: pointer;
   border-radius: var(--card-border-radius);
   width: 100%;
   max-width: 500px;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.new-goal-btn:hover, .progress-image:hover {
+  transform: scale(1.1);
 }
 
 /* Weekly view */
@@ -2425,6 +2440,7 @@ h2 {
 }
 
 .checkin-form-summary {
+  position: relative;
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -2437,6 +2453,30 @@ h2 {
   border-radius: var(--modal-border-radius);
   border: 1px solid var(--light-grey);
   margin: var(--spacing-regular) var(--spacing-large);
+}
+
+.checkin-edit-button {
+  display: block;
+  border-radius: var(--btn-border-radius);
+  background-color: var(--neutral-foam);
+  display: flex;
+  position: absolute;
+  gap: 6px;
+  padding: var(--btn-padding-small);
+  border: 1px solid var(--black);
+  font: var(--font-weight-medium) var(--font-size-regular) var(--font-secondary);
+  cursor: pointer;
+  top: 0; 
+  right: 0;
+  margin-top: 20px; 
+  margin-right: 20px;
+}
+
+.checkin-edit-button svg {
+  aspect-ratio: 1;
+  object-fit: contain;
+  width: 20px;
+  margin: auto 0;
 }
 
 .checkin-form-summary input {
@@ -2475,10 +2515,11 @@ h2 {
   border: none;
   border-radius: var(--btn-border-radius);
   cursor: pointer;
+  transition: filter 0.3s ease-in-out;
 }
 
 .check-in-btn:hover {
-  background-color: var(--primary-hover-color);
+  filter: brightness(0.9);
 }
 
 /* Check-in modal styling */

@@ -55,19 +55,19 @@ def registration():
         if user and password:
             username_taken, email_taken = True, True
             print("username and email taken")
-            return render_template('index.html')
+            return render_template('index.html', username_taken=username_taken, email_taken=email_taken)
 
         elif user:
             username_taken = True
             flash('Username already exists', category='error')
             print('username taken')
-            return render_template('index.html')
+            return render_template('index.html', username_taken=username_taken, email_taken=False)
         
         elif email_check:
             email_taken = True
             print("email taken") # for debugging
             flash('Email already exists', category='error')
-            return render_template('index.html')
+            return render_template('index.html', username_taken=False, email_taken=email_taken)
 
         #hashed_password = generate_password_hash(password, method='sha256')
         new_user = User(username=username, password=generate_password_hash(password,method='pbkdf2:sha256')
