@@ -52,7 +52,9 @@ def questionaire():
         current_user.goal_duration = request.form.get('goal_duration')
         current_user.companion_name = request.form.get('companion_name')
         current_user.companion = request.form.get('companion')
+        db.session.commit()
         print(current_user.bad_habit, current_user.goal_duration, current_user.companion_name, current_user.companion)
+        
         return render_template('index.html')
 
              
@@ -103,6 +105,7 @@ def checkin():
 @views.route('/settings', methods = ['GET', 'POST'])
 @login_required
 def settings():
+    print(current_user.companion_name)
     # Manage form submission
     return render_template('settings.html',
                            user_logged_in=True,
@@ -127,6 +130,13 @@ def companion_hub():
         print(data, user_username)
         db.session.add(new_journal)
         db.session.commit
+
+        return render_template('companion-hub.html',
+                            user_logged_in=True,
+                            username=current_user.username,
+                            companion=current_user.companion,
+                            goal_duration=current_user.goal,
+                            check_in_data=check_in_data)
 
     # sample of check-in data, in a form that will be easy for me to analyse, process in js.
     check_in_data = {
